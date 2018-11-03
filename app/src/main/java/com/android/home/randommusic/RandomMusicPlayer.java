@@ -15,6 +15,7 @@ import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import com.android.home.Home;
 import com.android.home.R;
 
 import java.security.Permission;
@@ -35,7 +36,7 @@ public class RandomMusicPlayer extends Activity implements View.OnClickListener,
      * The URL we suggest as default when adding by URL. This is just so that the user doesn't
      * have to find an URL to test this sample.
      */
-    final String SUGGESTED_URL = "http://www.vorbis.com/music/Epoq-Lepidoptera.ogg";
+    final String SUGGESTED_URL = Home.APP_SERVER + "audiolibrary/Good_For_The_Soul.mp3";
 
     Button mPlayButton;
     Button mPauseButton;

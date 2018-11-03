@@ -13,6 +13,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 import com.android.home.autofill.AutoFillFramework;
+import com.android.home.plaid.PlaidApp;
 import com.android.home.shimmer.ShimmerActivity;
 import com.android.home.camerabasic.CameraBasic;
 import com.android.home.circleimage.CircleImageActivity;
@@ -61,7 +62,7 @@ public class Home extends Activity {
                         "that manages media playback from a service.", RandomMusicPlayer.class));
         appViewList.add(new AppView(R.drawable.plaid, "Plaid",
                 "An Android app which provides design news & inspiration as well as being " +
-                        "an example of implementing material design. ", null));
+                        "an example of implementing material design. ", PlaidApp.class));
         appViewList.add(new AppView(R.drawable.soundrecorder, "SoundRecorder",
                 "系统的录音机应用。", SoundRecorder.class));
         appViewList.add(new AppView(R.drawable.sunflower, "Sunflower",
@@ -107,6 +108,12 @@ public class Home extends Activity {
                 "Autofill Framework includes implementations of client Activities with views " +
                         "that should be autofilled, and a Service that can provide autofill data to " +
                         "client Activities.", AutoFillFramework.class));
+        appViewList.add(new AppView(R.drawable.ime, "IME",
+                "Demonstrates how to write an keyboard which sends rich content (such as images) to text\n" +
+                        "fields using the Commit Content API.", null));
+        appViewList.add(new AppView(R.drawable.sensor, "BatchStepSensor",
+                "Demonstrating how to set up SensorEventListeners for step " +
+                        "detectors and step counters.", null));
 
         mRecyclerView = findViewById(R.id.recycler_view);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this));

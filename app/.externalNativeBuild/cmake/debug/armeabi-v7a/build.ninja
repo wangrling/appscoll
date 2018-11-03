@@ -34,7 +34,7 @@ include rules.ninja
 # Utility command for rebuild_cache
 
 build CMakeFiles/rebuild_cache.util: CUSTOM_COMMAND
-  COMMAND = cd /home/wangrl/Android/app/Home/app/.externalNativeBuild/cmake/debug/armeabi-v7a && /home/wangrl/Android/Sdk/cmake/3.6.4111459/bin/cmake -H/home/wangrl/Android/app/Home/app -B/home/wangrl/Android/app/Home/app/.externalNativeBuild/cmake/debug/armeabi-v7a
+  COMMAND = cd /home/wangrl/github/appscoll/app/.externalNativeBuild/cmake/debug/armeabi-v7a && /home/wangrl/Android/Sdk/cmake/3.6.4111459/bin/cmake -H/home/wangrl/github/appscoll/app -B/home/wangrl/github/appscoll/app/.externalNativeBuild/cmake/debug/armeabi-v7a
   DESC = Running CMake to regenerate build system...
   pool = console
   restat = 1
@@ -44,7 +44,7 @@ build rebuild_cache: phony CMakeFiles/rebuild_cache.util
 # Utility command for edit_cache
 
 build CMakeFiles/edit_cache.util: CUSTOM_COMMAND
-  COMMAND = cd /home/wangrl/Android/app/Home/app/.externalNativeBuild/cmake/debug/armeabi-v7a && /home/wangrl/Android/Sdk/cmake/3.6.4111459/bin/cmake -E echo No\ interactive\ CMake\ dialog\ available.
+  COMMAND = cd /home/wangrl/github/appscoll/app/.externalNativeBuild/cmake/debug/armeabi-v7a && /home/wangrl/Android/Sdk/cmake/3.6.4111459/bin/cmake -E echo No\ interactive\ CMake\ dialog\ available.
   DESC = No interactive CMake dialog available...
   restat = 1
 build edit_cache: phony CMakeFiles/edit_cache.util
@@ -56,7 +56,7 @@ build CMakeFiles/native-lib.dir/src/main/cpp/native-lib.cpp.o: CXX_COMPILER__nat
   DEP_FILE = CMakeFiles/native-lib.dir/src/main/cpp/native-lib.cpp.o.d
   FLAGS = -isystem /home/wangrl/Android/Sdk/ndk-bundle/sysroot/usr/include/arm-linux-androideabi -D__ANDROID_API__=24 -g -DANDROID -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -march=armv7-a -mfloat-abi=softfp -mfpu=vfpv3-d16 -mthumb -Wa,--noexecstack -Wformat -Werror=format-security -std=c++11  -O0 -fno-limit-debug-info  -fPIC
   INCLUDES = -isystem /home/wangrl/Android/Sdk/ndk-bundle/sources/cxx-stl/llvm-libc++/include -isystem /home/wangrl/Android/Sdk/ndk-bundle/sources/android/support/include -isystem /home/wangrl/Android/Sdk/ndk-bundle/sources/cxx-stl/llvm-libc++abi/include
-  IN_ABS = /home/wangrl/Android/app/Home/app/src/main/cpp/native-lib.cpp
+  IN_ABS = /home/wangrl/github/appscoll/app/src/main/cpp/native-lib.cpp
   OBJECT_DIR = CMakeFiles/native-lib.dir
   OBJECT_FILE_DIR = CMakeFiles/native-lib.dir/src/main/cpp
 

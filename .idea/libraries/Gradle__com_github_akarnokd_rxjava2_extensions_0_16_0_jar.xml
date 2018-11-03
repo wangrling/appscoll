@@ -1,0 +1,11 @@
+<component name="libraryTable">
+  <library name="Gradle: com.github.akarnokd:rxjava2-extensions:0.16.0@jar">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.github.akarnokd/rxjava2-extensions/0.16.0/b430e732cd29eff85411ac5baac6d455a37b18f0/rxjava2-extensions-0.16.0.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.github.akarnokd/rxjava2-extensions/0.16.0/91238902efcf3ea41c836578e930d423b8299c41/rxjava2-extensions-0.16.0-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

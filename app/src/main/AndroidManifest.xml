@@ -42,8 +42,13 @@
         <activity android:name=".picasso.PicassoGridViewActivity" />
         <activity android:name=".picasso.PicassoGalleryActivity" />
         <activity android:name=".picasso.PicassoContactsActivity" />
+        <activity android:name=".picasso.PicassoListDetailActivity" />
 
         <activity android:name=".camerabasic.CameraBasic"/>
+
+
+        <activity android:name=".plaid.PlaidApp" />
+
         <activity android:name=".randommusic.RandomMusicPlayer"/>
 
         <service android:name=".randommusic.MusicService">

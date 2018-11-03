@@ -12,4 +12,4 @@
 -- Detecting CXX compile features - done
 -- Configuring done
 -- Generating done
--- Build files have been written to: /home/wangrl/Android/app/Home/app/.externalNativeBuild/cmake/debug/armeabi-v7a
+-- Build files have been written to: /home/wangrl/github/appscoll/app/.externalNativeBuild/cmake/debug/armeabi-v7a

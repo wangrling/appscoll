@@ -87,7 +87,7 @@ public class PicassoGridViewActivity extends PicassoActivity {
         }
     }
 
-    private class SquaredImageView extends android.support.v7.widget.AppCompatImageView {
+    public class SquaredImageView extends android.support.v7.widget.AppCompatImageView {
         public SquaredImageView(Context context) {
             super(context);
         }
