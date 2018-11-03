@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#008577</color>
+    <color name="colorPrimaryDark">#00574B</color>
+    <color name="colorAccent">#D81B60</color>
+    <color name="cyan">#00FFFF</color>
+
+    <drawable name="completedTaskBackground">#CCCCCC</drawable>
+    <drawable name="touchFeedback">#CFD8DC</drawable>
+
+    <color name="grid_state_pressed">#1Affffff</color>
+    <color name="grid_state_focused">#80000000</color>
+
+    <color name="overlay_selector_pressed">#40000000</color>
+    <color name="window_background">#ff202020</color>
+    <color name="list_divider">#ff555555</color>
+
+</resources>

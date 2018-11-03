@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:tools="http://schemas.android.com/tools"
+              android:layout_width="match_parent"
+              android:layout_height="?android:attr/listPreferredItemHeight"
+              android:orientation="horizontal">
+
+    <QuickContactBadge android:id="@android:id/icon"
+                       android:layout_height="?android:attr/listPreferredItemHeight"
+                       android:layout_width="?android:attr/listPreferredItemHeight"
+                       android:scaleType="centerCrop"/>
+
+    <TextView android:id="@android:id/text1"
+              android:paddingLeft="8dp"
+              android:paddingRight="8dp"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:gravity="start|center_vertical"
+              android:fontFamily="sans-serif-light"
+              android:singleLine="true"
+              android:ellipsize="end"
+              android:textAppearance="?android:attr/textAppearanceLarge"
+              tools:ignore="UnusedAttribute"
+    />
+
+</LinearLayout>

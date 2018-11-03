@@ -1,0 +1,170 @@
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+    <string name="home">Home</string>
+
+    <string name="todomvp">TodoMvp</string>
+    <string name="add_task">New TO-DO</string>
+    <string name="edit_task">Edit TO-DO</string>
+    <string name="task_marked_complete">Task marked complete</string>
+    <string name="task_marked_active">Task marked active</string>
+    <string name="loading_tasks_error">Error while loading tasks</string>
+    <string name="completed_tasks_cleared">Completed tasks cleared</string>
+    <string name="menu_filter">Filter</string>
+    <string name="menu_clear">Clear completed</string>
+    <string name="menu_delete_task">Delete task</string>
+    <string name="navigation_view_header_title">TO-DOs</string>
+    <string name="title_hint">Title</string>
+    <string name="description_hint">Enter your TO-DO here.</string>
+    <string name="empty_task_message">TO DOs cannot be empty</string>
+    <string name="successfully_saved_task_message">TO-DO saved</string>
+    <string name="list_title">TO-DO List</string>
+    <string name="statistics_title">Statistics</string>
+    <string name="statistics_no_tasks">You have no tasks.</string>
+    <string name="statistics_active_tasks">Active tasks:</string>
+    <string name="statistics_completed_tasks">Completed tasks:</string>
+    <string name="statistics_error">Error loading statistics.</string>
+    <string name="no_data">No data</string>
+    <string name="loading">LOADING</string>
+    <string-array name="list_tasks_array">
+        <item>@string/nav_all</item>
+        <item>@string/nav_active</item>
+        <item>@string/nav_completed</item>
+    </string-array>
+    <string name="nav_all">All</string>
+    <string name="nav_active">Active</string>
+    <string name="nav_completed">Completed</string>
+    <string name="label_all">All TO-DOs</string>
+    <string name="label_active">Active TO-DOs</string>
+    <string name="label_completed">Completed TO-DOs</string>
+    <string name="no_tasks_all">You have no TO-DOs!</string>
+    <string name="no_tasks_active">You have no active TO-DOs!</string>
+    <string name="no_tasks_completed">You have no completed TO-DOs!</string>
+    <string name="no_tasks_add">Add a TO-DO item +</string>
+    <string name="refresh">Refresh</string>
+
+
+    <string name="request_permission">This sample needs camera permission.</string>
+    <string name="camera_error">This device does not support Camera2 API.</string>
+
+    <string name="random_music_player">RandomMusicPlayer</string>
+    <string name="picasso">Picasso</string>
+
+    <!-- Screen title before and during recording -->
+    <string name="record_your_message">Record your message</string>
+    <!-- Screen title after recording -->
+    <string name="message_recorded">Message recorded</string>
+    <!-- Screen title while playing back a recording -->
+    <string name="review_message">Review message</string>
+    <!-- Label shown during recording -->
+    <string name="recording">Recording</string>
+    <!-- Label shown when the recording is stopped for a reason other than the user stopping it (e.g. the sd card was removed) -->
+    <string name="recording_stopped">Recording stopped</string>
+    <!-- label shown when there is not enough space to record something -->
+    <string name="storage_is_full">Storage is full</string>
+    <!-- label shown when the recording has reached maximum allowed file size -->
+    <string name="max_length_reached">Maximum length reached</string>
+    <!-- label shown when there is no sd card available to record to [CHAR LIMIT=30] -->
+    <string name="insert_sd_card">Mount USB storage</string>
+    <!-- label shown when there is more than 1 minute but less than 9 minutes of space left to record -->
+    <string name="min_available">
+        <xliff:g id="minutes">%d</xliff:g>
+        min available
+    </string>
+    <!-- label shown when there is less than 1 minute of space left to record -->
+    <string name="sec_available"><xliff:g id="seconds">%d</xliff:g>s available
+    </string>
+    <!-- button to accept the current recording and return it to the caller -->
+    <string name="accept">Done</string>
+    <!-- button to discard the current recording and return to the caller -->
+    <string name="discard">Discard</string>
+    <!-- acknowlegement button in a number of dialogs -->
+    <string name="button_ok">OK</string>
+    <!-- Do not translate. Format of the timer that shows how much has been recorded so far -->
+    <string name="timer_format" translatable="false">
+        <xliff:g id="format">%02d:%02d</xliff:g>
+    </string>
+    <!-- the name under which recordings will be visible in the media database is formatted like this -->
+    <string name="audio_db_title_format">
+        <xliff:g id="format">yyyy-MM-dd HH:mm:ss</xliff:g>
+    </string>
+    <!-- all recordings will show up in the media database with this 'artist' name -->
+    <string name="audio_db_artist_name">Your recordings</string>
+    <!-- all recordings will show up in the media database with this 'album' name -->
+    <string name="audio_db_album_name">Audio recordings</string>
+    <!-- all recordings will show up in the media database in a playlist with this name -->
+    <string name="audio_db_playlist_name">My recordings</string>
+    <!-- shown as the message in a dialog when an error occured because of an error accessing the sd card [CHAR LIMIT=NONE] -->
+    <string name="error_sdcard_access">Can\'t access USB storage.</string>
+    <!-- shown as the message in a dialog when the app encountered an unspecified internal error -->
+    <string name="error_app_internal">Internal application error.</string>
+    <!-- shown as the message in a dialog when the recording could not be added to the media database -->
+    <string name="error_mediadb_new_record">Couldn\'t save recorded audio.</string>
+    <string name="start_long_operation">Start long operation</string>
+
+    <string name="favorite">Favorite</string>
+    <string name="error_no_metadata">Unable to retrieve metadata.</string>
+    <string name="browse_genres">Genres</string>
+    <string name="browse_genre_subtitle">Songs by genre</string>
+    <string name="browse_musics_by_genre_subtitle">%1$s songs</string>
+    <string name="random_queue_title">Random music</string>
+    <string name="error_no_connection">Cannot connect to server. Please, check your Internet connectivity.</string>
+    <string name="error_loading_media">Error Loading Media</string>
+    <string name="casting_to_device">Casting to %1$s</string>
+    <string name="currently_playing_song">Song currently playing</string>
+    <string name="currently_playing_artist">Artist of currently playing song</string>
+    <string name="currently_playing_extra_info">Extra info for currently playing song</string>
+    <string name="play_item">Play item</string>
+    <string name="play_pause">play or pause</string>
+    <string name="skip_next">skip to next</string>
+    <string name="skip_prev">skip to previous</string>
+    <string name="touch_to_cast">Touch to connect to a Google Cast device</string>
+    <!-- Use the default receiver. To customize a styled media receiver, you can use
+         the css and images under <project-root>/docs/cast_styled_receiver -->
+    <string name="cast_application_id">CC1AD845</string>
+    <string name="home_title">Home</string>
+    <string name="related_content_header">You may also like</string>
+    <string name="action_listen">Listen</string>
+    <string name="open_content_drawer">Open the main menu</string>
+    <string name="close_content_drawer">Close the main menu</string>
+    <string name="placeholder_message">This is a placeholder for your application code.</string>
+    <string name="drawer_allmusic_title">All Music</string>
+    <string name="drawer_playlists_title">Playlists</string>
+    <string name="now_playing">Now Playing</string>
+    <string name="background_image_str">Background image for album art</string>
+    <string name="search_queue_title">Search results</string>
+    <string name="no_search_results">No search results.</string>
+    <string name="media_route_menu_title">Play on…</string>
+    <string name="nav_header_username">Username</string>
+
+    <!-- Notificaiton Channel -->
+    <string name="notification_channel">UAMP_Channel_ID</string>
+    <string name="notification_channel_description">Channel ID for UAMP</string>
+
+
+    <string name="msg_demo_pagination">This is a demo of how you can do a list pagination with Rx. We page 10 items at a time and there are 55 items altogether</string>
+    <string name="msg_demo_volley">This is a Volley request demo</string>
+    <string name="msg_demo_concurrency_schedulers">This is a demo of how long running operations can be offloaded to a background thread. After the operation is done, we resume back on the main thread. All using RxJava! \n\n To really see this shine. Hit the button multiple times and see how the button click which is a ui operation is never blocked because the long operation only runs in the background</string>
+    <string name="msg_demo_buffer">This is a demo of how events can be accumulated using the "buffer" operation. Tap the button below repetitively and you will notice in the logs that button taps are collected over a span of 2s and printed below.</string>
+    <string name="msg_demo_debounce">As you type in the input box, it will not shoot out log messages at every single input character change, but rather only pick the last one.</string>
+    <string name="msg_demo_timeout">This is a demo of terminating events, that take too long to process. Events in this demo should timeout in 3 seconds. Button 1 is an event that takes 2s to process, and Button 2 is a n event that takes 5s to process. Hit Button 2, and see in the logs that it\'s been cancelled, while this is not the case for Button 1.</string>
+    <string name="msg_demo_retrofit">Retrofit from Square is a super easy networking helper library. It works really well with RxJava and these are examples taken from Jake Wharton\'s talk at Netflix (see README). Really the only interesting bits here are in the code and logs.</string>
+    <string name="msg_demo_retrofit_async_task_death">This shows how you can replace an AsyncTask with RxJava. The interesting parts are in the code.</string>
+    <string name="msg_demo_doublebinding">Watch how the result gloriously auto-updates <ba></ba>sed on your changing inputs. Using a technique like this, you could achieve the two-way binding in Angular Js, or more efficiently use a pattern like the Presentation View Model.</string>
+    <string name="msg_demo_polling">Demo polling or making a call repeatedly with RxJava.\n\nSimple polling: Notice in the logs how a (simulated) network call is repeatedly made in the background.</string>
+    <string name="msg_demo_exponential_backoff">These two examples demonstrate retrying and executing with a delay using an exponential backoff strategy.</string>
+    <string name="msg_demo_rxbus_1">Tap on the below button and RxBus will listen to the events</string>
+    <string name="msg_demo_form_comb_latest">Monitor the state of multiple observables with the combineLatest operator. Only after all the 3 inputs contain valid entries will the submit button light up</string>
+    <string name="msg_demo_timing">BTN 1: run single task once (after 2s complete)\nBTN 2: run task every 1s (start delay of 1s) toggle \nBTN 3: run task every 1s (start immediately) toggle \nBTN 4: run task 5 times every 3s (then complete) \nBTN 5: run task A, pause for sometime, then proceed with Task B</string>
+    <string name="msg_demo_rotation_persist">This is an example of starting an Observable and using the result across rotations. There are many ways to do this, we use ViewModels from architecture components</string>
+    <string name="msg_demo_network_detector">This is a demo of how to use Subjects to detect Network connectivity\nToggle your Wifi/Network on or off and notice the logs</string>
+    <string name="msg_demo_using">This is a demo of the somewhat unknown operator "using".\n\nYou typically use it for managing setup/teardown of resources. Classic cases are DB connections (like Realm), sockets, locks etc.\n\nTap the button and look at the logcat. Particularly notice how the Realm instance is self-contained. That is, it is auto-disposed right after use.</string>
+    <string name="msg_demo_multicast_publishRefCount">RefCount starts the upstream right away and gets disposed off, when all subscribers stop. Hit S1, Hit S2, Hit S1, Hit S2. Hit S1/S2 now and notice the stream starts all over.</string>
+    <string name="msg_demo_multicast_publishAutoConnect">AutoConnect(2) waits for a min. subscriber count, before starting the upstream. Hit S1 (notice events don\'t start), Hit S2 (notice events now start), Hit S1 (notice that unsubscribing doesn\'t affect upstream), Hit S2, wait for sometime and hit S1 again (notice source stream doesn\'t restart)</string>
+    <string name="msg_demo_multicast_replayAutoConnect">Replay caches the last item. Hit S1, Hit S2, event starts, Hit S2, wait a bit, Hit S2 again (notice it starts with the last item that S1 saw - courtesy Replay). Hit S2, Hit S1, wait a bit. Hit S1 again (notice event upstream continues and doesn\'t restart)</string>
+    <string name="msg_demo_multicast_replayRefCount">Replay caches the last item. Hit S1, wait a bit, then hit S2 (notice S2 starts immediately with last item that S1 saw), Hit S2, Hit S1. Hit S1/S2 again (notice the stream restarts all over. Interestingly cached last item also removed when both subscribers released)</string>
+    <string name="msg_demo_multicast_replayingShare">Courtesy: new #AndroidDev on the block - JakeWharton. exactly like replay(1).refCount(), but caches the last item even when upstream has been disposed off/released. Hit S1, Hit S2, Hit S1, Hit S2 (notice observable is disposed). Hit S1/S2 again (notice we start with last item emitted)</string>
+    <string name="enter_some_search_text">Enter some search text</string>
+    <string name="more">More</string>
+    <string name="hide">Hide</string>
+    <string name="sample_gallery">Gallery</string>
+    <string name="select_picture">Select picture</string>
+</resources>

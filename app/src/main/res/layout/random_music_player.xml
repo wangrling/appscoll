@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="vertical"
+              android:layout_width="fill_parent"
+              android:layout_height="fill_parent"
+              android:gravity="center"
+              android:background="#000040">
+
+    <TextView android:text="@string/random_music_player"
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:padding="20dp"
+              android:textColor="#ffffff"
+              android:textSize="20sp"
+              android:textStyle="bold" />
+
+    <LinearLayout android:orientation="horizontal"
+                  android:layout_width="wrap_content"
+                  android:layout_height="wrap_content"
+                  android:gravity="center"
+                  android:layout_margin="10dp">
+        <Button android:id="@+id/rewind_button"
+                android:background="@drawable/btn_rew"
+                android:layout_width="64dp"
+                android:layout_height="64dp"
+                android:layout_margin="5dp" />
+        <Button android:id="@+id/play_button"
+                android:background="@drawable/btn_play"
+                android:layout_width="64dp"
+                android:layout_height="64dp"
+                android:layout_margin="5dp" />
+        <Button android:id="@+id/pause_button"
+                android:background="@drawable/btn_pause"
+                android:layout_width="64dp"
+                android:layout_height="64dp"
+                android:layout_margin="5dp" />
+        <Button android:id="@+id/skip_button"
+                android:background="@drawable/btn_ff"
+                android:layout_width="64dp"
+                android:layout_height="64dp"
+                android:layout_margin="5dp" />
+    </LinearLayout>
+
+    <LinearLayout android:orientation="horizontal"
+                  android:layout_width="wrap_content"
+                  android:layout_height="wrap_content"
+                  android:gravity="center"
+                  android:layout_margin="10dp">
+        <Button android:id="@+id/stop_button"
+                android:background="@drawable/btn_stop"
+                android:layout_width="64dp"
+                android:layout_height="64dp"
+                android:layout_margin="5dp" />
+        <Button android:id="@+id/eject_button"
+                android:background="@drawable/btn_eject"
+                android:layout_width="64dp"
+                android:layout_height="64dp"
+                android:layout_margin="5dp" />
+
+    </LinearLayout>
+</LinearLayout>

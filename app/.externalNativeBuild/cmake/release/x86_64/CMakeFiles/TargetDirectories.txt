@@ -1,0 +1,3 @@
+/home/wangrl/Android/app/Home/app/.externalNativeBuild/cmake/release/x86_64/CMakeFiles/rebuild_cache.dir
+/home/wangrl/Android/app/Home/app/.externalNativeBuild/cmake/release/x86_64/CMakeFiles/edit_cache.dir
+/home/wangrl/Android/app/Home/app/.externalNativeBuild/cmake/release/x86_64/CMakeFiles/native-lib.dir

@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+          xmlns:tools="http://schemas.android.com/tools"
+          package="com.android.home">
+
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+    <uses-permission android:name="android.permission.RECORD_AUDIO"/>
+    <uses-permission android:name="android.permission.WAKE_LOCK"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.READ_PHONE_STATE"/>
+    <uses-permission android:name="android.permission.CAMERA"/>
+    <uses-permission android:name="android.permission.WAKE_LOCK"/>
+
+    <uses-permission android:name="android.permission.READ_CONTACTS" />
+    <uses-feature android:name="android.hardware.camera"/>
+    <uses-feature android:name="android.hardware.camera.autofocus"/>
+
+    <application
+            android:icon="@mipmap/home"
+            android:label="@string/home"
+            android:theme="@style/Base.AppTheme">
+        <activity android:name=".Home">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
+        </activity>
+        <activity
+                android:name=".todomvp.TodoMvpActivity"
+                android:label="@string/todomvp"/>
+        <activity
+                android:name=".todomvp.statistics.StatisticsActivity"
+                android:parentActivityName=".todomvp.TodoMvpActivity"/>
+        <activity android:name=".todomvp.addedittask.AddEditTaskActivity"/>
+        <activity android:name=".todomvp.taskdetail.TaskDetailActivity"/>
+        <activity
+                android:name=".picasso.PicassoActivity"
+                android:label="@string/picasso"/>
+        <activity android:name=".picasso.PicassoGridViewActivity" />
+        <activity android:name=".picasso.PicassoGalleryActivity" />
+        <activity android:name=".picasso.PicassoContactsActivity" />
+
+        <activity android:name=".camerabasic.CameraBasic"/>
+        <activity android:name=".randommusic.RandomMusicPlayer"/>
+
+        <service android:name=".randommusic.MusicService">
+            <intent-filter>
+                <action android:name="com.android.home.randommusic.action.TOGGLE_PLAYBACK"/>
+                <action android:name="com.android.home.randommusic.action.PLAY"/>
+                <action android:name="com.android.home.randommusic.action.PAUSE"/>
+                <action android:name="com.android.home.randommusic.action.STOP"/>
+                <action android:name="com.android.home.randommusic.action.SKIP"/>
+                <action android:name="com.android.home.randommusic.action.REWIND"/>
+
+                <category android:name="android.intent.category.DEFAULT"/>
+            </intent-filter>
+            <intent-filter>
+                <action android:name="com.android.home.randommusic.action.URL"/>
+
+                <data android:scheme="http"/>
+            </intent-filter>
+        </service>
+
+        <activity android:name=".soundrecorder.SoundRecorder"/>
+        <activity android:name=".circleimage.CircleImageActivity"/>
+        <activity android:name=".shimmer.ShimmerActivity"/>
+        <activity android:name=".rxjavasamples.RxJavaSamples"/>
+        <activity android:name=".mpchart.MpChart"/>
+        <activity android:name=".displaybitmaps.DisplayBitmaps"/>
+        <activity android:name=".rssimage.RssImageFeed" />
+        <activity android:name=".rajawali.Rajawali3D" />
+
+        <activity android:name=".universalmusic.ui.UniversalMusicPlayer"
+            android:label="Universal Music Player"/>
+        <activity android:name=".universalmusic.ui.PlaceholderActivity" />
+    </application>
+
+</manifest>
