@@ -26,7 +26,7 @@
                 android:scrollbarStyle="outsideOverlay"
                 android:scrollbars="vertical" />
 
-        <Toolbar
+        <android.support.v7.widget.Toolbar
                 android:id="@+id/toolbar"
                 style="@style/Widget.Plaid.HomeToolbar"
                 android:layout_width="match_parent"

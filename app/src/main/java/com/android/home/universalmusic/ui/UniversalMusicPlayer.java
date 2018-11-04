@@ -12,7 +12,8 @@ import com.android.home.universalmusic.utils.LogHelper;
  * connected while this activity is running.
  */
 
-public class UniversalMusicPlayer extends BaseActivity {
+public class UniversalMusicPlayer extends BaseActivity
+        implements MediaBrowserFragment.MediafragmentListener {
 
     private static final String TAG = LogHelper.makeLogTag(UniversalMusicPlayer.class);
 
@@ -37,6 +38,16 @@ public class UniversalMusicPlayer extends BaseActivity {
         if (savedInstanceState == null) {
             startFullScreenActivityIfNeeded(getIntent());
         }
+    }
+
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        String mediaId = getMediaId();
+
+        if (mediaId != null) {
+            outState.putString(SAVED_MEDIA_ID, mediaId);
+        }
+        super.onSaveInstanceState(outState);
     }
 
     private void startFullScreenActivityIfNeeded(Intent intent) {
