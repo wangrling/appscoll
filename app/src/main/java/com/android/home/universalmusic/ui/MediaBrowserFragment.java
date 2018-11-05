@@ -16,4 +16,8 @@ import android.support.v4.app.Fragment;
 
 
 public class MediaBrowserFragment extends Fragment {
+
+    public interface MediaFragmentListener extends MediaBrowserProvider {
+
+    }
 }

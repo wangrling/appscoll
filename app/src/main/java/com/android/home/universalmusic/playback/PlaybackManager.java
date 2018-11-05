@@ -13,6 +13,8 @@ public class PlaybackManager implements Playback.Callback {
 
     private MusicProvider mMusicProvider;
 
+
+
     @Override
     public void onCompletion() {
 
@@ -30,6 +32,10 @@ public class PlaybackManager implements Playback.Callback {
 
     @Override
     public void setCurrentMediaId(String mediaId) {
+
+    }
+
+    public interface PlaybackServiceCallback {
 
     }
 }

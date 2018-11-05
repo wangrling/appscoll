@@ -13,7 +13,7 @@ import com.android.home.universalmusic.utils.LogHelper;
  */
 
 public class UniversalMusicPlayer extends BaseActivity
-        implements MediaBrowserFragment.MediafragmentListener {
+        implements MediaBrowserFragment.MediaFragmentListener {
 
     private static final String TAG = LogHelper.makeLogTag(UniversalMusicPlayer.class);
 
@@ -50,6 +50,10 @@ public class UniversalMusicPlayer extends BaseActivity
         super.onSaveInstanceState(outState);
     }
 
+    private String getMediaId() {
+        return null;
+    }
+
     private void startFullScreenActivityIfNeeded(Intent intent) {
 
     }
@@ -67,4 +71,6 @@ public class UniversalMusicPlayer extends BaseActivity
     private void navigateToBrowser(String mediaId) {
 
     }
+
+
 }

@@ -48,4 +48,15 @@ public class MusicProvider {
         mMusicListById = new ConcurrentHashMap<>();
         mFavoriteTracks = Collections.newSetFromMap(new ConcurrentHashMap<String, Boolean>());
     }
+
+    /**
+     * Get an iterator over the list of genres. (流派，类型)
+     */
+    public Iterable<String> getGenres() {
+        if (mCurrentState != State.INITIALIZED) {
+            return Collections.emptyList();
+        }
+
+        return mMusicListByGenre.keySet();
+    }
 }
