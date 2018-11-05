@@ -8,13 +8,21 @@ public class AppView {
     //　显示程序的介绍。
     private String intro;
 
+    // 长按时的详细描述。
+    private String detail;
+
     // 供Intent调用。
     private Class activityClass;
 
     public AppView(int iconUrl, String title, String intro, Class activityClass) {
+        this(iconUrl, title, intro, activityClass, "");
+    }
+
+    public AppView(int iconUrl, String title, String intro, Class activityClass, String detail) {
         this.iconUrl = iconUrl;
         this.title = title;
         this.intro = intro;
+        this.detail = detail;
         this.activityClass = activityClass;
     }
 
@@ -44,5 +52,9 @@ public class AppView {
 
     public Class getActivityClass() {
         return activityClass;
+    }
+
+    public String getDetail() {
+        return detail;
     }
 }

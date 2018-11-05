@@ -1,6 +1,9 @@
 package com.android.home;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.app.Dialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -10,6 +13,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import com.android.home.autofill.AutoFillFramework;
@@ -49,7 +53,8 @@ public class Home extends Activity {
 
         appViewList.add(new AppView(R.drawable.todo, "Todo-MVP",
                 "Provide a basic Model-View-Presenter (MVP) architecture without " +
-                        "using any architectural frameworks.", TodoMvpActivity.class));
+                        "using any architectural frameworks.", TodoMvpActivity.class,
+                "中级，完成，使用MVP架构写得一个便签。"));
         appViewList.add(new AppView(R.drawable.picasso, "Picasso",
                 "A powerful image downloading and caching library for Android.", PicassoActivity.class));
         appViewList.add(new AppView(R.drawable.camera_basic, "CameraBasic",
@@ -129,7 +134,17 @@ public class Home extends Activity {
 
                     @Override
                     public void onLongItemClick(View view, int position) {
-
+                        new AlertDialog.Builder(Home.this)
+                                .setTitle(appViewList.get(position).getTitle())
+                                .setIcon(appViewList.get(position).getIconUrl())
+                                .setMessage(appViewList.get(position).getDetail())
+                                .setPositiveButton(R.string.button_ok, new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialog, int which) {
+                                        // Nothing to do.
+                                    }
+                                })
+                                .show();
                     }
                 })
         );

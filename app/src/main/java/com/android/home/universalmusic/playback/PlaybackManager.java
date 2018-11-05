@@ -13,6 +13,8 @@ public class PlaybackManager implements Playback.Callback {
 
     private MusicProvider mMusicProvider;
 
+    private QueueManager mQueueManager;
+
 
 
     @Override

@@ -2,15 +2,23 @@ package com.android.home.universalmusic.model;
 
 import android.content.res.Resources;
 import android.graphics.Bitmap;
+import android.media.MediaDescription;
 import android.media.MediaMetadata;
 import android.media.browse.MediaBrowser;
+import android.net.Uri;
 import android.os.AsyncTask;
+import android.service.media.MediaBrowserService;
+import com.android.home.R;
 import com.android.home.universalmusic.utils.LogHelper;
 import com.android.home.universalmusic.utils.MediaIDHelper;
 
 import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentMap;
+
+import static com.android.home.universalmusic.utils.MediaIDHelper.MEDIA_ID_MUSICS_BY_GENRE;
+import static com.android.home.universalmusic.utils.MediaIDHelper.MEDIA_ID_ROOT;
+import static com.android.home.universalmusic.utils.MediaIDHelper.createMediaID;
 
 /**
  * Simple data provider for music tracks. The actual metadata source is delegated to a
@@ -277,9 +285,63 @@ public class MusicProvider {
             return mediaItems;
         }
 
+        if (MEDIA_ID_ROOT.equals(mediaId)) {
+            mediaItems.add(createBrowsableMediaItemForRoot(resources));
+
+        } else if (MEDIA_ID_MUSICS_BY_GENRE.equals(mediaId)) {
+            for (String genre : getGenres()) {
+                mediaItems.add(createBrowsableMediaItemForGenre(genre, resources));
+            }
+
+        } else if (mediaId.startsWith(MEDIA_ID_MUSICS_BY_GENRE)) {
+            String genre = MediaIDHelper.getHierarchy(mediaId)[1];
+            for (MediaMetadata metadata : getMusicsByGenre(genre)) {
+                mediaItems.add(createMediaItem(metadata));
+            }
+
+        } else {
+            LogHelper.w(TAG, "Skipping unmatched mediaId: ", mediaId);
+        }
         return mediaItems;
     }
 
+    // 获取表头。
+    private MediaBrowser.MediaItem createBrowsableMediaItemForRoot(Resources resources) {
 
+        MediaDescription description = new MediaDescription.Builder()
+                .setMediaId(MEDIA_ID_MUSICS_BY_GENRE)
+                .setTitle(resources.getString(R.string.browse_genres))
+                .setSubtitle(resources.getString(R.string.browse_genre_subtitle))
+                .setIconUri(Uri.parse("android.resource://com.android.guide/drawable/ic_by_genre"))
+                .build();
 
+        return new MediaBrowser.MediaItem(description, MediaBrowser.MediaItem.FLAG_BROWSABLE);
+
+    }
+
+    private MediaBrowser.MediaItem createBrowsableMediaItemForGenre(String genre, Resources resources) {
+        MediaDescription description = new MediaDescription.Builder()
+                .setMediaId(createMediaID(null, MEDIA_ID_MUSICS_BY_GENRE, genre))
+                .setTitle(genre)
+                .setSubtitle(resources.getString(R.string.browse_musics_by_genre_subtitle, genre))
+                .build();
+
+        return new MediaBrowser.MediaItem(description, MediaBrowser.MediaItem.FLAG_BROWSABLE);
+    }
+
+    private MediaBrowser.MediaItem createMediaItem(MediaMetadata metadata) {
+        // Since mediaMetadata fields are immutable, we need to create a copy, so we
+        // can set a hierarchy-aware mediaID. We will need to know the media hierarchy
+        // when we get a onPlayFromMusicID call, so we can create the proper queue based
+        // on where the music was selected from (by artist, by genre, random, etc)
+        String genre = metadata.getString(MediaMetadata.METADATA_KEY_GENRE);
+        String hierarchyAwareMediaID = MediaIDHelper.createMediaID(
+                metadata.getDescription().getMediaId(), MEDIA_ID_MUSICS_BY_GENRE, genre);
+
+        MediaMetadata copy = new MediaMetadata.Builder(metadata)
+                .putString(MediaMetadata.METADATA_KEY_MEDIA_ID, hierarchyAwareMediaID)
+                .build();
+
+        return new MediaBrowser.MediaItem(copy.getDescription(), MediaBrowser.MediaItem.FLAG_BROWSABLE);
+    }
 }
