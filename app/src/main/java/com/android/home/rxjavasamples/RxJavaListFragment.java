@@ -67,12 +67,16 @@ public class RxJavaListFragment extends ListFragment {
                 getString(R.string.msg_demo_buffer)));
         mSamples.add(new Pair("Instant/Auto searching text listeners (using Subjects & debounce)",
                 getString(R.string.msg_demo_debounce)));
+        mSamples.add(new Pair("Networking with Retrofit & RxJava (using zip, flatmap) " +
+                "(太抽象，不知道在写什么，也没有什么现象，沮丧。)",
+                getString(R.string.msg_demo_retrofit)));
     }
 
     private void initFragments() {
         mFragments.add(new ConcurrencyWithSchedulerFragment());
         mFragments.add(new BufferFragment());
         mFragments.add(new DebounceSearchEmitterFragment());
+        mFragments.add(new RetrofitFragment());
     }
 
     @Override

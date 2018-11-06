@@ -101,7 +101,7 @@ public class Home extends Activity {
         appViewList.add(new AppView(R.drawable.circle, "CircleImage",
                 "A fast circular ImageView perfect for profile images.", CircleImageActivity.class,
                 "初级，完成。\n" +
-                        "给tian"));
+                        "给图片添加圆形边框，主要是重写ImageView类。"));
 
         appViewList.add(new AppView(R.drawable.mpchart, "MpChart",
                 "A powerful & easy to use chart library for Android.", MpChart.class,

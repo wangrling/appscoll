@@ -227,4 +227,9 @@
     <string name="label_play">Play</string>
     <string name="label_previous">Previous</string>
     <string name="label_next">Next</string>
+    <string name="github_oauth_token"><![CDATA[<!-- InsertYouroAuthTokenHere -->]]></string>
+    <string name="square">square</string>
+    <string name="owner">owner</string>
+    <string name="retrofit">retrofit</string>
+    <string name="reponame">reponame</string>
 </resources>
