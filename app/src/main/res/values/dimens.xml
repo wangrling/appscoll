@@ -117,4 +117,20 @@
     <!-- per https://developer.android.com/reference/android/view/ViewGroup.LayoutParams.html#MATCH_PARENT -->
     <item name="match_parent" format="integer" type="dimen">-1</item>
 
+    <!-- Margins for full screen activity-->
+    <dimen name="text_view_margin">16dp</dimen>
+    <dimen name="end_text_margin">16dp</dimen>
+
+    <!-- media browser listview -->
+    <dimen name="media_item_height">72dp</dimen>
+    <dimen name="media_item_icon_margin_start">12dp</dimen>
+    <dimen name="media_item_text_margin_start">60dp</dimen>
+    <!-- Margins for the ShowcaseView button -->
+    <dimen name="button_margin">50dp</dimen>
+
+    <!-- error infobar -->
+    <dimen name="error_horizontal_padding">4dp</dimen>
+    <dimen name="error_vertical_padding">16dp</dimen>
+    <dimen name="notification_icon_width_height">64dp</dimen>
+
 </resources>

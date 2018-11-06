@@ -78,9 +78,18 @@
         <activity android:name=".rssimage.RssImageFeed" />
         <activity android:name=".rajawali.Rajawali3D" />
 
-        <activity android:name=".universalmusic.ui.UniversalMusicPlayer"
+        <activity android:name=".universalmusic.ui.MusicPlayerActivity"
             android:label="Universal Music Player"/>
         <activity android:name=".universalmusic.ui.PlaceholderActivity" />
+        <service android:name=".universalmusic.MusicService">
+            <intent-filter>
+                <action android:name="android.media.browse.MediaBrowserService" />
+            </intent-filter>
+        </service>
+        <activity android:name=".universalmusic.ui.NowPlayingActivity" />
+        <activity android:name=".universalmusic.ui.FullScreenPlayerActivity" />
+
+
     </application>
 
 </manifest>

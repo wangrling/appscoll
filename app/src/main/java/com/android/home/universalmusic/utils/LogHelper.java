@@ -1,3 +1,18 @@
+/*
+ * Copyright (C) 2014 The Android Open Source Project
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 package com.android.home.universalmusic.utils;
 
 import android.util.Log;
@@ -26,11 +41,19 @@ public class LogHelper {
 
 
     public static void v(String tag, Object... messages) {
+        // Only log VERBOSE if build type is DEBUG
+        // if (BuildConfig.DEBUG) {
+        if (true) {
             log(tag, Log.VERBOSE, null, messages);
+        }
     }
 
     public static void d(String tag, Object... messages) {
+        // Only log DEBUG if build type is DEBUG
+        // if (BuildConfig.DEBUG) {
+        if (true) {
             log(tag, Log.DEBUG, null, messages);
+        }
     }
 
     public static void i(String tag, Object... messages) {
@@ -54,6 +77,7 @@ public class LogHelper {
     }
 
     public static void log(String tag, int level, Throwable t, Object... messages) {
+        // if (Log.isLoggable(tag, level)) {
         if (true) {
             String message;
             if (t == null && messages != null && messages.length == 1) {

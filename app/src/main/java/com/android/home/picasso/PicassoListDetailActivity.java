@@ -75,8 +75,7 @@ public class PicassoListDetailActivity extends PicassoActivity {
                                            Bundle savedInstanceState) {
             PicassoListDetailActivity activity = (PicassoListDetailActivity) getActivity();
 
-            View view = LayoutInflater.from(activity)
-                    .inflate(R.layout.list_detail_detail, container, false);
+            View view = inflater.inflate(R.layout.list_detail_detail, container, false);
 
             TextView urlView = view.findViewById(R.id.url);
             ImageView imageView = view.findViewById(R.id.photo);

@@ -1,41 +1,57 @@
+/*
+ * Copyright (C) 2014 The Android Open Source Project
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
 package com.android.home.universalmusic.model;
 
 import android.content.res.Resources;
 import android.graphics.Bitmap;
-import android.media.MediaDescription;
-import android.media.MediaMetadata;
-import android.media.browse.MediaBrowser;
 import android.net.Uri;
 import android.os.AsyncTask;
-import android.service.media.MediaBrowserService;
+import android.support.v4.media.MediaBrowserCompat;
+import android.support.v4.media.MediaDescriptionCompat;
+import android.support.v4.media.MediaMetadataCompat;
 import com.android.home.R;
 import com.android.home.universalmusic.utils.LogHelper;
 import com.android.home.universalmusic.utils.MediaIDHelper;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Locale;
+import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentMap;
 
 import static com.android.home.universalmusic.utils.MediaIDHelper.MEDIA_ID_MUSICS_BY_GENRE;
-import static com.android.home.universalmusic.utils.MediaIDHelper.MEDIA_ID_ROOT;
 import static com.android.home.universalmusic.utils.MediaIDHelper.createMediaID;
+
 
 /**
  * Simple data provider for music tracks. The actual metadata source is delegated to a
  * MusicProviderSource defined by a constructor argument of this class.
  */
-
-
 public class MusicProvider {
 
     private static final String TAG = LogHelper.makeLogTag(MusicProvider.class);
 
     private MusicProviderSource mSource;
 
-
-    // Categorized caches for music track data.
-    // 每种音乐类型可以有多首音乐，但是每个音乐Id只能对应一首。
-    private ConcurrentMap<String, List<MediaMetadata>> mMusicListByGenre;
+    // Categorized caches for music track data:
+    private ConcurrentMap<String, List<MediaMetadataCompat>> mMusicListByGenre;
     private final ConcurrentMap<String, MutableMediaMetadata> mMusicListById;
 
     private final Set<String> mFavoriteTracks;
@@ -46,15 +62,13 @@ public class MusicProvider {
 
     private volatile State mCurrentState = State.NON_INITIALIZED;
 
-    private interface Callback {
+    public interface Callback {
         void onMusicCatalogReady(boolean success);
     }
 
     public MusicProvider() {
         this(new RemoteJSONSource());
     }
-
-    // 返回一个可以迭代的Iterable类型对象。
     public MusicProvider(MusicProviderSource source) {
         mSource = source;
         mMusicListByGenre = new ConcurrentHashMap<>();
@@ -63,26 +77,26 @@ public class MusicProvider {
     }
 
     /**
-     * Get an iterator over the list of genres. (流派，类型)
+     * Get an iterator over the list of genres
+     *
+     * @return genres
      */
     public Iterable<String> getGenres() {
         if (mCurrentState != State.INITIALIZED) {
             return Collections.emptyList();
         }
-
         return mMusicListByGenre.keySet();
     }
 
     /**
-     * Get an iterator over a shuffled collection of all songs.
+     * Get an iterator over a shuffled collection of all songs
      */
-    public Iterable<MediaMetadata> getShuffledMusic() {
+    public Iterable<MediaMetadataCompat> getShuffledMusic() {
         if (mCurrentState != State.INITIALIZED) {
             return Collections.emptyList();
         }
-
-        List<MediaMetadata> shuffled = new ArrayList<>(mMusicListById.size());
-        for (MutableMediaMetadata mutableMetadata : mMusicListById.values()) {
+        List<MediaMetadataCompat> shuffled = new ArrayList<>(mMusicListById.size());
+        for (MutableMediaMetadata mutableMetadata: mMusicListById.values()) {
             shuffled.add(mutableMetadata.metadata);
         }
         Collections.shuffle(shuffled);
@@ -90,31 +104,32 @@ public class MusicProvider {
     }
 
     /**
-     * Get music tracks of the given genre.
-     * 返回的是二级List对象。
+     * Get music tracks of the given genre
+     *
      */
-    public List<MediaMetadata> getMusicsByGenre(String genre) {
+    public List<MediaMetadataCompat> getMusicsByGenre(String genre) {
         if (mCurrentState != State.INITIALIZED || !mMusicListByGenre.containsKey(genre)) {
             return Collections.emptyList();
         }
-
         return mMusicListByGenre.get(genre);
     }
 
     /**
      * Very basic implementation of a search that filter music tracks with title containing
      * the given query.
+     *
      */
-    public List<MediaMetadata> searchMusicBySongTitle(String query) {
-        return searchMusic(MediaMetadata.METADATA_KEY_TITLE, query);
+    public List<MediaMetadataCompat> searchMusicBySongTitle(String query) {
+        return searchMusic(MediaMetadataCompat.METADATA_KEY_TITLE, query);
     }
 
     /**
      * Very basic implementation of a search that filter music tracks with album containing
      * the given query.
+     *
      */
-    public List<MediaMetadata> searchMusicByAlbum(String query) {
-        return searchMusic(MediaMetadata.METADATA_KEY_ALBUM, query);
+    public List<MediaMetadataCompat> searchMusicByAlbum(String query) {
+        return searchMusic(MediaMetadataCompat.METADATA_KEY_ALBUM, query);
     }
 
     /**
@@ -122,8 +137,8 @@ public class MusicProvider {
      * the given query.
      *
      */
-    public List<MediaMetadata> searchMusicByArtist(String query) {
-        return searchMusic(MediaMetadata.METADATA_KEY_ARTIST, query);
+    public List<MediaMetadataCompat> searchMusicByArtist(String query) {
+        return searchMusic(MediaMetadataCompat.METADATA_KEY_ARTIST, query);
     }
 
     /**
@@ -131,53 +146,53 @@ public class MusicProvider {
      * the given query.
      *
      */
-    public List<MediaMetadata> searchMusicByGenre(String query) {
-        return searchMusic(MediaMetadata.METADATA_KEY_GENRE, query);
+    public List<MediaMetadataCompat> searchMusicByGenre(String query) {
+        return searchMusic(MediaMetadataCompat.METADATA_KEY_GENRE, query);
     }
 
-    // 根据关键字过滤出相关的音乐。
-    private List<MediaMetadata> searchMusic(String metadataField, String query) {
+    private List<MediaMetadataCompat> searchMusic(String metadataField, String query) {
         if (mCurrentState != State.INITIALIZED) {
             return Collections.emptyList();
         }
-
-        ArrayList<MediaMetadata> result = new ArrayList<>();
+        ArrayList<MediaMetadataCompat> result = new ArrayList<>();
         query = query.toLowerCase(Locale.US);
-
         for (MutableMediaMetadata track : mMusicListById.values()) {
             if (track.metadata.getString(metadataField).toLowerCase(Locale.US)
-                    .contains(query)) {
+                .contains(query)) {
                 result.add(track.metadata);
             }
         }
         return result;
     }
 
+
     /**
-     * Return the MediaMetadata for the given musicID.
+     * Return the MediaMetadataCompat for the given musicID.
      *
      * @param musicId The unique, non-hierarchical music ID.
      */
-    public MediaMetadata getMusic(String musicId) {
+    public MediaMetadataCompat getMusic(String musicId) {
         return mMusicListById.containsKey(musicId) ? mMusicListById.get(musicId).metadata : null;
     }
 
     public synchronized void updateMusicArt(String musicId, Bitmap albumArt, Bitmap icon) {
-        MediaMetadata metadata = getMusic(musicId);
-        metadata = new MediaMetadata.Builder(metadata)
+        MediaMetadataCompat metadata = getMusic(musicId);
+        metadata = new MediaMetadataCompat.Builder(metadata)
 
-        // set high resolution bitmap in METADATA_KEY_ALBUM_ART. This is used, for
-        // example, on the lock screen background when the media session is active.
+                // set high resolution bitmap in METADATA_KEY_ALBUM_ART. This is used, for
+                // example, on the lockscreen background when the media session is active.
+                .putBitmap(MediaMetadataCompat.METADATA_KEY_ALBUM_ART, albumArt)
 
-        .putBitmap(MediaMetadata.METADATA_KEY_ALBUM_ART, albumArt)
-        // set small version of the album art in the DISPLAY_ICON. This is used on
-        // the MediaDescription and thus it should be small to be serialized if
-        // necessary
-        .putBitmap(MediaMetadata.METADATA_KEY_DISPLAY_ICON, icon).build();
+                // set small version of the album art in the DISPLAY_ICON. This is used on
+                // the MediaDescription and thus it should be small to be serialized if
+                // necessary
+                .putBitmap(MediaMetadataCompat.METADATA_KEY_DISPLAY_ICON, icon)
+
+                .build();
 
         MutableMediaMetadata mutableMetadata = mMusicListById.get(musicId);
         if (mutableMetadata == null) {
-            throw new IllegalStateException("Unexpected error: Incosistent data structures in " +
+            throw new IllegalStateException("Unexpected error: Inconsistent data structures in " +
                     "MusicProvider");
         }
 
@@ -201,27 +216,24 @@ public class MusicProvider {
     }
 
     /**
-     * Get the list of music tracks from a server and caches the track information for
-     * future reference, keying tracks by musicId and grouping by genre.
+     * Get the list of music tracks from a server and caches the track information
+     * for future reference, keying tracks by musicId and grouping by genre.
      */
     public void retrieveMediaAsync(final Callback callback) {
         LogHelper.d(TAG, "retrieveMediaAsync called");
         if (mCurrentState == State.INITIALIZED) {
             if (callback != null) {
-                // Nothing to do, execute callback immediately.
+                // Nothing to do, execute callback immediately
                 callback.onMusicCatalogReady(true);
             }
-
-            return ;
+            return;
         }
 
-        // Asynchronously load the music catalog in a separate thread.
+        // Asynchronously load the music catalog in a separate thread
         new AsyncTask<Void, Void, State>() {
-
             @Override
-            protected State doInBackground(Void... voids) {
+            protected State doInBackground(Void... params) {
                 retrieveMedia();
-
                 return mCurrentState;
             }
 
@@ -235,13 +247,11 @@ public class MusicProvider {
     }
 
     private synchronized void buildListsByGenre() {
-        ConcurrentMap<String, List<MediaMetadata>> newMusicListByGenre =
-                new ConcurrentHashMap<>();
+        ConcurrentMap<String, List<MediaMetadataCompat>> newMusicListByGenre = new ConcurrentHashMap<>();
 
         for (MutableMediaMetadata m : mMusicListById.values()) {
-            String genre = m.metadata.getString(MediaMetadata.METADATA_KEY_GENRE);
-            List<MediaMetadata> list = newMusicListByGenre.get(genre);
-            // 如果没有这种类型，就创建这种类型，如果已经有这种类型，就直接加载这种类型之后。
+            String genre = m.metadata.getString(MediaMetadataCompat.METADATA_KEY_GENRE);
+            List<MediaMetadataCompat> list = newMusicListByGenre.get(genre);
             if (list == null) {
                 list = new ArrayList<>();
                 newMusicListByGenre.put(genre, list);
@@ -255,15 +265,13 @@ public class MusicProvider {
         try {
             if (mCurrentState == State.NON_INITIALIZED) {
                 mCurrentState = State.INITIALIZING;
-                // mSource是直接通过初始化函数获取的。
-                Iterator<MediaMetadata> tracks = mSource.iterator();
 
+                Iterator<MediaMetadataCompat> tracks = mSource.iterator();
                 while (tracks.hasNext()) {
-                    MediaMetadata item = tracks.next();
-                    String musicId = item.getString(MediaMetadata.METADATA_KEY_MEDIA_ID);
+                    MediaMetadataCompat item = tracks.next();
+                    String musicId = item.getString(MediaMetadataCompat.METADATA_KEY_MEDIA_ID);
                     mMusicListById.put(musicId, new MutableMediaMetadata(musicId, item));
                 }
-
                 buildListsByGenre();
                 mCurrentState = State.INITIALIZED;
             }
@@ -277,15 +285,14 @@ public class MusicProvider {
     }
 
 
-    public List<MediaBrowser.MediaItem> getChildren(String mediaId, Resources resources) {
-        List<MediaBrowser.MediaItem> mediaItems = new ArrayList<>();
+    public List<MediaBrowserCompat.MediaItem> getChildren(String mediaId, Resources resources) {
+        List<MediaBrowserCompat.MediaItem> mediaItems = new ArrayList<>();
 
-        // 检查mediaId是否含有'|'标志。
         if (!MediaIDHelper.isBrowseable(mediaId)) {
             return mediaItems;
         }
 
-        if (MEDIA_ID_ROOT.equals(mediaId)) {
+        if (MediaIDHelper.MEDIA_ID_ROOT.equals(mediaId)) {
             mediaItems.add(createBrowsableMediaItemForRoot(resources));
 
         } else if (MEDIA_ID_MUSICS_BY_GENRE.equals(mediaId)) {
@@ -295,7 +302,7 @@ public class MusicProvider {
 
         } else if (mediaId.startsWith(MEDIA_ID_MUSICS_BY_GENRE)) {
             String genre = MediaIDHelper.getHierarchy(mediaId)[1];
-            for (MediaMetadata metadata : getMusicsByGenre(genre)) {
+            for (MediaMetadataCompat metadata : getMusicsByGenre(genre)) {
                 mediaItems.add(createMediaItem(metadata));
             }
 
@@ -305,43 +312,44 @@ public class MusicProvider {
         return mediaItems;
     }
 
-    // 获取表头。
-    private MediaBrowser.MediaItem createBrowsableMediaItemForRoot(Resources resources) {
-
-        MediaDescription description = new MediaDescription.Builder()
+    private MediaBrowserCompat.MediaItem createBrowsableMediaItemForRoot(Resources resources) {
+        MediaDescriptionCompat description = new MediaDescriptionCompat.Builder()
                 .setMediaId(MEDIA_ID_MUSICS_BY_GENRE)
                 .setTitle(resources.getString(R.string.browse_genres))
                 .setSubtitle(resources.getString(R.string.browse_genre_subtitle))
-                .setIconUri(Uri.parse("android.resource://com.android.guide/drawable/ic_by_genre"))
+                .setIconUri(Uri.parse("android.resource://" +
+                        "com.example.android.uamp/drawable/ic_by_genre"))
                 .build();
-
-        return new MediaBrowser.MediaItem(description, MediaBrowser.MediaItem.FLAG_BROWSABLE);
-
+        return new MediaBrowserCompat.MediaItem(description,
+                MediaBrowserCompat.MediaItem.FLAG_BROWSABLE);
     }
 
-    private MediaBrowser.MediaItem createBrowsableMediaItemForGenre(String genre, Resources resources) {
-        MediaDescription description = new MediaDescription.Builder()
+    private MediaBrowserCompat.MediaItem createBrowsableMediaItemForGenre(String genre,
+                                                                    Resources resources) {
+        MediaDescriptionCompat description = new MediaDescriptionCompat.Builder()
                 .setMediaId(createMediaID(null, MEDIA_ID_MUSICS_BY_GENRE, genre))
                 .setTitle(genre)
-                .setSubtitle(resources.getString(R.string.browse_musics_by_genre_subtitle, genre))
+                .setSubtitle(resources.getString(
+                        R.string.browse_musics_by_genre_subtitle, genre))
                 .build();
-
-        return new MediaBrowser.MediaItem(description, MediaBrowser.MediaItem.FLAG_BROWSABLE);
+        return new MediaBrowserCompat.MediaItem(description,
+                MediaBrowserCompat.MediaItem.FLAG_BROWSABLE);
     }
 
-    private MediaBrowser.MediaItem createMediaItem(MediaMetadata metadata) {
+    private MediaBrowserCompat.MediaItem createMediaItem(MediaMetadataCompat metadata) {
         // Since mediaMetadata fields are immutable, we need to create a copy, so we
         // can set a hierarchy-aware mediaID. We will need to know the media hierarchy
         // when we get a onPlayFromMusicID call, so we can create the proper queue based
         // on where the music was selected from (by artist, by genre, random, etc)
-        String genre = metadata.getString(MediaMetadata.METADATA_KEY_GENRE);
-        String hierarchyAwareMediaID = MediaIDHelper.createMediaID(
+        String genre = metadata.getString(MediaMetadataCompat.METADATA_KEY_GENRE);
+        String hierarchyAwareMediaID = createMediaID(
                 metadata.getDescription().getMediaId(), MEDIA_ID_MUSICS_BY_GENRE, genre);
-
-        MediaMetadata copy = new MediaMetadata.Builder(metadata)
-                .putString(MediaMetadata.METADATA_KEY_MEDIA_ID, hierarchyAwareMediaID)
+        MediaMetadataCompat copy = new MediaMetadataCompat.Builder(metadata)
+                .putString(MediaMetadataCompat.METADATA_KEY_MEDIA_ID, hierarchyAwareMediaID)
                 .build();
+        return new MediaBrowserCompat.MediaItem(copy.getDescription(),
+                MediaBrowserCompat.MediaItem.FLAG_PLAYABLE);
 
-        return new MediaBrowser.MediaItem(copy.getDescription(), MediaBrowser.MediaItem.FLAG_BROWSABLE);
     }
+
 }

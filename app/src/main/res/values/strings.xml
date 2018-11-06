@@ -221,4 +221,10 @@
     <string name="connection_line_mask_hidden">M26,159 L26,159 L32,159 L32,159 Z</string>
 
     <string name="phone_button">M24,206.5 C24,206.5 27.6392462,206.449997 28,206.449997 C28.3607538,206.449997 32,206.5 32,206.5</string>
+
+    <string name="stop_casting">Stop Casting</string>
+    <string name="label_pause">Pause</string>
+    <string name="label_play">Play</string>
+    <string name="label_previous">Previous</string>
+    <string name="label_next">Next</string>
 </resources>

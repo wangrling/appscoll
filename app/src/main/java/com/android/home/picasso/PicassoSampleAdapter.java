@@ -1,14 +1,21 @@
 package com.android.home.picasso;
 
-import android.app.Activity;
+import android.app.*;
 import android.content.Context;
 import android.content.Intent;
+import android.os.Build;
+import android.support.v4.app.NotificationCompat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.RemoteViews;
 import android.widget.TextView;
 import com.android.home.R;
+import com.android.home.dataurl.ImageUrls;
+import com.squareup.picasso.Picasso;
+
+import java.util.Random;
 
 final class PicassoSampleAdapter extends BaseAdapter {
 
@@ -26,7 +33,44 @@ final class PicassoSampleAdapter extends BaseAdapter {
         GRID_VIEW("Image Grid View", PicassoGridViewActivity.class),
         GALLERY("Load from Gallery", PicassoGalleryActivity.class),
         CONTACTS("Contact Photos", PicassoContactsActivity.class),
-        LIST_DETAIL("List / Detail View", PicassoListDetailActivity.class);
+        LIST_DETAIL("List / Detail View", PicassoListDetailActivity.class),
+        SHOW_NOTIFICATION("Notification", null) {
+            @Override
+            public void launch(Activity activity) {
+                RemoteViews remoteViews =
+                        new RemoteViews(activity.getPackageName(), R.layout.notification_view);
+
+                Intent intent = new Intent(activity, PicassoGridViewActivity.class);
+
+                Notification notification =
+                        new NotificationCompat.Builder(activity, CHANNEL_ID)
+                        .setSmallIcon(R.drawable.home)
+                        .setContentIntent(PendingIntent.getActivity(activity, -1, intent, 0))
+                        .setContent(remoteViews)
+                        .setAutoCancel(true)
+                        .setChannelId(CHANNEL_ID)
+                        .build();
+
+                NotificationManager notificationManager =
+                        (NotificationManager) activity.getSystemService(Context.NOTIFICATION_SERVICE);
+
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                    NotificationChannel channel =
+                            new NotificationChannel(CHANNEL_ID, "Picasso Notification Channel",
+                                    NotificationManager.IMPORTANCE_DEFAULT);
+                    notificationManager.createNotificationChannel(channel);
+                }
+
+                notificationManager.notify(NOTIFICATION_ID, notification);
+
+                // Now load an image for this notification.
+                Picasso.get()
+                        .load(ImageUrls.URLS[new Random().nextInt(ImageUrls.URLS.length)])
+                        .resizeDimen(R.dimen.notification_icon_width_height,
+                                R.dimen.notification_icon_width_height)
+                        .into(remoteViews, R.id.photo, NOTIFICATION_ID, notification);
+            }
+        };
 
         private final Class<? extends Activity> activityClass;
         final String name;
