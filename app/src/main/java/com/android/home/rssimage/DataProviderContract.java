@@ -45,6 +45,11 @@ public class DataProviderContract implements BaseColumns {
             "vnd.android.cursor.item/vnd.com.android.home.rssimage";
 
     /**
+     * Picture table primary key column name
+     */
+    public static final String ROW_ID = BaseColumns._ID;
+
+    /**
      * Picture table name.
      */
     public static final String PICTURE_URL_TABLE_NAME = "PictureUrlData";

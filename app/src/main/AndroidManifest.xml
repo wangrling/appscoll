@@ -89,6 +89,8 @@
         <activity android:name=".universalmusic.ui.NowPlayingActivity" />
         <activity android:name=".universalmusic.ui.FullScreenPlayerActivity" />
 
+        <activity android:name=".shimmer.ShimmerActivity" />
+
 
     </application>
 

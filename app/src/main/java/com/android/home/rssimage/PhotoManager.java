@@ -66,7 +66,7 @@ public class PhotoManager {
      * Creates a cache of byte arrays indexed by image URLs. As new items are added to the
      * cache, the oldest items are ejected and subject to garbage collection.
      */
-    private final LruCache<URL, byte[]> mPhotoCache;
+    // private final LruCache<URL, byte[]> mPhotoCache;
 
     // A queue of Runnables for the image download pool
     private final BlockingQueue<Runnable> mDownloadWorkQueue;
@@ -81,7 +81,7 @@ public class PhotoManager {
     private final ThreadPoolExecutor mDownloadThreadPool;
 
     // A managed pool of background decoder threads
-    private final ThreadPoolExecutor mDecodeThreadPool;
+    // private final ThreadPoolExecutor mDecodeThreadPool;
 
     // An object that manages Messages in a Thread
     private Handler mHandler;
@@ -131,12 +131,16 @@ public class PhotoManager {
 
 
     public static PhotoManager getInstance() {
-
+        return  null;
     }
 
 
 
     public static void cancelAll() {
+
+    }
+
+    public void handleState(PhotoTask photoTask, int state) {
 
     }
 }

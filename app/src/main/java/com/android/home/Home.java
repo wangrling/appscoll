@@ -117,7 +117,9 @@ public class Home extends Activity {
 
         appViewList.add(new AppView(R.drawable.shimmer, "Shimmer",
                 "An Android library that provides an easy way to " +
-                        "add a shimmer effect to any view in your Android app.", ShimmerActivity.class));
+                        "add a shimmer effect to any view in your Android app.", ShimmerActivity.class,
+                "中级，完成。\n" +
+                        "通过Drawable, ValueAnimator, FrameLayout设计动画，同时添加很多属性。"));
 
         appViewList.add(new AppView(R.drawable.dungeon, "PixelDungeon",
                 "Traditional roguelike game with pixel-art graphics and simple interface.", null));
@@ -138,7 +140,10 @@ public class Home extends Activity {
                 "系统日历", null));
 
         appViewList.add(new AppView(R.drawable.rss_image, "RssImageFeed",
-                "Use a background thread to download 500px's \"featured image\" RSS feed.", RssImageFeed.class));
+                "Use a background thread to download 500px's \"featured image\" RSS feed.", RssImageFeed.class,
+                "中级，完成。\n" +
+                        "主要讲述多任务，打开程序，首先会调用RSSService去进行查询，更新数据库。然后通过PhotoManager去调用" +
+                        "Download, Decode两个任务。最后显示在主界面，可以点击进行放大。"));
 
         appViewList.add(new AppView(R.drawable.fresco, "Fresco",
                 "Fresco is a powerful system for displaying images in Android applications.", null));
