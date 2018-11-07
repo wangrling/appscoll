@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Defines a single thumbnail view -->
+<FrameLayout
+        android:layout_width="?android:listPreferredItemHeight"
+        android:layout_height="?android:listPreferredItemHeight"
+        xmlns:android="http://schemas.android.com/apk/res/android">
+    <com.android.home.rssimage.PhotoView
+            android:id="@+id/thumbImage"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:scaleType="centerCrop"
+            android:adjustViewBounds="true" />
+</FrameLayout>

@@ -10,4 +10,10 @@
         <attr name="civ_circle_background_color" format="color" />
     </declare-styleable>
 
+    <declare-styleable name="ImageDownloaderView">
+        <!-- The sibling to hide after the image is downloaded
+             and show when the image is being downloaded -->
+        <attr format="reference" name="hideShowSibling" />
+    </declare-styleable>
+
 </resources>
