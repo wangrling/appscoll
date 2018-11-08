@@ -2,6 +2,7 @@ package com.android.home.stepsensor;
 
 import android.content.Context;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.view.ViewConfiguration;
 import android.widget.RelativeLayout;
@@ -70,12 +71,20 @@ public class CardLayout extends RelativeLayout {
                 }
                 break;
 
+
+            case MotionEvent.ACTION_DOWN:
+
+                mDownX = event.getX();
+                mDownY = event.getY();
+                mSwiping = false;
+                break;
+
             case MotionEvent.ACTION_CANCEL:
             case MotionEvent.ACTION_UP:
                 mSwiping = false;
                 break;
         }
-
+        Log.d(BatchStepSensor.TAG, "mSwiping = " + mSwiping);
 
         return mSwiping;
     }

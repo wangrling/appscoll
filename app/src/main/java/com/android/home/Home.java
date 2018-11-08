@@ -15,6 +15,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 import com.android.home.autofill.AutoFillFramework;
+import com.android.home.customview.CustomViewActivity;
 import com.android.home.pixeldungeon.PixelDungeon;
 import com.android.home.plaid.PlaidApp;
 import com.android.home.rssimage.DisplayActivity;
@@ -189,7 +190,8 @@ public class Home extends Activity {
                         "detectors and step counters.", null));
 
         // 未来先弄清楚目录结构，再决定是否继续往下写！！！！
-
+        appViewList.add(new AppView(R.drawable.home, "CustomView",
+                "ApiDemos/src/com/example/android/apis/graphics", CustomViewActivity.class));
 
 
         mRecyclerView = findViewById(R.id.recycler_view);
