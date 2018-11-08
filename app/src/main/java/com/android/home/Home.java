@@ -2,7 +2,6 @@ package com.android.home;
 
 import android.app.Activity;
 import android.app.AlertDialog;
-import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
@@ -13,20 +12,19 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import com.android.home.autofill.AutoFillFramework;
+import com.android.home.pixeldungeon.PixelDungeon;
 import com.android.home.plaid.PlaidApp;
+import com.android.home.rssimage.DisplayActivity;
 import com.android.home.shimmer.ShimmerActivity;
 import com.android.home.camerabasic.CameraBasic;
 import com.android.home.circleimage.CircleImageActivity;
 import com.android.home.displaybitmaps.DisplayBitmaps;
 import com.android.home.mpchart.MpChart;
 import com.android.home.picasso.PicassoActivity;
-import com.android.home.rajawali.Rajawali3D;
 import com.android.home.randommusic.RandomMusicPlayer;
-import com.android.home.rssimage.RssImageFeed;
 import com.android.home.rxjavasamples.RxJavaSamples;
 import com.android.home.soundrecorder.SoundRecorder;
 import com.android.home.syncadapter.BasicSyncAdapter;
@@ -113,7 +111,9 @@ public class Home extends Activity {
 
         appViewList.add(new AppView(R.drawable.rxjava, "RxJavaSamples",
                 "A repository with real-world useful examples of using RxJava " +
-                        "with Android.", RxJavaSamples.class));
+                        "with Android.", RxJavaSamples.class,
+                "中级，未完成。\n" +
+                        "Android RxJava学习示例。"));
 
         appViewList.add(new AppView(R.drawable.shimmer, "Shimmer",
                 "An Android library that provides an easy way to " +
@@ -122,11 +122,14 @@ public class Home extends Activity {
                         "通过Drawable, ValueAnimator, FrameLayout设计动画，同时添加很多属性。"));
 
         appViewList.add(new AppView(R.drawable.dungeon, "PixelDungeon",
-                "Traditional roguelike game with pixel-art graphics and simple interface.", null));
+                "Traditional roguelike game with pixel-art graphics and simple interface.",
+                PixelDungeon.class,
+                "高级，游戏，完成。\n" +
+                        "二维的地图游戏，代码都是复制过来的，类太多，感觉太难写！"));
 
         appViewList.add(new AppView(R.drawable.rajawali, "Rajawali",
                 "Rajawali is a 3D engine for Android based on OpenGL ES 2.0/3.0. " +
-                        "It can be used for normal apps as well as live wallpapers.", Rajawali3D.class));
+                        "It can be used for normal apps as well as live wallpapers.", null));
 
         appViewList.add(new AppView(R.drawable.displaybitmaps, "DisplayBitmaps",
                 "Demonstrates how to load large bitmaps efficiently off the main UI thread, caching" +
@@ -139,11 +142,21 @@ public class Home extends Activity {
         appViewList.add(new AppView(R.drawable.calendar, "Calendar", "" +
                 "系统日历", null));
 
+        /**
+         * sqlite> .tables
+         * DateMetadatData   PictureUrlData    android_metadata
+         * sqlite> .tables PictureUrlData
+         * PictureUrlData
+         * sqlite> select * from PictureUrlData
+         * 1||http://www.aidoufu.cn/img/v2_002.jpeg||v2_002.jpeg
+         */
         appViewList.add(new AppView(R.drawable.rss_image, "RssImageFeed",
-                "Use a background thread to download 500px's \"featured image\" RSS feed.", RssImageFeed.class,
+                "Use a background thread to download 500px's \"featured image\" RSS feed.", DisplayActivity.class,
                 "中级，完成。\n" +
                         "主要讲述多任务，打开程序，首先会调用RSSService去进行查询，更新数据库。然后通过PhotoManager去调用" +
-                        "Download, Decode两个任务。最后显示在主界面，可以点击进行放大。"));
+                        "Download, Decode两个任务。最后显示在主界面，可以点击进行放大。\n" +
+                        "修改XML配置文件，存储在aidoufu服务器，满足RSSPullParser的要求。\n" +
+                        "学会如何查看手机sqlite中的数据，将db复制出来之后，使用sqlite常规命令进行查看。"));
 
         appViewList.add(new AppView(R.drawable.fresco, "Fresco",
                 "Fresco is a powerful system for displaying images in Android applications.", null));

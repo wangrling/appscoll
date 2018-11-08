@@ -13,6 +13,7 @@
     <uses-permission android:name="android.permission.CAMERA"/>
     <uses-permission android:name="android.permission.WAKE_LOCK"/>
 
+    <uses-permission android:name="android.permission.VIBRATE" />
     <uses-permission android:name="android.permission.READ_CONTACTS" />
     <uses-feature android:name="android.hardware.camera"/>
     <uses-feature android:name="android.hardware.camera.autofocus"/>
@@ -24,7 +25,7 @@
         <activity android:name=".Home">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
-
+                <action android:name="android.intent.action.VIEW" />
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
@@ -75,11 +76,9 @@
         <activity android:name=".rxjavasamples.RxJavaSamples"/>
         <activity android:name=".mpchart.MpChart"/>
         <activity android:name=".displaybitmaps.DisplayBitmaps"/>
-        <activity android:name=".rssimage.RssImageFeed" />
-        <activity android:name=".rajawali.Rajawali3D" />
 
         <activity android:name=".universalmusic.ui.MusicPlayerActivity"
-            android:label="Universal Music Player"/>
+                  android:label="Universal Music Player"/>
         <activity android:name=".universalmusic.ui.PlaceholderActivity" />
         <service android:name=".universalmusic.MusicService">
             <intent-filter>
@@ -89,7 +88,14 @@
         <activity android:name=".universalmusic.ui.NowPlayingActivity" />
         <activity android:name=".universalmusic.ui.FullScreenPlayerActivity" />
 
-        <activity android:name=".shimmer.ShimmerActivity" />
+
+
+        <activity android:name=".pixeldungeon.PixelDungeon" />
+        
+        <activity android:name=".rssimage.DisplayActivity" />
+        <provider android:authorities="com.android.home.rssimage" android:name=".rssimage.DataProvider"
+        android:exported="true"/>
+        <service android:name=".rssimage.RSSPullService" />
 
 
     </application>

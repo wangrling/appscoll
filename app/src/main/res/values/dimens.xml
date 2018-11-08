@@ -116,6 +116,7 @@
 
     <!-- per https://developer.android.com/reference/android/view/ViewGroup.LayoutParams.html#MATCH_PARENT -->
     <item name="match_parent" format="integer" type="dimen">-1</item>
+    <dimen name="thumbSize">160.0dip</dimen>
 
     <!-- Margins for full screen activity-->
     <dimen name="text_view_margin">16dp</dimen>
