@@ -1,4 +1,11 @@
 package com.android.home.customview;
 
-public class FingerPaintView {
+import android.content.Context;
+import android.view.View;
+
+public class FingerPaintView extends View {
+
+    public FingerPaintView(Context context) {
+        super(context);
+    }
 }

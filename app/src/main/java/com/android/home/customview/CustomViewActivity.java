@@ -34,7 +34,10 @@ public class CustomViewActivity extends ListActivity {
         }));
 
         fragments = new Fragment[] {
-                new XfermodesFragment()
+                new XfermodesFragment(),
+                new RegionsFragment(),
+                new TextAlignFragment(),
+                new FingerPaintFragment()
         };
     }
 

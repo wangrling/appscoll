@@ -306,7 +306,10 @@ public class DisplayActivity extends FragmentActivity implements OnBackStackChan
             LocalBroadcastManager.getInstance(this).unregisterReceiver(mDownloadStateReceiver);
             mDownloadStateReceiver = null;
         }
-        
+
+
+
+
         // Unregisters the FragmentDisplayer instance
         LocalBroadcastManager.getInstance(this).unregisterReceiver(this.mFragmentDisplayer);
         

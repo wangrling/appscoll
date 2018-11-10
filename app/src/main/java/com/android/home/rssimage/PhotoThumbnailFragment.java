@@ -314,8 +314,7 @@ public class PhotoThumbnailFragment extends Fragment implements
          */
         Log.d(TAG, "onLoadFinished");
 
-        if (returnCursor != null) {
-            returnCursor.moveToFirst();
+        if (returnCursor != null && returnCursor.moveToFirst()) {
             Log.d(TAG, "url = " + returnCursor.getString(IMAGE_THUMBURL_CURSOR_INDEX));
         } else {
             Log.e(TAG, "returnCursor = null");

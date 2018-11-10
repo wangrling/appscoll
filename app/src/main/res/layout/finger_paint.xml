@@ -1,6 +1,62 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                                             android:layout_width="match_parent"
-                                             android:layout_height="match_parent">
+<LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:id="@+id/finger_container"
+        xmlns:android="http://schemas.android.com/apk/res/android">
 
-</android.support.constraint.ConstraintLayout>
+    <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            android:gravity="center_vertical|center_horizontal"
+            android:orientation="horizontal"
+            android:background="@color/colorPrimary"
+            xmlns:android="http://schemas.android.com/apk/res/android">
+
+
+        <Button
+                android:id="@+id/finger_color"
+                android:text="Color"
+                android:gravity="center"
+                android:textAllCaps="false"
+                style="@style/thin.white.small.button"
+        />
+
+        <Button
+                android:id="@+id/finger_emboss"
+                android:text="Emboss"
+                android:gravity="center"
+                android:textAllCaps="false"
+                style="@style/thin.white.small.button"
+        />
+
+        <Button
+                android:id="@+id/finger_blur"
+                android:text="Blur"
+                android:gravity="center"
+                android:textAllCaps="false"
+                style="@style/thin.white.small.button"
+        />
+
+        <Button
+                android:id="@+id/finger_erase"
+                android:text="Erase"
+                android:gravity="center"
+                android:textAllCaps="false"
+                style="@style/thin.white.small.button"
+        />
+
+        <Button
+                android:id="@+id/finger_top"
+                android:text="Top"
+                android:gravity="center"
+                android:textAllCaps="false"
+                style="@style/thin.white.small.button"
+        />
+
+    </LinearLayout>
+
+
+</LinearLayout>
