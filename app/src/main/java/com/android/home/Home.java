@@ -16,18 +16,19 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import com.android.home.autofill.AutoFillFramework;
 import com.android.home.customview.CustomViewActivity;
+import com.android.home.displaybitmaps.ui.DisplayBitmaps;
 import com.android.home.pixeldungeon.PixelDungeon;
 import com.android.home.plaid.PlaidApp;
 import com.android.home.rssimage.DisplayActivity;
 import com.android.home.shimmer.ShimmerActivity;
 import com.android.home.camerabasic.CameraBasic;
 import com.android.home.circleimage.CircleImageActivity;
-import com.android.home.displaybitmaps.DisplayBitmaps;
 import com.android.home.mpchart.MpChart;
 import com.android.home.picasso.PicassoActivity;
 import com.android.home.randommusic.RandomMusicPlayer;
 import com.android.home.rxjavasamples.RxJavaSamples;
 import com.android.home.soundrecorder.SoundRecorder;
+import com.android.home.stepsensor.BatchStepSensor;
 import com.android.home.syncadapter.BasicSyncAdapter;
 import com.android.home.todomvp.TodoMvpActivity;
 import com.android.home.universalmusic.ui.MusicPlayerActivity;
@@ -187,7 +188,10 @@ public class Home extends Activity {
 
         appViewList.add(new AppView(R.drawable.sensor, "BatchStepSensor",
                 "Demonstrating how to set up SensorEventListeners for step " +
-                        "detectors and step counters.", null));
+                        "detectors and step counters.", BatchStepSensor.class,
+                "中级，完成。\n" +
+                        "原理并不难，就是注册监听，以固定的频率接收数据。\n" +
+                        "但是里面有各种花式布局，让程序更加生动，所以需要分清主次。"));
 
         // 未来先弄清楚目录结构，再决定是否继续往下写！！！！
         appViewList.add(new AppView(R.drawable.home, "CustomView",

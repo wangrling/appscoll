@@ -24,7 +24,7 @@ public class FingerPaintFragment extends Fragment
 
     @Override
     public void colorChanged(int color) {
-
+        mPaint.setColor(color);
     }
 
     @Nullable
@@ -77,15 +77,32 @@ public class FingerPaintFragment extends Fragment
                 break;
             }
             case R.id.finger_emboss: {
+                if (mPaint.getMaskFilter() != mEmboss) {
+                    mPaint.setMaskFilter(mEmboss);
+                } else {
+                    mPaint.setMaskFilter(null);
+                }
                 break;
             }
             case R.id.finger_blur: {
+                if (mPaint.getMaskFilter() != mBlur) {
+                    mPaint.setMaskFilter(mBlur);
+                } else {
+                    mPaint.setMaskFilter(null);
+                }
                 break;
             }
             case R.id.finger_erase: {
+                mPaint.setXfermode(new PorterDuffXfermode(
+                        PorterDuff.Mode.CLEAR
+                ));
                 break;
             }
             case R.id.finger_top: {
+                mPaint.setXfermode(new PorterDuffXfermode(
+                        PorterDuff.Mode.SRC_ATOP
+                ));
+                mPaint.setAlpha(0x80);
                 break;
             }
         }
@@ -134,7 +151,7 @@ public class FingerPaintFragment extends Fragment
         private static final float TOUCH_TOLERANCE = 4;
 
         private void touch_start(float x, float y) {
-            mPath.reset();;
+            mPath.reset();
             mPath.moveTo(x, y);
             mX = x;
             mY = y;

@@ -134,4 +134,14 @@
     <dimen name="error_vertical_padding">16dp</dimen>
     <dimen name="notification_icon_width_height">64dp</dimen>
 
+    <dimen name="card_content_text">14sp</dimen>
+    <dimen name="card_content_title">24sp</dimen>
+
+    <dimen name="card_padding">15dp</dimen>
+    <dimen name="card_margin">10dp</dimen>
+
+    <dimen name="card_action_margin">3dp</dimen>
+    <dimen name="card_action_padding">8dp</dimen>
+
+    <dimen name="card_stream_bottom_padding">90dp</dimen>
 </resources>

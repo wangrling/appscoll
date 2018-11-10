@@ -75,7 +75,6 @@
         <activity android:name=".shimmer.ShimmerActivity"/>
         <activity android:name=".rxjavasamples.RxJavaSamples"/>
         <activity android:name=".mpchart.MpChart"/>
-        <activity android:name=".displaybitmaps.DisplayBitmaps"/>
 
         <activity android:name=".universalmusic.ui.MusicPlayerActivity"
                   android:label="Universal Music Player"/>
@@ -99,6 +98,7 @@
         android:exported="true"/>
         <service android:name=".rssimage.RSSPullService" />
 
+        <activity android:name=".stepsensor.BatchStepSensor" />
 
     </application>
 

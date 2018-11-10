@@ -234,4 +234,74 @@
     <string name="reponame">reponame</string>
 
     <string name="mission_statement">Facebook’s mission is to give people the power to build community and bring the world closer together.</string>
+
+    <string name="batching_queue_title">Background sensor batching</string>
+    <string name="batching_queue_description">Batching allows the sensor to report sensor events at
+        a specified frequency.\n\nThe system delays calls to the SensorEventListener and deliver
+        them in intervals, based on the maximum report latency specified when the listener is
+        registered. Note that this only means that the call to onSensorChanged() is delayed, the
+        total number of calls is identical as if no batching was used. Sensors only deliver events
+        while the CPU is awake. If the CPU is asleep and a batched sensor event listener is still
+        registered, the sensor will continue to collect events until it runs out of memory and
+        overwrites old values. This use case is not covered by this sample. (The sensor event queue
+        should be flushed using a scheduled background thread.) \n\nIn this sample app data is only
+        collected while the app is running and the CPU is awake. In this case the sensor will
+        deliver events before the queue fills up.
+    </string>
+
+    <string name="explanation_description">The age of a sensor event describes the delay between
+        when it was recorded by the sensor until it was delivered to the SensorEventListener.
+    </string>
+
+    <string name="register_detector_title">Register step detector sensor</string>
+    <string name="register_detector_description">Register a listener for the STEP DETECTOR
+        sensor.\n\nThis sensor delivers an event when the user takes a step. One event is received
+        per step.
+    </string>
+
+    <string name="register_counter_title">Register step counter sensor</string>
+    <string name="register_counter_description">Register a listener for the STEP COUNTER
+        sensor.\n\nThis sensor triggers events when a step is detected, but applies algorithms to
+        filter out false positives. Events from this sensor have higher latency than the step
+        detector and contain the total number of steps taken since the sensor was first registered.
+    </string>
+
+    <string name="register_0">No batching (delay=0)</string>
+    <string name="register_5">5s batching (delay=5000ms)</string>
+    <string name="register_10">10s batching (delay=10000ms)</string>
+
+    <string name="counting_title">Total Steps: %1$d</string>
+    <string name="sensor_counter">Step Counter</string>
+    <string name="sensor_detector">Step Detector</string>
+    <string name="counting_description">Sensor: %1$s\nMax sensor event delay: %2$,d \u00B5s\nAge of
+        events in s:\n%3$s
+    </string>
+
+    <string name="error_title">Error</string>
+    <string name="error_nosensor">This sample requires at least Android KitKat (4.4) and a device
+        with the step sensor.\n\nThis device does not appear to meet these requirements, as an
+        alternative you may want to consider using the gyro sensor and implement your own step
+        recognition as a fallback.
+    </string>
+    <string name="warning_nobatching">The listener has been registered, but batch mode could not be
+        enabled.\n\nIt is likely that it is not supported by this device.\n\nSensor events will be
+        delivered in continuous mode.
+    </string>
+
+    <string name="action_notagain">Do not show again</string>
+
+    <string name="step_intro_title">Introduction</string>
+
+    <string name="step_intro_message"><p>This sample demonstrates the use of the two step sensors (step detector and counter) and
+            sensor batching.</p>
+            <p>It shows how to register a SensorEventListener with and without
+            batching and shows how these events are received.</p>
+            <p>The Step Detector sensor fires an
+            event when a step is detected, while the step counter returns the total number of
+            steps since a listener was first registered for this sensor.
+            Both sensors only count steps while a listener is registered. This sample only covers the
+            basic case, where a listener is only registered while the app is running. Likewise,
+            batched sensors can be used in the background (when the CPU is suspended), which
+            requires manually flushing the sensor event queue before it overflows, which is not
+            covered in this sample.</p></string>
 </resources>
