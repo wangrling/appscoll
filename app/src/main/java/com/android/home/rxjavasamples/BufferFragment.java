@@ -26,15 +26,13 @@ import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 public class BufferFragment extends Fragment {
-
-    @BindView(R.id.list_threading_log)
-    ListView logsList;
-
     @BindView(R.id.btn_start_operation)
     Button tapBtn;
 
-    private LogAdapter adapter;
 
+    @BindView(R.id.list_threading_log)
+    ListView logsList;
+    private LogAdapter adapter;
     private List<String> logs;
 
     private Disposable disposable;
@@ -46,14 +44,6 @@ public class BufferFragment extends Fragment {
         super.onActivityCreated(savedInstanceState);
         
         setupLogger();
-    }
-
-    private void setupLogger() {
-        logs = new ArrayList<>();
-        adapter = new LogAdapter(getActivity(), new ArrayList<>());
-        if (logsList != null) {
-            logsList.setAdapter(adapter);
-        }
     }
 
     @Override
@@ -119,6 +109,14 @@ public class BufferFragment extends Fragment {
                         Timber.d("onCompleted");
                     }
                 });
+    }
+
+    private void setupLogger() {
+        logs = new ArrayList<>();
+        adapter = new LogAdapter(getActivity(), new ArrayList<>());
+        if (logsList != null) {
+            logsList.setAdapter(adapter);
+        }
     }
 
     private void log(String logMsg) {

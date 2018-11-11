@@ -40,6 +40,7 @@ public class FingerPaintFragment extends Fragment
         view.findViewById(R.id.finger_blur).setOnClickListener(this);
         view.findViewById(R.id.finger_erase).setOnClickListener(this);
         view.findViewById(R.id.finger_top).setOnClickListener(this);
+        view.findViewById(R.id.finger_reset).setOnClickListener(this);
 
         return view;
     }
@@ -103,6 +104,12 @@ public class FingerPaintFragment extends Fragment
                         PorterDuff.Mode.SRC_ATOP
                 ));
                 mPaint.setAlpha(0x80);
+                break;
+            }
+            case R.id.finger_reset: {
+                mPaint.setMaskFilter(null);
+                mPaint.setXfermode(null);
+                mPaint.setAlpha(0xFF);
                 break;
             }
         }

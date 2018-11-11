@@ -22,6 +22,7 @@
             android:icon="@mipmap/home"
             android:label="@string/home"
             android:theme="@style/Base.AppTheme">
+
         <activity android:name=".Home">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
@@ -29,6 +30,15 @@
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
+
+        <activity android:name=".testing.TestingActivity" />
+        <activity android:name=".testing.espresso.EspressoBasic" />
+        <activity android:name=".testing.espresso.ShowTextActivity"/>
+        <activity android:name=".testing.espresso.CustomMatcher" />
+        <activity android:name=".testing.espresso.LongListActivity" />
+        <activity android:name=".testing.espresso.IdlingResourceActivity" />
+        <activity android:name=".testing.espresso.IntentsAdvancedActivity" />
+
         <activity
                 android:name=".todomvp.TodoMvpActivity"
                 android:label="@string/todomvp"/>
@@ -99,6 +109,9 @@
         <service android:name=".rssimage.RSSPullService" />
 
         <activity android:name=".stepsensor.BatchStepSensor" />
+
+        <activity android:name=".displaybitmaps.ui.DisplayBitmaps" />
+        <activity android:name=".displaybitmaps.ui.ImageDetailActivity" />
 
     </application>
 

@@ -22,11 +22,12 @@
                 android:gravity="center"
                 android:textAllCaps="false"
                 style="@style/thin.white.small.button"
+
         />
 
         <Button
                 android:id="@+id/finger_emboss"
-                android:text="Emboss"
+                android:text="Embo"
                 android:gravity="center"
                 android:textAllCaps="false"
                 style="@style/thin.white.small.button"
@@ -51,6 +52,14 @@
         <Button
                 android:id="@+id/finger_top"
                 android:text="Top"
+                android:gravity="center"
+                android:textAllCaps="false"
+                style="@style/thin.white.small.button"
+        />
+
+        <Button
+                android:id="@+id/finger_reset"
+                android:text="Reset"
                 android:gravity="center"
                 android:textAllCaps="false"
                 style="@style/thin.white.small.button"

@@ -30,6 +30,7 @@ import com.android.home.rxjavasamples.RxJavaSamples;
 import com.android.home.soundrecorder.SoundRecorder;
 import com.android.home.stepsensor.BatchStepSensor;
 import com.android.home.syncadapter.BasicSyncAdapter;
+import com.android.home.testing.TestingActivity;
 import com.android.home.todomvp.TodoMvpActivity;
 import com.android.home.universalmusic.ui.MusicPlayerActivity;
 
@@ -50,6 +51,11 @@ public class Home extends Activity {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.recycler_view);
+
+        appViewList.add(new AppView(R.drawable.testing, "Testing",
+                "A collection of samples demonstrating different frameworks and techniques for automated testing.",
+                TestingActivity.class,
+                "Espresso, UiAutomator, AndroidJunitRunner, JUnit4 Rules测试工具。"));
 
         appViewList.add(new AppView(R.drawable.todo, "Todo-MVP",
                 "Provide a basic Model-View-Presenter (MVP) architecture without " +

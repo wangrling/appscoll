@@ -3,7 +3,6 @@ package com.android.home.customview;
 import android.app.Activity;
 import android.app.Fragment;
 import android.app.ListActivity;
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -26,7 +25,7 @@ public class CustomViewActivity extends ListActivity {
                 "Xfermodes", "Regions", "TextAlign", "FingerPaint", "UnicodeChart",
                 "BitmapDecode", "Arcs", "ColorFilters", "Density", "PolyToPoly",
                 "Patterns", "ShapeDrawable", "Pictures", "ColorMatrix", "Typefaces",
-                "Compass", "ColorPickerDialog", "CameraPreview", "ScaleToFit",
+                "Compass", "CameraPreview", "ScaleToFit",
                 "Layers", "DrawPoints", "PathFillTypes", "MeasureText", "Sweep",
                 "BitmapPixels", "Vertices", "AlphaBitmap", "AnimateDrawables",
                 "PictureLayout", "Clipping", "PurgeableBitmapView", "SensorTest",
@@ -37,7 +36,8 @@ public class CustomViewActivity extends ListActivity {
                 new XfermodesFragment(),
                 new RegionsFragment(),
                 new TextAlignFragment(),
-                new FingerPaintFragment()
+                new FingerPaintFragment(),
+                new UnicodeChartFragment()
         };
     }
 

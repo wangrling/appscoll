@@ -70,6 +70,10 @@ public class RxJavaListFragment extends ListFragment {
         mSamples.add(new Pair("Networking with Retrofit & RxJava (using zip, flatmap) " +
                 "(太抽象，不知道在写什么，也没有什么现象，沮丧。)",
                 getString(R.string.msg_demo_retrofit)));
+        mSamples.add(new Pair("Two-way data binding for TextViews (using PublishSubject)",
+                getString(R.string.msg_demo_doublebinding)));
+        mSamples.add(new Pair("Simple and Advanced polling (using interval and repeatWhen)",
+                getString(R.string.msg_demo_polling)));
     }
 
     private void initFragments() {
@@ -77,6 +81,8 @@ public class RxJavaListFragment extends ListFragment {
         mFragments.add(new BufferFragment());
         mFragments.add(new DebounceSearchEmitterFragment());
         mFragments.add(new RetrofitFragment());
+        mFragments.add(new DoubleBindingTextViewFragment());
+        mFragments.add(new PollingFragment());
     }
 
     @Override
