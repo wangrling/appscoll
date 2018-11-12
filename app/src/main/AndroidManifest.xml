@@ -41,6 +41,8 @@
         <activity android:name=".testing.espresso.IntentsBasicActivity" />
         <activity android:name=".testing.espresso.ContactsActivity" />
         <activity android:name=".testing.espresso.IntentsAdvancedActivity" />
+        <activity android:name=".testing.espresso.RecyclerViewActivity" />
+        <activity android:name=".testing.espresso.WebViewActivity" />
 
 
         <activity

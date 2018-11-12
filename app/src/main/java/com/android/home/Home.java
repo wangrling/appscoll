@@ -52,6 +52,10 @@ public class Home extends Activity {
 
         setContentView(R.layout.recycler_view);
 
+        appViewList.add(new AppView(R.drawable.components, "ArchComponents",
+                "A collection of samples using the Architecture Components.",
+        null, ""));
+
         appViewList.add(new AppView(R.drawable.testing, "Testing",
                 "A collection of samples demonstrating different frameworks and techniques for automated testing.",
                 TestingActivity.class,

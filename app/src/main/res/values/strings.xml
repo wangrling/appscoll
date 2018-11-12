@@ -1,6 +1,10 @@
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <string name="home">Home</string>
 
+    <string name="element_text">Element</string>
+    <string name="item_element_text">This is element #</string>
+    <string name="middle">This is the middle!</string>
+
     <string name="type_a_phone_number">Please enter a number…</string><string name="button_dial_number">Call Number</string><string name="button_pick_contact">Pick Number</string><string name="contacts_activity_placeholder">This a placeholder Activity for a contacts screen.
     This activity is never opened and does not contain any real contact data for
     keeping this sample simple and focused.

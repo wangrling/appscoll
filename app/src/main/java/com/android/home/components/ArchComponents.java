@@ -1,18 +1,15 @@
-package com.android.home.testing;
+package com.android.home.components;
 
 import android.app.Activity;
 import android.app.ListActivity;
 import android.content.Intent;
 import android.os.Bundle;
-import androidx.recyclerview.widget.ListAdapter;
-import androidx.recyclerview.widget.DiffUtil;
 import android.util.Pair;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
-import androidx.annotation.Nullable;
 import com.android.home.R;
 import com.android.home.testing.espresso.*;
 
@@ -20,34 +17,40 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-
-public class TestingActivity extends ListActivity {
+public class ArchComponents extends ListActivity {
 
     private static List<Pair<String, String>> mSamples = new ArrayList<>();
 
     List<Activity> activities = Arrays.asList(
-            new EspressoBasic(),
-            new CustomMatcher(),
-            new LongListActivity(),
-            new IdlingResourceActivity(),
-            new IntentsBasicActivity(),
-            new IntentsAdvancedActivity(),
-            new RecyclerViewActivity(),
-            new WebViewActivity()
     );
 
     @Override
     protected void onCreate(@androidx.annotation.Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        mSamples.add(new Pair("BasicEspresso", "Basic Espresso sample."));
-        mSamples.add(new Pair("CustomMatcher", "Shows how to extend Espresso to match the *hint* property of an EditText."));
-        mSamples.add(new Pair("LongList", "Showcases the `onData()` entry point for Espresso, for lists and AdapterViews."));
-        mSamples.add(new Pair("IdlingResource", "Synchronization with background jobs"));
-        mSamples.add(new Pair("IntentsBasic", "Basic usage of `intended()` and `intending()`"));
-        mSamples.add(new Pair("IntentsAdvanced", "Simulates a user fetching a bitmap using the camera"));
-        mSamples.add(new Pair("RecyclerView", "RecyclerView actions for Espresso"));
-        mSamples.add(new Pair("WebView", "Use Espresso-web to interact with WebViews"));
+        mSamples.add(new Pair("BasicSample",
+                "Shows how to persist data using a SQLite database and Room. Also uses ViewModels and LiveData."));
+        mSamples.add(new Pair("PersistenceContentProviderSample",
+                "Shows how to expose data via a Content Provider using Room."));
+        mSamples.add(new Pair<>("GithubBrowserSample",
+                "An advanced sample that uses the Architecture components, " +
+                        "Dagger and the Github API. Requires Android Studio 3.0 or later."));
+        mSamples.add(new Pair<>("BasicRxJavaSample", "Shows how to use Room with RxJava 2. Also uses ViewModels."));
+        mSamples.add(new Pair<>("PersistenceMigrationsSample", "Shows how to implement migrations in Room."));
+
+        mSamples.add(new Pair<>("BasicRxJavaKotlinSample",
+                "Shows how to use ViewModels and Room together with RxJava, in Kotlin."));
+        mSamples.add(new Pair<>("PagingSample", "Shows how to use the Paging library with Room, in Kotlin."));
+
+        mSamples.add(new Pair<>("PagingNetworkSample", "Shows how to use the Paging library with " +
+                "a backend API via Retrofit, in Kotlin."));
+
+        mSamples.add(new Pair<>("NavigationBasicSample",
+                "Shows how to use Navigation (alpha) to perform navigation and deep linking in Kotlin."));
+
+        mSamples.add(new Pair<>("WorkManagerSample",
+                "Shows how to use WorkManager (alpha) to do background work, in Java."));
+
 
         setListAdapter(new BaseAdapter() {
             @Override

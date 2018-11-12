@@ -165,4 +165,5 @@
     <dimen name="card_action_padding">8dp</dimen>
 
     <dimen name="card_stream_bottom_padding">90dp</dimen>
+    <dimen name="list_item_height">72dp</dimen>
 </resources>
