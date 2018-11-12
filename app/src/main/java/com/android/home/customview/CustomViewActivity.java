@@ -36,7 +36,8 @@ public class CustomViewActivity extends ListActivity {
                 new RegionsFragment(),
                 new TextAlignFragment(),
                 new FingerPaintFragment(),
-                new UnicodeChartFragment()
+                new UnicodeChartFragment(),
+                new BitmapDecodeFragment()
         };
     }
 

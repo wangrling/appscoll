@@ -15,6 +15,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 import com.android.home.autofill.AutoFillFramework;
+import com.android.home.components.ArchComponents;
 import com.android.home.customview.CustomViewActivity;
 import com.android.home.displaybitmaps.ui.DisplayBitmaps;
 import com.android.home.pixeldungeon.PixelDungeon;
@@ -54,7 +55,7 @@ public class Home extends Activity {
 
         appViewList.add(new AppView(R.drawable.components, "ArchComponents",
                 "A collection of samples using the Architecture Components.",
-        null, ""));
+                ArchComponents.class, ""));
 
         appViewList.add(new AppView(R.drawable.testing, "Testing",
                 "A collection of samples demonstrating different frameworks and techniques for automated testing.",

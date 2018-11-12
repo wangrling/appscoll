@@ -1,6 +1,14 @@
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <string name="home">Home</string>
 
+    <string name="type_operand_one_hint">Type Operand 1</string>
+    <string name="type_operand_two_hint">Type Operand 2</string>
+    <string name="add_operation_text">Add</string>
+    <string name="sub_operation_text">Sub</string>
+    <string name="div_operation_text">Div</string>
+    <string name="mul_operation_text">Mul</string>
+    <string name="computationError">Error</string>
+
     <string name="element_text">Element</string>
     <string name="item_element_text">This is element #</string>
     <string name="middle">This is the middle!</string>

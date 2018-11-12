@@ -32,8 +32,15 @@
             </intent-filter>
         </activity>
 
+        <activity android:name=".components.ArchComponents" />
+
         <activity android:name=".testing.TestingActivity" />
-        <activity android:name=".testing.espresso.EspressoBasic" />
+        <activity android:name=".testing.espresso.EspressoBasic">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.HOME" />
+            </intent-filter>
+        </activity>
         <activity android:name=".testing.espresso.ShowTextActivity"/>
         <activity android:name=".testing.espresso.CustomMatcher" />
         <activity android:name=".testing.espresso.LongListActivity" />
@@ -43,6 +50,7 @@
         <activity android:name=".testing.espresso.IntentsAdvancedActivity" />
         <activity android:name=".testing.espresso.RecyclerViewActivity" />
         <activity android:name=".testing.espresso.WebViewActivity" />
+        <activity android:name=".testing.junitrunner.CalculatorActivity" />
 
 
         <activity
