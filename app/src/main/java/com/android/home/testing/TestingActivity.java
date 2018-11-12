@@ -34,7 +34,9 @@ public class TestingActivity extends ListActivity {
             new CustomMatcher(),
             new LongListActivity(),
             new IdlingResourceActivity(),
-            new IntentsAdvancedActivity()
+            new IntentsBasicActivity(),
+            new IntentsAdvancedActivity(),
+            new RecyclerViewActivity()
     );
 
     @Override
@@ -45,7 +47,9 @@ public class TestingActivity extends ListActivity {
         mSamples.add(new Pair("CustomMatcher", "Shows how to extend Espresso to match the *hint* property of an EditText."));
         mSamples.add(new Pair("LongList", "Showcases the `onData()` entry point for Espresso, for lists and AdapterViews."));
         mSamples.add(new Pair("IdlingResource", "Synchronization with background jobs"));
-        mSamples.add(new Pair("IntentsAdvanced", "Basic usage of `intended()` and `intending()`"));
+        mSamples.add(new Pair("IntentsBasic", "Basic usage of `intended()` and `intending()`"));
+        mSamples.add(new Pair("IntentsAdvanced", "Simulates a user fetching a bitmap using the camera"));
+        mSamples.add(new Pair("RecyclerView", "RecyclerView actions for Espresso"));
 
         setListAdapter(new BaseAdapter() {
             @Override
