@@ -2,8 +2,8 @@ package com.android.home.mpchart;
 
 import android.graphics.Typeface;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
 
 public abstract class BaseFragment extends Fragment {
 

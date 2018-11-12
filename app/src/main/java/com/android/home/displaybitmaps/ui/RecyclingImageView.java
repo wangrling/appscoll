@@ -3,9 +3,8 @@ package com.android.home.displaybitmaps.ui;
 import android.content.Context;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.LayerDrawable;
-import android.support.annotation.Nullable;
+import androidx.annotation.Nullable;
 import android.util.AttributeSet;
-import android.widget.ImageView;
 import com.android.home.displaybitmaps.util.RecyclingBitmapDrawable;
 
 /**
@@ -15,7 +14,7 @@ import com.android.home.displaybitmaps.util.RecyclingBitmapDrawable;
  * 不知道notify有什么用，可能更方便回收资源。
  */
 
-public class RecyclingImageView extends android.support.v7.widget.AppCompatImageView {
+public class RecyclingImageView extends androidx.appcompat.widget.AppCompatImageView {
     public RecyclingImageView(Context context) {
         super(context);
     }

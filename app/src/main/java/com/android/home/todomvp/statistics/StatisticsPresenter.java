@@ -16,7 +16,7 @@
 
 package com.android.home.todomvp.statistics;
 
-import android.support.annotation.NonNull;
+import androidx.annotation.NonNull;
 import com.android.home.todomvp.data.Task;
 import com.android.home.todomvp.data.TasksDataSource;
 import com.android.home.todomvp.data.TasksRepository;

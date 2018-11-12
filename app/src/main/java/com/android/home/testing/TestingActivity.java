@@ -2,20 +2,16 @@ package com.android.home.testing;
 
 import android.app.Activity;
 import android.app.ListActivity;
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.recyclerview.extensions.ListAdapter;
-import android.support.v7.util.DiffUtil;
-import android.support.v7.widget.RecyclerView;
+import androidx.recyclerview.widget.ListAdapter;
+import androidx.recyclerview.widget.DiffUtil;
 import android.util.Pair;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
 import android.widget.BaseAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
-import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import com.android.home.R;
 import com.android.home.testing.espresso.*;
@@ -40,7 +36,7 @@ public class TestingActivity extends ListActivity {
     );
 
     @Override
-    protected void onCreate(@Nullable @android.support.annotation.Nullable Bundle savedInstanceState) {
+    protected void onCreate(@androidx.annotation.Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         mSamples.add(new Pair("BasicEspresso", "Basic Espresso sample."));

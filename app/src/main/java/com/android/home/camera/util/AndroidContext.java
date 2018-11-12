@@ -1,7 +1,7 @@
 package com.android.home.camera.util;
 
 import android.content.Context;
-import android.support.annotation.NonNull;
+import androidx.annotation.NonNull;
 
 /**
  * Initializable singleton for providing the application level context

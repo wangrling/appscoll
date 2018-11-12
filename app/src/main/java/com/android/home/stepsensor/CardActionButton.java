@@ -19,17 +19,16 @@ package com.android.home.stepsensor;
 
 import android.content.Context;
 import android.os.Build;
-import android.support.v4.view.ViewCompat;
+import androidx.core.view.ViewCompat;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.animation.BounceInterpolator;
 import android.view.animation.DecelerateInterpolator;
-import android.widget.Button;
 
 /**
  * Custom Button with a special 'pressed' effect for touch events.
  */
-public class CardActionButton extends android.support.v7.widget.AppCompatButton {
+public class CardActionButton extends androidx.appcompat.widget.AppCompatButton {
 
     public CardActionButton(Context context) {
         super(context);

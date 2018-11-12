@@ -1,7 +1,7 @@
 package com.android.home.todomvp.data;
 
 import android.os.Handler;
-import android.support.annotation.NonNull;
+import androidx.annotation.NonNull;
 import com.google.common.collect.Lists;
 
 import java.util.Iterator;

@@ -29,7 +29,7 @@ public class IdlingResourceActivity extends Activity implements
     private SimpleIdlingResource mIdlingResource;
 
     @Override
-    protected void onCreate(@Nullable @android.support.annotation.Nullable Bundle savedInstanceState) {
+    protected void onCreate(@androidx.annotation.Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.idling_resource_activity);
 

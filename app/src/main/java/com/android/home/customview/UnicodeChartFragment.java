@@ -14,10 +14,8 @@ import androidx.annotation.Nullable;
 
 public class UnicodeChartFragment extends Fragment {
 
-    @Nullable
-    @android.support.annotation.Nullable
     @Override
-    public View onCreateView(LayoutInflater inflater, @Nullable @android.support.annotation.Nullable ViewGroup container, Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater,@androidx.annotation.Nullable ViewGroup container, Bundle savedInstanceState) {
         return new UnicodeChartView(getActivity());
     }
 

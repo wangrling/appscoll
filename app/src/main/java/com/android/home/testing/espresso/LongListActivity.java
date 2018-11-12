@@ -42,7 +42,7 @@ public class LongListActivity extends Activity {
     private LayoutInflater layoutInflater;
 
     @Override
-    protected void onCreate(@Nullable @android.support.annotation.Nullable Bundle savedInstanceState) {
+    protected void onCreate(@androidx.annotation.Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.long_list_activity);
         populateData();

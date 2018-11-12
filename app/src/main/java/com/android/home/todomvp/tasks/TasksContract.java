@@ -1,6 +1,6 @@
 package com.android.home.todomvp.tasks;
 
-import android.support.annotation.NonNull;
+import androidx.annotation.NonNull;
 import com.android.home.todomvp.data.Task;
 
 import java.util.List;

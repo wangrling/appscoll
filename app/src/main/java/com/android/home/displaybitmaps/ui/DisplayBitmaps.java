@@ -1,9 +1,9 @@
 package com.android.home.displaybitmaps.ui;
 
 import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.support.v4.app.FragmentActivity;
-import android.support.v4.app.FragmentTransaction;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.FragmentActivity;
+import androidx.fragment.app.FragmentTransaction;
 import com.android.home.BuildConfig;
 import com.android.home.displaybitmaps.util.Utils;
 

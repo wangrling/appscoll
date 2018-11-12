@@ -1,6 +1,5 @@
 package com.android.home.customview;
 
-import android.app.Activity;
 import android.app.Fragment;
 import android.app.ListActivity;
 import android.os.Bundle;
@@ -16,7 +15,7 @@ public class CustomViewActivity extends ListActivity {
     Fragment[] fragments;
 
     @Override
-    protected void onCreate(@Nullable @android.support.annotation.Nullable Bundle savedInstanceState) {
+    protected void onCreate(@androidx.annotation.Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         view = getListView();

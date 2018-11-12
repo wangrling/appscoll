@@ -43,10 +43,8 @@ public class XfermodesFragment extends Fragment {
         return bm;
     }
 
-    @Nullable
-    @android.support.annotation.Nullable
     @Override
-    public View onCreateView(LayoutInflater inflater, @Nullable @android.support.annotation.Nullable ViewGroup container, Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, @androidx.annotation.Nullable ViewGroup container, Bundle savedInstanceState) {
 
 
         return new XfermodesView(getActivity());

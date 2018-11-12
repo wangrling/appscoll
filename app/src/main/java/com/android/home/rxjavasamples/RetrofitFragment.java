@@ -1,8 +1,8 @@
 package com.android.home.rxjavasamples;
 
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import android.util.Pair;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,6 +10,7 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ListView;
+import androidx.fragment.app.Fragment;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -32,7 +33,7 @@ import java.util.List;
 import static android.text.TextUtils.isEmpty;
 import static java.lang.String.format;
 
-public class RetrofitFragment extends android.support.v4.app.Fragment {
+public class RetrofitFragment extends Fragment {
 
 
     private GithubApi githubService;

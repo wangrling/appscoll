@@ -3,7 +3,7 @@ package com.android.home.picasso;
 import android.content.Context;
 import android.util.AttributeSet;
 
-public class SquaredImageView extends android.support.v7.widget.AppCompatImageView {
+public class SquaredImageView extends androidx.appcompat.widget.AppCompatImageView {
     public SquaredImageView(Context context) {
         super(context);
     }

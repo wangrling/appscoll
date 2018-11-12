@@ -1,14 +1,10 @@
 package com.android.home.testing;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.VisibleForTesting;
 import androidx.test.core.app.ActivityScenario;
-import androidx.test.espresso.IdlingResource;
 import androidx.test.espresso.matcher.ViewMatchers;
 import androidx.test.ext.junit.runners.AndroidJUnit4;
 import com.android.home.R;
 import com.android.home.testing.espresso.EspressoBasic;
-import com.android.home.testing.espresso.SimpleIdlingResource;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -29,7 +25,7 @@ public class ChangeTextBehaviorTest {
 
     /**
      * Use {@link ActivityScenario} to create and launch the activity under test.
-     * This is a replacement for {@link android.support.test.rule.ActivityTestRule}.
+     * This is a replacement for {@link androidx.test.rule.ActivityTestRule}.
      */
 
     @Before

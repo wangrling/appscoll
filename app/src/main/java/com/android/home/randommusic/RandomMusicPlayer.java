@@ -7,9 +7,8 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.net.Uri;
-import android.nfc.Tag;
 import android.os.Bundle;
-import android.support.v4.app.ActivityCompat;
+import androidx.core.app.ActivityCompat;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
@@ -17,8 +16,6 @@ import android.widget.Button;
 import android.widget.EditText;
 import com.android.home.Home;
 import com.android.home.R;
-
-import java.security.Permission;
 
 import static com.android.home.randommusic.MusicService.*;
 
@@ -49,7 +46,7 @@ public class RandomMusicPlayer extends Activity implements View.OnClickListener,
     Intent intent;
 
     @Override
-    protected void onCreate(@android.support.annotation.Nullable Bundle savedInstanceState) {
+    protected void onCreate(@androidx.annotation.Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.random_music_player);
@@ -150,8 +147,8 @@ public class RandomMusicPlayer extends Activity implements View.OnClickListener,
 
     @Override
     public void onRequestPermissionsResult(int requestCode,
-                                            @android.support.annotation.NonNull String[] permissions,
-                                           @android.support.annotation.NonNull int[] grantResults) {
+                                            @androidx.annotation.NonNull String[] permissions,
+                                           @androidx.annotation.NonNull int[] grantResults) {
         if (requestCode == REQUEST_READ_EXTERNAL_STORAGE_PERMISSION && grantResults[0] == RESULT_OK) {
             Log.d(TAG, "Read external storage permission is granted.");
         }

@@ -24,7 +24,6 @@ import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.util.AttributeSet;
 import android.view.View;
-import android.widget.ImageView;
 import com.android.home.R;
 
 
@@ -36,7 +35,7 @@ import java.net.URL;
  * that are useful for downloading, decoding, and displaying Picasa images.
  *
  */
-public class PhotoView extends android.support.v7.widget.AppCompatImageView {
+public class PhotoView extends androidx.appcompat.widget.AppCompatImageView {
     
     // Indicates if caching should be used
     private boolean mCacheFlag;

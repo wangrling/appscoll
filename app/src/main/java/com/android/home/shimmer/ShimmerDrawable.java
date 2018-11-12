@@ -79,7 +79,7 @@ public class ShimmerDrawable extends Drawable {
     }
 
     @Override
-    public void draw(@NonNull @android.support.annotation.NonNull Canvas canvas) {
+    public void draw(Canvas canvas) {
         if (mShimmer == null || mShimmerPaint.getShader() == null) {
             return;
         }
@@ -123,7 +123,7 @@ public class ShimmerDrawable extends Drawable {
     }
 
     @Override
-    public void setColorFilter(@Nullable @android.support.annotation.Nullable ColorFilter colorFilter) {
+    public void setColorFilter(@androidx.annotation.Nullable ColorFilter colorFilter) {
         // No-op, modify the Shimmer object you pass in instead
     }
 

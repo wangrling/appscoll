@@ -4,14 +4,15 @@ import android.content.Context;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ListView;
+import androidx.fragment.app.Fragment;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -30,7 +31,7 @@ import java.util.concurrent.TimeUnit;
 
 import static java.lang.String.format;
 
-public class DebounceSearchEmitterFragment extends android.support.v4.app.Fragment {
+public class DebounceSearchEmitterFragment extends Fragment {
 
     @BindView(R.id.list_threading_log)
     ListView logsList;

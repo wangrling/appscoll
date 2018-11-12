@@ -18,7 +18,7 @@ package com.android.home.rssimage;
 
 import android.content.Context;
 import android.content.Intent;
-import android.support.v4.content.LocalBroadcastManager;
+import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 
 public class BroadcastNotifier {
 

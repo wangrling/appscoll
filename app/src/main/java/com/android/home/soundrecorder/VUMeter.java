@@ -30,7 +30,7 @@ public class VUMeter extends View {
         init(context);
     }
 
-    public VUMeter(Context context, @android.support.annotation.Nullable AttributeSet attrs) {
+    public VUMeter(Context context, @androidx.annotation.Nullable AttributeSet attrs) {
         super(context, attrs);
 
         init(context);

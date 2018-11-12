@@ -6,15 +6,13 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Bundle;
-import android.support.v4.app.ActivityCompat;
-import android.support.v4.content.ContextCompat;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 import androidx.annotation.Nullable;
 import com.android.home.R;
-
-import java.security.Permission;
 
 /**
  * Simple Dialer Activity which shows an {@link EditText} field to enter a phone number. Upon
@@ -44,12 +42,12 @@ public class IntentsBasicActivity extends Activity {
 
     public void onCall(View view) {
         boolean hasCallPhonePermission = ContextCompat.checkSelfPermission(this,
-                Manifest.permission.CALL_PHONE) == PackageManager.PERMISSION_DENIED;
+                Manifest.permission.CALL_PHONE) == PackageManager.PERMISSION_GRANTED;
 
         if (hasCallPhonePermission)
             startActivity(createCallIntentFromNumber());
         else {
-            Toast.makeText(this, R.string.warning_call_phone_permission, Toast.LENGTH_SHORT).show();
+            // Toast.makeText(this, R.string.warning_call_phone_permission, Toast.LENGTH_SHORT).show();
 
             ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.CALL_PHONE},
             REQUEST_CALL_PHONE);
@@ -66,8 +64,18 @@ public class IntentsBasicActivity extends Activity {
 
         String number = mCallerNumber.getText().toString();
 
-        intentToCall.setData(Uri.parse("tel: " + number));
+        intentToCall.setData(Uri.parse("tel:" + number));
 
         return intentToCall;
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (requestCode == REQUEST_CODE_PICK) {
+            if (resultCode == RESULT_OK) {
+                mCallerNumber.setText(data.getExtras()
+                        .getString(ContactsActivity.KEY_PHONE_NUMBER));
+            }
+        }
     }
 }

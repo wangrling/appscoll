@@ -1,8 +1,8 @@
 package com.android.home.autofill;
 
 import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.support.v7.app.AppCompatActivity;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
 
 /**
  * This is used to launch sample activities that showcase autofill.

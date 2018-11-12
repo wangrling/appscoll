@@ -25,7 +25,7 @@ public class EspressoBasic extends Activity implements View.OnClickListener {
     private EditText mEditText;
 
     @Override
-    protected void onCreate(@Nullable @android.support.annotation.Nullable Bundle savedInstanceState) {
+    protected void onCreate(@androidx.annotation.Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.espresso_basic);

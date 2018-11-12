@@ -1,7 +1,7 @@
 package com.android.home.todomvp.utils;
 
 import android.content.Context;
-import android.support.annotation.NonNull;
+import androidx.annotation.NonNull;
 import com.android.home.todomvp.data.*;
 
 import static com.google.common.base.Preconditions.checkNotNull;

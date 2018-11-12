@@ -4,7 +4,7 @@ import android.content.Context;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
-import android.support.v4.app.Fragment;
+import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,7 +17,6 @@ import butterknife.OnClick;
 import butterknife.Unbinder;
 import com.android.home.R;
 import io.reactivex.Observable;
-import io.reactivex.Scheduler;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.observers.DisposableObserver;
@@ -45,7 +44,7 @@ public class ConcurrencyWithSchedulerFragment extends Fragment {
 
 
     @Override
-    public void onActivityCreated(@android.support.annotation.Nullable Bundle savedInstanceState) {
+    public void onActivityCreated(@androidx.annotation.Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         setupLogger();
     }
@@ -58,9 +57,9 @@ public class ConcurrencyWithSchedulerFragment extends Fragment {
         }
     }
 
-    @android.support.annotation.Nullable
+    @androidx.annotation.Nullable
     @Override
-    public View onCreateView(LayoutInflater inflater, @android.support.annotation.Nullable ViewGroup container, Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, @androidx.annotation.Nullable ViewGroup container, Bundle savedInstanceState) {
         View layout = inflater.inflate(R.layout.fragment_concurrency_schedulers, container, false);
         unbinder = ButterKnife.bind(this, layout);
         return layout;

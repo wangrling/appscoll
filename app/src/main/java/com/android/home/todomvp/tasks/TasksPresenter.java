@@ -1,7 +1,7 @@
 package com.android.home.todomvp.tasks;
 
 import android.app.Activity;
-import android.support.annotation.NonNull;
+import androidx.annotation.NonNull;
 import com.android.home.todomvp.addedittask.AddEditTaskActivity;
 import com.android.home.todomvp.data.Task;
 import com.android.home.todomvp.data.TasksDataSource;

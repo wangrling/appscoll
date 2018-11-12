@@ -27,7 +27,7 @@ public class CustomMatcher extends Activity implements View.OnClickListener {
     private View mErrorView;
 
     @Override
-    protected void onCreate(@Nullable @android.support.annotation.Nullable Bundle savedInstanceState) {
+    protected void onCreate(@androidx.annotation.Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.custom_matcher);
