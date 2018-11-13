@@ -1,6 +1,7 @@
 package com.android.home.syncadapter;
 
 import android.os.Bundle;
+import android.view.Menu;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.FragmentActivity;
 import com.android.home.R;
@@ -9,7 +10,7 @@ import com.android.home.R;
  * Activity for holding EntryListFragment.
  */
 
-public class BasicSyncAdapter extends FragmentActivity {
+public class BasicSyncActivity extends FragmentActivity {
 
 
     @Override
@@ -18,4 +19,6 @@ public class BasicSyncAdapter extends FragmentActivity {
 
         setContentView(R.layout.basic_sync_adapter);
     }
+
+
 }

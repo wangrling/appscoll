@@ -22,11 +22,8 @@ public class CustomViewActivity extends ListActivity {
         setListAdapter(new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, new String[] {
                 "Xfermodes", "Regions", "TextAlign", "FingerPaint", "UnicodeChart",
                 "BitmapDecode", "Arcs", "ColorFilters", "Density", "ShapeDrawable", "Pictures", "ColorMatrix", "Typefaces",
-                "Compass",  "ScaleToFit",
-                "Layers", "DrawPoints", "PathFillTypes", "MeasureText", "Sweep",
-                "BitmapPixels", "Vertices", "AlphaBitmap", "AnimateDrawables",
-                "PictureLayout", "Clipping", "PurgeableBitmapView", "SensorTest",
-                "BitmapMesh", "PathEffects", "CreateBitmap", "RoundRects", "TouchPaint"
+                "Compass",
+                "BitmapPixels", "Clipping", "PurgeableBitmap",
         }));
 
         fragments = new Fragment[] {
@@ -43,7 +40,10 @@ public class CustomViewActivity extends ListActivity {
                 new PictureFragment(),
                 new ColorMatrixFragment(),
                 new TypefacesFragment(),
-                new CompassFragment()
+                new CompassFragment(),
+                new BitmapPixelsFragment(),
+                new ClippingFragment(),
+                new PurgeableBitmapFragment()
         };
     }
 

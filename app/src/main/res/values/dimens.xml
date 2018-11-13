@@ -19,6 +19,9 @@
     <!-- Default screen margins, per the Android Design guidelines. -->
     <dimen name="header_margin">32dp</dimen>
 
+    <dimen name="action_button_min_width">56dp</dimen>
+    <dimen name="indeterminate_progress_size">32dp</dimen>
+
     <dimen name="list_activity_click_header_height">24dp</dimen>
     <dimen name="selection_row_value_margin">12dp</dimen>
     <dimen name="list_item_min_height">56dp</dimen>

@@ -30,7 +30,7 @@ import com.android.home.randommusic.RandomMusicPlayer;
 import com.android.home.rxjavasamples.RxJavaSamples;
 import com.android.home.soundrecorder.SoundRecorder;
 import com.android.home.stepsensor.BatchStepSensor;
-import com.android.home.syncadapter.BasicSyncAdapter;
+import com.android.home.syncadapter.BasicSyncActivity;
 import com.android.home.testing.TestingActivity;
 import com.android.home.todomvp.TodoMvpActivity;
 import com.android.home.universalmusic.ui.MusicPlayerActivity;
@@ -185,7 +185,7 @@ public class Home extends Activity {
         appViewList.add(new AppView(R.drawable.sync_adapter, "SyncAdapter",
                 "Periodically downloads the feed from the Android Developer Blog and " +
                         "caches the data in a content provider. At runtime, the cached feed data is displayed " +
-                        "inside a ListView.", BasicSyncAdapter.class));
+                        "inside a ListView.", BasicSyncActivity.class));
 
         appViewList.add(new AppView(R.drawable.auto_fill, "AutoFillFramework",
                 "Autofill Framework includes implementations of client Activities with views " +
