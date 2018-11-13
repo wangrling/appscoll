@@ -6,7 +6,6 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
-import androidx.annotation.Nullable;
 
 public class CustomViewActivity extends ListActivity {
 
@@ -22,9 +21,8 @@ public class CustomViewActivity extends ListActivity {
 
         setListAdapter(new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, new String[] {
                 "Xfermodes", "Regions", "TextAlign", "FingerPaint", "UnicodeChart",
-                "BitmapDecode", "Arcs", "ColorFilters", "Density", "PolyToPoly",
-                "Patterns", "ShapeDrawable", "Pictures", "ColorMatrix", "Typefaces",
-                "Compass", "CameraPreview", "ScaleToFit",
+                "BitmapDecode", "Arcs", "ColorFilters", "Density", "ShapeDrawable", "Pictures", "ColorMatrix", "Typefaces",
+                "Compass",  "ScaleToFit",
                 "Layers", "DrawPoints", "PathFillTypes", "MeasureText", "Sweep",
                 "BitmapPixels", "Vertices", "AlphaBitmap", "AnimateDrawables",
                 "PictureLayout", "Clipping", "PurgeableBitmapView", "SensorTest",
@@ -37,7 +35,15 @@ public class CustomViewActivity extends ListActivity {
                 new TextAlignFragment(),
                 new FingerPaintFragment(),
                 new UnicodeChartFragment(),
-                new BitmapDecodeFragment()
+                new BitmapDecodeFragment(),
+                new ArcsFragment(),
+                new ColorFiltersFragment(),
+                new DensityFragment(),
+                new ShapeDrawableFragment(),
+                new PictureFragment(),
+                new ColorMatrixFragment(),
+                new TypefacesFragment(),
+                new CompassFragment()
         };
     }
 

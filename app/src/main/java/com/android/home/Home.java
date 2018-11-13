@@ -206,7 +206,8 @@ public class Home extends Activity {
 
         // 未来先弄清楚目录结构，再决定是否继续往下写！！！！
         appViewList.add(new AppView(R.drawable.home, "CustomView",
-                "ApiDemos/src/com/example/android/apis/graphics", CustomViewActivity.class));
+                "ApiDemos/src/com/example/android/apis/graphics", CustomViewActivity.class,
+                "编写View类的实现。"));
 
 
         mRecyclerView = findViewById(R.id.recycler_view);

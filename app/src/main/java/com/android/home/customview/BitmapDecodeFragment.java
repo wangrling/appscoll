@@ -55,6 +55,24 @@ public class BitmapDecodeFragment extends Fragment {
             bm = BitmapFactory.decodeStream(is, null, opts);
 
             mBitmap = bm;
+
+            // Decode an image with transparency.
+            is = context.getResources().openRawResource(R.raw.beach);
+            mBitmap2 = BitmapFactory.decodeStream(is);
+
+            // Create a deep copy of it using getPixels() into different configs.
+            int w = mBitmap2.getWidth();
+            int h = mBitmap2.getHeight();
+            int[] pixels = new int[w * h];
+            mBitmap2.getPixels(pixels, 0, w, 0, 0, w, h);
+
+            mBitmap3 = Bitmap.createBitmap(pixels, 0, w, w, h,
+                    Bitmap.Config.ARGB_8888);
+            mBitmap4 = Bitmap.createBitmap(pixels, 0, w, w,
+                    h, Bitmap.Config.ARGB_4444);
+
+            mDrawable = context.getResources().getDrawable(R.drawable.button_normal);
+            mDrawable.setBounds(150, 20, 300, 100);
         }
 
         @Override
@@ -65,6 +83,12 @@ public class BitmapDecodeFragment extends Fragment {
             p.setAntiAlias(true);
 
             canvas.drawBitmap(mBitmap, 10, 10, null);
+
+            canvas.drawBitmap(mBitmap2, 10, 170, null);
+            canvas.drawBitmap(mBitmap3, 110, 170, null);
+            canvas.drawBitmap(mBitmap4, 210, 170, null);
+
+            mDrawable.draw(canvas);
         }
     }
 }
