@@ -16,6 +16,14 @@
 
     <uses-permission android:name="android.permission.VIBRATE" />
     <uses-permission android:name="android.permission.READ_CONTACTS" />
+
+    <!-- Required to register a SyncStatusObserver to display a "syncing..." progress indicator. -->
+    <uses-permission android:name="android.permission.READ_SYNC_STATS"/>
+    <!-- Required to enable our SyncAdapter after it's created. -->
+    <uses-permission android:name="android.permission.WRITE_SYNC_SETTINGS"/>
+    <!-- Required because we're manually creating a new account. -->
+    <uses-permission android:name="android.permission.AUTHENTICATE_ACCOUNTS"/>
+
     <uses-feature android:name="android.hardware.camera"/>
     <uses-feature android:name="android.hardware.camera.autofocus"/>
 
@@ -23,6 +31,50 @@
             android:icon="@mipmap/home"
             android:label="@string/home"
             android:theme="@style/Base.AppTheme">
+        
+        
+        <activity android:name=".syncadapter.BasicSyncActivity" />
+        <!-- This service implements our SyncAdapter. It needs to be exported, so that the system
+        sync framework can access it. -->
+        <service android:name=".syncadapter.SyncService"
+                 android:exported="true">
+            <!-- This intent filter is required. It allows the system to launch our sync service
+            as needed. -->
+            <intent-filter>
+                <action android:name="android.content.SyncAdapter" />
+            </intent-filter>
+            <!-- This points to a required XML file which describes our SyncAdapter. -->
+            <meta-data android:name="android.content.SyncAdapter"
+                       android:resource="@xml/syncadapter" />
+        </service>
+        <!-- ContentProvider to store feed data.
+
+        The "authorities" here are defined as part of a ContentProvider interface. It's used here
+        as an attachment point for the SyncAdapter. See res/xml/syncadapter.xml and
+        SyncService.java.
+
+        Since this ContentProvider is not exported, it will not be accessible outside of this app's
+        package. -->
+        <provider android:authorities="com.android.home.syncadapter"
+                  android:exported="false"
+                  android:name=".syncadapter.provider.FeedProvider" />
+
+        <!-- This implements the account we'll use as an attachment point for our SyncAdapter. Since
+        our SyncAdapter doesn't need to authenticate the current user (it just fetches a public RSS
+        feed), this account's implementation is largely empty.
+
+        It's also possible to attach a SyncAdapter to an existing account provided by another
+        package. In that case, this element could be omitted here. -->
+        <service android:name=".syncadapter.GenericAccountService">
+            <!-- Required filter used by the system to launch our account service. -->
+            <intent-filter>
+                <action android:name="android.accounts.AccountAuthenticator" />
+            </intent-filter>
+            <!-- This points to an XMLf ile which describes our account service. -->
+            <meta-data android:name="android.accounts.AccountAuthenticator"
+                    android:resource="@xml/authenticator"/>
+        </service>
+
 
         <activity android:name=".Home">
             <intent-filter>
@@ -112,9 +164,6 @@
         <activity android:name=".universalmusic.ui.FullScreenPlayerActivity" />
 
         <activity android:name=".customview.CustomViewActivity" />
-
-
-        <activity android:name=".syncadapter.BasicSyncActivity" />
 
         <activity android:name=".pixeldungeon.PixelDungeon" />
         

@@ -147,7 +147,9 @@ public class Home extends Activity {
         appViewList.add(new AppView(R.drawable.displaybitmaps, "DisplayBitmaps",
                 "Demonstrates how to load large bitmaps efficiently off the main UI thread, caching" +
                         "bitmaps (both in memory and on disk), managing bitmap memory and displaying bitmaps " +
-                        "in UI elements such as ViewPager and ListView/GridView.", DisplayBitmaps.class));
+                        "in UI elements such as ViewPager and ListView/GridView.", DisplayBitmaps.class,
+                "示例虽然文件不多，但是比较难。ImageWorker <- ImageResizer <- ImageFetcher的继承关系。" +
+                        "点击小图可以查看大图。"));
 
         appViewList.add(new AppView(R.drawable.camera, "Camera", "" +
                 "系统相机应用", null));
@@ -185,7 +187,8 @@ public class Home extends Activity {
         appViewList.add(new AppView(R.drawable.sync_adapter, "SyncAdapter",
                 "Periodically downloads the feed from the Android Developer Blog and " +
                         "caches the data in a content provider. At runtime, the cached feed data is displayed " +
-                        "inside a ListView.", BasicSyncActivity.class));
+                        "inside a ListView.", BasicSyncActivity.class,
+                "使用Account获取sync权限，更新数据的内容，然后显示在列表上。"));
 
         appViewList.add(new AppView(R.drawable.auto_fill, "AutoFillFramework",
                 "Autofill Framework includes implementations of client Activities with views " +

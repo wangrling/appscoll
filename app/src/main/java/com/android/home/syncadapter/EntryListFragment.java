@@ -27,6 +27,7 @@ import androidx.loader.app.LoaderManager;
 import androidx.loader.content.CursorLoader;
 import androidx.loader.content.Loader;
 import com.android.home.R;
+import com.android.home.syncadapter.provider.FeedContract;
 
 /**
  * List fragment containing a list of Atom entry objects (articles) stored in the local database.
@@ -205,6 +206,8 @@ public class EntryListFragment extends ListFragment
                 ContentResolver.SYNC_OBSERVER_TYPE_ACTIVE;
 
         mSyncObserverHandle = ContentResolver.addStatusChangeListener(mask, mSyncStatusObserver);
+
+        SyncUtils.TriggerRefresh();
     }
 
     @Override
