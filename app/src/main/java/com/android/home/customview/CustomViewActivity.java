@@ -23,7 +23,7 @@ public class CustomViewActivity extends ListActivity {
                 "Xfermodes", "Regions", "TextAlign", "FingerPaint", "UnicodeChart",
                 "BitmapDecode", "Arcs", "ColorFilters", "Density", "ShapeDrawable", "Pictures", "ColorMatrix", "Typefaces",
                 "Compass",
-                "BitmapPixels", "Clipping", "PurgeableBitmap",
+                "BitmapPixels", "Clipping"
         }));
 
         fragments = new Fragment[] {
@@ -42,8 +42,7 @@ public class CustomViewActivity extends ListActivity {
                 new TypefacesFragment(),
                 new CompassFragment(),
                 new BitmapPixelsFragment(),
-                new ClippingFragment(),
-                new PurgeableBitmapFragment()
+                new ClippingFragment()
         };
     }
 

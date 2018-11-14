@@ -164,8 +164,6 @@
         <activity android:name=".universalmusic.ui.FullScreenPlayerActivity" />
 
         <activity android:name=".customview.CustomViewActivity" />
-
-        <activity android:name=".pixeldungeon.PixelDungeon" />
         
         <activity android:name=".rssimage.DisplayActivity" />
         <provider android:authorities="com.android.home.rssimage" android:name=".rssimage.DataProvider"

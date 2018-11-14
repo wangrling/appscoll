@@ -18,7 +18,6 @@ import com.android.home.autofill.AutoFillFramework;
 import com.android.home.components.ArchComponents;
 import com.android.home.customview.CustomViewActivity;
 import com.android.home.displaybitmaps.ui.DisplayBitmaps;
-import com.android.home.pixeldungeon.PixelDungeon;
 import com.android.home.plaid.PlaidApp;
 import com.android.home.rssimage.DisplayActivity;
 import com.android.home.shimmer.ShimmerActivity;
@@ -52,6 +51,13 @@ public class Home extends Activity {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.recycler_view);
+
+        /**
+         * 将要写的项目在这里表示。
+         * https://github.com/googlesamples/android-topeka
+         */
+
+
 
         appViewList.add(new AppView(R.drawable.components, "ArchComponents",
                 "A collection of samples using the Architecture Components.",
@@ -134,11 +140,13 @@ public class Home extends Activity {
                 "中级，完成。\n" +
                         "通过Drawable, ValueAnimator, FrameLayout设计动画，同时添加很多属性。"));
 
+        /*
         appViewList.add(new AppView(R.drawable.dungeon, "PixelDungeon",
                 "Traditional roguelike game with pixel-art graphics and simple interface.",
                 PixelDungeon.class,
                 "高级，游戏，完成。\n" +
                         "二维的地图游戏，代码都是复制过来的，类太多，感觉太难写！"));
+         */
 
         appViewList.add(new AppView(R.drawable.rajawali, "Rajawali",
                 "Rajawali is a 3D engine for Android based on OpenGL ES 2.0/3.0. " +
@@ -195,10 +203,11 @@ public class Home extends Activity {
                         "that should be autofilled, and a Service that can provide autofill data to " +
                         "client Activities.", AutoFillFramework.class));
 
+        /*
         appViewList.add(new AppView(R.drawable.ime, "IME",
                 "Demonstrates how to write an keyboard which sends rich content (such as images) to text\n" +
                         "fields using the Commit Content API.", null));
-
+        */
 
         appViewList.add(new AppView(R.drawable.sensor, "BatchStepSensor",
                 "Demonstrating how to set up SensorEventListeners for step " +

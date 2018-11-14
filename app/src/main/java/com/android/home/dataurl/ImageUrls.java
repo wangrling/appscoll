@@ -21,4 +21,6 @@ public final class ImageUrls {
   private ImageUrls() {
     // No instances.
   }
+
+  static final String toutiaoRss = "https://www.toutiao.com/api/article/feed/";
 }
