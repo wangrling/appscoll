@@ -31,6 +31,21 @@
             android:icon="@mipmap/home"
             android:label="@string/home"
             android:theme="@style/Base.AppTheme">
+
+
+        <receiver android:name=".widgets.stackwidget.StackWidgetProvider">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+            </intent-filter>
+            <meta-data android:name="android.appwidget.provider"
+                       android:resource="@xml/stackwidgetinfo" />
+        </receiver>
+        <service android:name=".widgets.stackwidget.StackWidgetService"
+            android:permission="android.permission.BIND_REMOTEVIEWS"
+                 android:exported="false"/>
+
+
+        <activity android:name=".autofill.AutoFillActivity" />
         
         
         <activity android:name=".syncadapter.BasicSyncActivity" />
@@ -76,7 +91,8 @@
         </service>
 
 
-        <activity android:name=".Home">
+        <activity android:name=".Home"
+        android:launchMode="singleTop">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
                 <action android:name="android.intent.action.VIEW" />

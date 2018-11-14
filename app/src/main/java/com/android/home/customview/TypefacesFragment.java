@@ -37,7 +37,7 @@ public class TypefacesFragment extends Fragment {
             canvas.drawText("Draw with Default:", 10, 100, mPaint);
             canvas.drawText("  SAMPLE TEXT", 10, 200, mPaint);
             canvas.drawText("Draw with Custom Font", 10, 400, mPaint);
-            canvas.drawText("(Custom Font draws 'A' with solid triangle.)", 10, 500, mPaint);
+            canvas.drawText("('A' with solid triangle.)", 10, 500, mPaint);
             mPaint.setTypeface(mFace);
             canvas.drawText("  SAMPLE TEXT", 10, 600, mPaint);
         }

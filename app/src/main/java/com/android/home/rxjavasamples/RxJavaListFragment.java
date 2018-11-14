@@ -74,6 +74,9 @@ public class RxJavaListFragment extends ListFragment {
                 getString(R.string.msg_demo_doublebinding)));
         mSamples.add(new Pair("Simple and Advanced polling (using interval and repeatWhen)",
                 getString(R.string.msg_demo_polling)));
+
+        mSamples.add(new Pair("Simple and Anvanced exponential backoff (using delay and retryWhen)",
+                getString(R.string.msg_demo_exponential_backoff)));
     }
 
     private void initFragments() {
@@ -83,6 +86,7 @@ public class RxJavaListFragment extends ListFragment {
         mFragments.add(new RetrofitFragment());
         mFragments.add(new DoubleBindingTextViewFragment());
         mFragments.add(new PollingFragment());
+        mFragments.add(new ExponentialBackoffFragment());
     }
 
     @Override

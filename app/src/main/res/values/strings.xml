@@ -1,6 +1,15 @@
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <string name="home">Home</string>
 
+    <string name="edge_cases_page_title">Edge Cases</string>
+    <string name="common_cases_page_title">Common Cases</string>
+
+    <string name="edittext_login_info">This is a sample login page that uses standard EditTexts
+        from the UI toolkit. EditTexts are already optimized for autofill so extra autofill-specific
+        code is almost never needed.
+    </string>
+    <string name="navigation_button_edittext_login_label">Sample Login Using EditTexts</string>
+
     <string name="title_entry_detail">Entry Detail</string>
     <string name="sync_loading">Waiting for sync...</string>
     <string name="description_refresh">Refresh</string>
@@ -380,4 +389,5 @@
             covered in this sample.</p></string>
     <string name="idling_resource">Idling Resource</string>
     <string name="button_open_camera">Take photo</string>
+    <string name="empty_view_text">This is the empty view</string>
 </resources>

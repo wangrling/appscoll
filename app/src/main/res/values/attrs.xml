@@ -1,6 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
+    <declare-styleable name="NavigationItem">
+        <attr name="labelText" format="string" />
+        <attr name="infoText" format="string" />
+        <attr name="destinationActivityName" format="string" />
+        <attr name="itemLogo" format="integer" />
+        <attr name="imageColor" format="reference" />
+        <attr name="minSdk" format="integer" />
+    </declare-styleable>
+
     <declare-styleable name="CircleImageView">
         <attr name="civ_border_width" format="dimension" />
         <attr name="civ_border_color" format="color" />

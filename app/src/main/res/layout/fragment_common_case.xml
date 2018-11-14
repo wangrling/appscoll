@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <LinearLayout
+            android:orientation="vertical"
+            android:padding="@dimen/padding_normal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <com.android.home.autofill.view.NavigationItem
+                    android:id="@+id/standardViewSignInButton"
+                    app:imageColor="@android:color/holo_red_dark"
+                    app:infoText="@string/edittext_login_info"
+                    app:itemLogo="@drawable/ic_edittexts_logo_24dp"
+                    app:labelText="@string/navigation_button_edittext_login_label"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+
+            />
+
+    </LinearLayout>
+
+</ScrollView>

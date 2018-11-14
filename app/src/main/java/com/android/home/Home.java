@@ -14,7 +14,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-import com.android.home.autofill.AutoFillFramework;
+import com.android.home.autofill.AutoFillActivity;
 import com.android.home.components.ArchComponents;
 import com.android.home.customview.CustomViewActivity;
 import com.android.home.displaybitmaps.ui.DisplayBitmaps;
@@ -57,6 +57,12 @@ public class Home extends Activity {
          * https://github.com/googlesamples/android-topeka
          */
 
+
+        /**
+         * 需要长按Launcher把widgets调出来。
+         */
+        appViewList.add(new AppView(R.drawable.widgets, "Widgets",
+                "两个Widgets实例，StackWidget和WeatherListWidget，为写Calendar作准备。", Home.class));
 
 
         appViewList.add(new AppView(R.drawable.components, "ArchComponents",
@@ -196,12 +202,15 @@ public class Home extends Activity {
                 "Periodically downloads the feed from the Android Developer Blog and " +
                         "caches the data in a content provider. At runtime, the cached feed data is displayed " +
                         "inside a ListView.", BasicSyncActivity.class,
-                "使用Account获取sync权限，更新数据的内容，然后显示在列表上。"));
+                "中级，完成。\n" +
+                        "使用Account获取sync权限，更新数据的内容，然后显示在列表上，已经掌握ContentProvider知识，" +
+                        "基本上代码都是自己手敲的，没有大规模复制粘贴，是一个可喜的进步。"));
 
-        appViewList.add(new AppView(R.drawable.auto_fill, "AutoFillFramework",
+        appViewList.add(new AppView(R.drawable.auto_fill, "AutoFillActivity",
                 "Autofill Framework includes implementations of client Activities with views " +
                         "that should be autofilled, and a Service that can provide autofill data to " +
-                        "client Activities.", AutoFillFramework.class));
+                        "client Activities.", AutoFillActivity.class,
+                "中级，未完成。需要最低的SDK版本为26，没有办法继续编写。"));
 
         /*
         appViewList.add(new AppView(R.drawable.ime, "IME",
