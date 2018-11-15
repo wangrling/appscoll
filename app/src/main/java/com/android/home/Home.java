@@ -15,6 +15,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 import com.android.home.autofill.AutoFillActivity;
+import com.android.home.calculator.Calculator;
 import com.android.home.calendar.AllInOneActivity;
 import com.android.home.components.ArchComponents;
 import com.android.home.customview.CustomViewActivity;
@@ -136,7 +137,7 @@ public class Home extends Activity {
                         "简单易用的图表库，显示实际应用中的各种图表。"));
 
         appViewList.add(new AppView(R.drawable.calculator, "ExactCalculator",
-                "计算器", null));
+                "计算器", Calculator.class));
 
         appViewList.add(new AppView(R.drawable.rxjava, "RxJavaSamples",
                 "A repository with real-world useful examples of using RxJava " +

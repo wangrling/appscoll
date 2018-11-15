@@ -135,4 +135,9 @@ dependencies {
     annotationProcessor 'com.github.bumptech.glide:compiler:4.8.0'
 
     implementation 'org.apache.httpcomponents:httpclient:4.5.6'
+
+    // 迁移导入相关的androidx库
+    // https://developer.android.google.cn/jetpack/androidx/migrate
+    implementation 'androidx.gridlayout:gridlayout:1.0.0'
+    implementation 'androidx.interpolator:interpolator:1.0.0'
 }
