@@ -6,4 +6,6 @@
 <resources>
     <bool name="sideBySide">false</bool>
     <bool name="hideNavigation">true</bool>
+    <bool name="tablet_config">false</bool>
+    <bool name="multiple_pane_config">false</bool>
 </resources>

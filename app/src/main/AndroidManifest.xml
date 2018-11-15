@@ -31,16 +31,38 @@
             android:icon="@mipmap/home"
             android:label="@string/home"
             android:theme="@style/Base.AppTheme">
+        
+        <activity android:name=".calculator.Calculator"
+                  android:launchMode="singleTask">
+            <layout
+                    android:minHeight="220dp"
+                    android:minWidth="230dp" />
+            <intent-filter>
+                <category android:name="android.intent.category.APP_CALCULATOR"/>
+            </intent-filter>
+        </activity>
 
 
-        <receiver android:name=".widgets.stackwidget.StackWidgetProvider">
+        <activity
+                android:theme="@style/CalendarTheme.WithToolbar"
+                android:name=".calendar.AllInOneActivity"
+                  android:launchMode="singleTask">
+
+        </activity>
+
+        <activity-alias android:name=".calendar.CalendarApplication"
+                        android:targetActivity=".calendar.AllInOneActivity"
+                        android:exported="true"></activity-alias>
+
+
+        <receiver android:name=".widgets.StackWidgetProvider">
             <intent-filter>
                 <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
             </intent-filter>
             <meta-data android:name="android.appwidget.provider"
                        android:resource="@xml/stackwidgetinfo" />
         </receiver>
-        <service android:name=".widgets.stackwidget.StackWidgetService"
+        <service android:name=".widgets.StackWidgetService"
             android:permission="android.permission.BIND_REMOTEVIEWS"
                  android:exported="false"/>
 

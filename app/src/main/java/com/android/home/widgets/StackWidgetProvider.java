@@ -1,5 +1,6 @@
-package com.android.home.widgets.stackwidget;
+package com.android.home.widgets;
 
+import android.app.PendingIntent;
 import android.appwidget.AppWidgetManager;
 import android.appwidget.AppWidgetProvider;
 import android.content.Context;
@@ -7,6 +8,7 @@ import android.content.Intent;
 import android.net.Uri;
 import android.util.Log;
 import android.widget.RemoteViews;
+import android.widget.Toast;
 import com.android.home.R;
 
 public class StackWidgetProvider extends AppWidgetProvider {
@@ -33,6 +35,16 @@ public class StackWidgetProvider extends AppWidgetProvider {
 
     @Override
     public void onReceive(Context context, Intent intent) {
+        AppWidgetManager mgr = AppWidgetManager.getInstance(context);
+        if (intent.getAction().equals(TOAST_ACTION)) {
+            int appWidgetId = intent.getIntExtra(AppWidgetManager.EXTRA_APPWIDGET_ID,
+                    AppWidgetManager.INVALID_APPWIDGET_ID);
+
+            int viewIndex = intent.getIntExtra(EXTRA_ITEM, 0);
+
+            Toast.makeText(context, "Touch view " + viewIndex, Toast.LENGTH_SHORT).show();
+        }
+
         super.onReceive(context, intent);
     }
 
@@ -60,6 +72,21 @@ public class StackWidgetProvider extends AppWidgetProvider {
             // The empty view is displayed when the collection has no items. It should be a sibling
             // of the collection view.
             rv.setEmptyView(R.id.stack_view, R.id.empty_view);
+
+            // 已经完成基础部分。
+            // Here we setup the a pending intent template. Individuals items of a collection
+            // cannot setup their own pending intents, instead, the collection as a whole can
+            // setup a pending intent template, and the individual items can set a fillInIntent
+            // to create unique before on an item to item basis.
+            // 设置PendingIntent，但是并没有发送出去。
+            Intent toastIntent = new Intent(context, StackWidgetProvider.class);
+            toastIntent.setAction(StackWidgetProvider.TOAST_ACTION);
+            toastIntent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_ID, appWidgetIds[i]);
+            intent.setData(Uri.parse(intent.toUri(Intent.URI_INTENT_SCHEME)));
+            PendingIntent toastPendingIntent = PendingIntent.getBroadcast(context, 0,
+                    toastIntent, PendingIntent.FLAG_UPDATE_CURRENT);
+            // 设置模板！
+            rv.setPendingIntentTemplate(R.id.stack_view, toastPendingIntent);
 
             appWidgetManager.updateAppWidget(appWidgetIds[i], rv);
         }

@@ -15,6 +15,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 import com.android.home.autofill.AutoFillActivity;
+import com.android.home.calendar.AllInOneActivity;
 import com.android.home.components.ArchComponents;
 import com.android.home.customview.CustomViewActivity;
 import com.android.home.displaybitmaps.ui.DisplayBitmaps;
@@ -40,6 +41,8 @@ import java.util.List;
 
 public class Home extends Activity {
 
+    public static final String TAG = "Home";
+
     public static final String APP_SERVER = "http://www.aidoufu.cn/";
 
     RecyclerView mRecyclerView;
@@ -62,7 +65,8 @@ public class Home extends Activity {
          * 需要长按Launcher把widgets调出来。
          */
         appViewList.add(new AppView(R.drawable.widgets, "Widgets",
-                "两个Widgets实例，StackWidget和WeatherListWidget，为写Calendar作准备。", Home.class));
+                "StackWidget小组件，为写Calendar作准备，" +
+                        "WeatherListWidget没有list显示，沮丧的心情难以言表。", Home.class));
 
 
         appViewList.add(new AppView(R.drawable.components, "ArchComponents",
@@ -131,7 +135,7 @@ public class Home extends Activity {
                 "中级，完成部分demo显示。\n" +
                         "简单易用的图表库，显示实际应用中的各种图表。"));
 
-        appViewList.add(new AppView(R.drawable.calculator, "Calculator",
+        appViewList.add(new AppView(R.drawable.calculator, "ExactCalculator",
                 "计算器", null));
 
         appViewList.add(new AppView(R.drawable.rxjava, "RxJavaSamples",
@@ -154,10 +158,13 @@ public class Home extends Activity {
                         "二维的地图游戏，代码都是复制过来的，类太多，感觉太难写！"));
          */
 
+        /*
+            把这个调用接口显示的剔除出去，写的代码就像是堆柴火，无法建立高楼大厦。
         appViewList.add(new AppView(R.drawable.rajawali, "Rajawali",
                 "Rajawali is a 3D engine for Android based on OpenGL ES 2.0/3.0. " +
                         "It can be used for normal apps as well as live wallpapers.", null));
 
+        */
         appViewList.add(new AppView(R.drawable.displaybitmaps, "DisplayBitmaps",
                 "Demonstrates how to load large bitmaps efficiently off the main UI thread, caching" +
                         "bitmaps (both in memory and on disk), managing bitmap memory and displaying bitmaps " +
@@ -169,7 +176,9 @@ public class Home extends Activity {
                 "系统相机应用", null));
 
         appViewList.add(new AppView(R.drawable.calendar, "Calendar", "" +
-                "系统日历", null));
+                "系统日历", AllInOneActivity.class,
+                "高级，未完成。\n" +
+                        "在沮丧中度过，不要过于乐观。"));
 
         /**
          * sqlite> .tables

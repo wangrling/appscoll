@@ -1,4 +1,4 @@
-package com.android.home.widgets.stackwidget;
+package com.android.home.widgets;
 
 public class WidgetItem {
 

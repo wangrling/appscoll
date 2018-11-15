@@ -1,8 +1,9 @@
-package com.android.home.widgets.stackwidget;
+package com.android.home.widgets;
 
 import android.appwidget.AppWidgetManager;
 import android.content.Context;
 import android.content.Intent;
+import android.os.Bundle;
 import android.widget.RemoteViews;
 import android.widget.RemoteViewsService;
 import com.android.home.R;
@@ -43,11 +44,25 @@ public class StackWidgetService extends RemoteViewsService {
             for (int i = 0; i < mCount; i++) {
                 mWidgetItems.add(new WidgetItem(i + "!"));
             }
+
+            // We sleep for 1 second here to show how the empty view appears in the interim.
+            // The empty view is set in the StackWidgetProvider and should be a sibling of the
+            // collection view.
+            try {
+                Thread.sleep(1000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
         }
 
         @Override
         public void onDataSetChanged() {
-
+            // This is triggered when you call AppWidgetManager notifyAppWidgetViewDataChanged
+            // on the collection view corresponding to this factory. You can do heaving lifting in
+            // here, synchronously. For example, if you need to process an image, fetch something
+            // from the network, etc., it is ok to do it here, synchronously. The widget will remain
+            // in its current state while work is being done here, so you don't need to worry about
+            // locking up the widget.
         }
 
         @Override
@@ -69,6 +84,25 @@ public class StackWidgetService extends RemoteViewsService {
             // text based on the position.
             RemoteViews rv = new RemoteViews(mContext.getPackageName(), R.layout.widget_item);
             rv.setTextViewText(R.id.widget_item, mWidgetItems.get(position).text);
+
+            // Next, we set a fill-intent which will be used to fill-in the pending intent template
+            // which is set on the collection view in StackWidgetProvider.
+            Bundle extras = new Bundle();
+            extras.putInt(StackWidgetProvider.EXTRA_ITEM, position);
+            Intent fillInIntent = new Intent();
+            fillInIntent.putExtras(extras);
+            rv.setOnClickFillInIntent(R.id.widget_item, fillInIntent);
+
+            // You can do heaving lifting in here, synchronously. For example, if you need to
+            // process an image, fetch something from the network, etc., it is ok to do it here,
+            // synchronously. A loading view will show up in lieu of the actual contents in the
+            // interim.
+            try {
+                System.out.println("Loading view " + position);
+                Thread.sleep(500);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
 
             return rv;
         }

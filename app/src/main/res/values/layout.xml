@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <item name="activity_calculator" type="layout">@layout/activity_calculator_port</item>
+    <item name="display" type="layout">@layout/display_one_line</item>
+</resources>
