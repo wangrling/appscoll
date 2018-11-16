@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?android:actionBarSize"
+        android:layout_gravity="top"
+        xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <TextView
+            android:id="@+id/mode"
+            android:text="mode"
+            android:fontFamily="sans-serif-medium"
+            android:textAllCaps="true"
+            android:textSize="16sp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+</Toolbar>

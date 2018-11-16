@@ -63,4 +63,10 @@ public class Calculator extends Activity implements
     public int getDisplayHeight() {
         return 0;
     }
+
+
+    // 6.0以下使用。
+    interface OnDisplayMemoryOperationsListener {
+        boolean shouldDisplayMemory();
+    }
 }

@@ -2,9 +2,53 @@
 <com.android.home.calculator.CalculatorDisplay
         xmlns:android="http://schemas.android.com/apk/res/android"
         android:id="@+id/display"
+        android:background="@color/display_background_color"
+        android:clipChildren="false"
+        android:elevation="4dip"
+        android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content">
+
+    <include layout="@layout/calculator_toolbar" />
+
+    <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+        <com.android.home.calculator.CalculatorScrollView
+                android:id="@+id/formula_container"
+                android:layout_gravity="bottom"
+                android:overScrollMode="never"
+                android:scrollbars="none"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <com.android.home.calculator.CalculatorFormula
+                        android:id="@+id/formula"
+                        style="@style/DisplayTextStyle.Formula"
+                        android:layout_gravity="bottom|end"
+                        android:ellipsize="none"
+                        android:gravity="bottom|end"
+                        android:longClickable="true"
+                        android:singleLine="true"
+                        android:textColor="@color/display_formula_text_color"
+                        android:textIsSelectable="false"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"/>
+        </com.android.home.calculator.CalculatorScrollView>
 
 
+        <com.android.home.calculator.CalculatorResult
+                android:id="@+id/result"
+                style="@style/DisplayTextStyle.Result"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom"
+                android:bufferType="spannable"
+                android:singleLine="true"
+                android:textColor="@color/display_result_text_color"
+                android:visibility="invisible"/>
+
+    </FrameLayout>
 
 </com.android.home.calculator.CalculatorDisplay>

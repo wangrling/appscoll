@@ -1,6 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
+    <declare-styleable name="CalculatorFormula">
+        <attr name="minTextSize" format="dimension" />
+        <attr name="maxTextSize" format="dimension" />
+        <attr name="stepTextSize" format="dimension" />
+    </declare-styleable>
+
     <declare-styleable name="NavigationItem">
         <attr name="labelText" format="string" />
         <attr name="infoText" format="string" />
