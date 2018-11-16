@@ -39,6 +39,70 @@ import com.android.home.universalmusic.ui.MusicPlayerActivity;
 
 import java.util.ArrayList;
 import java.util.List;
+/**
+ * <html>
+ *     <p>onTouchEvent是View事件的起点，button只是实现OnClickListener监听，本质还是通过onTouchEvent的调用。</p>
+ *     <code>
+ *         public boolean onTouchEvent(MotionEvent event) {
+ *              final int action = event.getAction();
+ *              switch(action) {
+ *                  case MotionEvent.ACTION_UP:
+ *                      if (isFocusable() && isFocusableInTouchMode() && !isFocused()) {
+ *                          // isFocused()为true所以不会走这个if语句。
+ *                          focusTaken = requestFocus();
+ *                      }
+ *                      if (!focusTaken) {
+ *                          // Use a Runnable and post this rather than calling performClick
+ *                          // directly. This lets other visual state of the view update
+ *                          // before click actions start.
+ *                          if (mPerformClick == null) {
+ *                              mPerformClick = new PerformClick();
+ *                          }
+ *                          if (!post(mPerformClick)) {
+ *                              performClick();
+ *                          }
+ *                      }
+ *              }
+ *         }
+ *
+ *         public boolean performClick() {
+ *             final ListenerInfo li = mListenerInfo;
+ *             if (li != null && li.mOnClickListener != null) {
+ *                 playSoundEffect(SoundEffectConstants.CLICK);
+ *                 // 调用点击事件，需要子类实现。
+ *                 li.mOnClickListener.onClick(this);
+ *                 result = true;
+ *             } else {
+ *                 result = false;
+ *             }
+ *             sendAccessibilityEvent(...);
+ *             notifyEnterOrExitForAutoFillIfNeeded(true);
+ *             return result;
+ *         }
+ *
+ *         // Register a callback to be invoked when this view is clicked. If this view is not
+ *         // clickable, it becomes clickable.
+ *         public void setOnClickListener(@Nullable OnClickListener l) {
+ *             if (!isClickable()) {
+ *                 setClickable(true)
+ *             }
+ *             getListenerInfo().mOnClickListener = 1;
+ *         }
+ *     </code>
+ *
+ *     <p>首先传递到Activity的dispatchTouchEvent，如果传递到ViewGroup里面的dispatchTouchEvent,
+ *     如果返回true,则传递给本ViewGroup的onTouchEvent处理，如果返回false，则进一步往下传递。</p>
+ * </html>
+ */
+
+/**
+ * 计算项目的行数，只包括java文件。
+ * find . -type f -name "*.java" | xargs cat | wc -l
+ * 目前已经写完97801行代码！写到100万行，加油！
+ *
+ * ExactCalculator 11582
+ * Camera2 99992
+ */
 
 public class Home extends Activity {
 

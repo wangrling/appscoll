@@ -1,14 +1,22 @@
 package com.android.home.calculator;
 
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+import android.animation.ValueAnimator;
 import android.content.Context;
 import android.graphics.PointF;
 import android.graphics.Rect;
+import android.os.Bundle;
+import android.os.Parcelable;
+import android.provider.CalendarContract;
 import android.util.AttributeSet;
 import android.util.Log;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.core.view.ViewCompat;
 import androidx.customview.widget.ViewDragHelper;
 
@@ -17,9 +25,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.concurrent.CopyOnWriteArrayList;
 
-import androidx.drawerlayout.widget.DrawerLayout;
 import com.android.home.R;
-import com.android.home.calculator.Calculator.*;
+
 
 public class DragLayout extends ViewGroup {
 
@@ -86,6 +93,7 @@ public class DragLayout extends ViewGroup {
 
         for (DragCallback c : mDragCallbacks) {
             displayHeight = Math.max(displayHeight, c.getDisplayHeight());
+            Log.d(Calculator.TAG, "onLayout displayHeight = " + displayHeight);
         }
         mVerticalRange = getHeight() - displayHeight;
         Log.d(Calculator.TAG, "mVerticalRange = " + mVerticalRange);
@@ -114,6 +122,182 @@ public class DragLayout extends ViewGroup {
                     top + child.getMeasuredHeight());
         }
     }
+
+    // 保存和恢复数据。
+    @Nullable
+    @Override
+    protected Parcelable onSaveInstanceState() {
+        final Bundle bundle = new Bundle();
+        bundle.putParcelable(KEY_SUPER_STATE, super.onSaveInstanceState());
+        bundle.putBoolean(KEY_IS_OPEN, mIsOpen);
+        return bundle;
+    }
+
+    @Override
+    protected void onRestoreInstanceState(Parcelable state) {
+        if (state instanceof Bundle) {
+            final Bundle bundle = (Bundle) state;
+            mIsOpen = bundle.getBoolean(KEY_IS_OPEN);
+            mHistoryFrame.setVisibility(mIsOpen ? View.VISIBLE : View.INVISIBLE);
+
+            for (DragCallback c : mDragCallbacks) {
+                c.onInstanceStateRestored(mIsOpen);
+            }
+
+            state = bundle.getParcelable(KEY_SUPER_STATE);
+        }
+
+        super.onRestoreInstanceState(state);
+    }
+
+    private void saveLastMotion(MotionEvent event) {
+        final int action = event.getActionMasked();
+        switch (action) {
+            case MotionEvent.ACTION_DOWN:
+            case MotionEvent.ACTION_POINTER_DOWN: {
+                // pointer index.
+                final int actionIndex = event.getActionIndex();
+                final int pointerId = event.getPointerId(actionIndex);
+                // 通过Index值获取位置。
+                final PointF point = new PointF(event.getX(actionIndex), event.getY(actionIndex));
+                Log.d(Calculator.TAG, "pointerId = " + pointerId);
+                mLastMotionPoints.put(pointerId, point);
+                break;
+            }
+
+            case MotionEvent.ACTION_MOVE: {
+                for (int i = event.getPointerCount() - 1; i >= 0; --i) {
+                    final int pointerId = event.getPointerId(i);
+                    final PointF point = mLastMotionPoints.get(pointerId);
+
+                    if (point != null) {
+                        point.set(event.getX(i), event.getY(i));
+                    }
+                }
+                break;
+            }
+
+            case MotionEvent.ACTION_POINTER_UP: {
+                final int actionIndex = event.getActionIndex();
+                final int pointerId = event.getPointerId(actionIndex);
+                mLastMotionPoints.remove(pointerId);
+                break;
+            }
+
+            case MotionEvent.ACTION_UP:
+            case MotionEvent.ACTION_CANCEL: {
+                mLastMotionPoints.clear();
+                break;
+            }
+        }
+    }
+
+    @Override
+    public boolean onInterceptTouchEvent(MotionEvent event) {
+        Log.d(Calculator.TAG, "onInterceptTouchEvent");
+        saveLastMotion(event);
+
+        return super.onInterceptTouchEvent(event);
+    }
+
+    @Override
+    public boolean onTouchEvent(MotionEvent event) {
+        // Workaround: do not process the error case where multi-touch would cause a crash.
+        if (event.getActionMasked() == MotionEvent.ACTION_MOVE &&
+                mDragHelper.getViewDragState() == ViewDragHelper.STATE_DRAGGING &&
+                mDragHelper.getActivePointerId() != ViewDragHelper.INVALID_POINTER &&
+                event.findPointerIndex(mDragHelper.getActivePointerId()) == -1) {
+
+            mDragHelper.cancel();
+            Log.d(Calculator.TAG, "onTouchEvent multi-touch");
+            return false;
+        }
+
+        Log.d(Calculator.TAG, "onTouchEvent");
+        saveLastMotion(event);
+        mDragHelper.processTouchEvent(event);
+        return true;
+    }
+
+    @Override
+    public void computeScroll() {
+        // Settling表示一种状态，比如fling（滑动）屏幕之后的某个位置，而不是拖拽。
+        if (mDragHelper.continueSettling(true)) {
+            // Cause an invalidate to happen on the next animation time step.
+            ViewCompat.postInvalidateOnAnimation(this);
+        }
+    }
+
+    private void onStartDragging() {
+        for (DragCallback c : mDragCallbacks) {
+            c.onStartDraggingOpen();
+        }
+
+        // 开始显示历史界面。
+        mHistoryFrame.setVisibility(VISIBLE);
+    }
+
+    public boolean isViewUnder(View view, int x, int y) {
+        view.getHitRect(mHitRect);
+        // 将view在container中的位置转换为坐标轴的位置。
+        offsetDescendantRectToMyCoords((View) view.getParent(), mHitRect);
+
+        return mHitRect.contains(x, y);
+    }
+
+    public boolean isMoving() {
+        final int draggingState = mDragHelper.getViewDragState();
+
+        return draggingState == ViewDragHelper.STATE_DRAGGING ||
+                draggingState == ViewDragHelper.STATE_SETTLING;
+    }
+
+    public boolean isOpen() {
+        return mIsOpen;
+    }
+
+    public void setClosed() {
+        mIsOpen = false;
+        mHistoryFrame.setVisibility(View.INVISIBLE);
+
+        if (mCloseCallback != null) {
+            mCloseCallback.onClose();
+        }
+    }
+
+    public Animator createAnimator(boolean toOpen) {
+        if (mIsOpen == toOpen) {
+            return ValueAnimator.ofFloat(0f, 1f).setDuration(0L);
+        }
+
+        mIsOpen = toOpen;
+        mHistoryFrame.setVisibility(VISIBLE);
+
+        final ValueAnimator animator = ValueAnimator.ofFloat(0f, 1f);
+        animator.addListener(new AnimatorListenerAdapter() {
+            @Override
+            public void onAnimationStart(Animator animation) {
+                mDragHelper.cancel();
+                // 像下拉窗帘一样下拉History界面。
+                mDragHelper.smoothSlideViewTo(mHistoryFrame, 0, mIsOpen ? 0 : -mVerticalRange);
+            }
+        });
+        return animator;
+    }
+
+    public void setCloseCallback(CloseCallback callback) {
+        mCloseCallback = callback;
+    }
+
+    public void addDragCallback(DragCallback callback) {
+        mDragCallbacks.add(callback);
+    }
+
+    public void removeDragCallback(DragCallback callback) {
+        mDragCallbacks.remove(callback);
+    }
+
+
 
     /**
      * Callback when the layout is closed.

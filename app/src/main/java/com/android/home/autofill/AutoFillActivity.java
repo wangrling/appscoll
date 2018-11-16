@@ -26,6 +26,10 @@ public class AutoFillActivity extends AppCompatActivity {
 
         setContentView(R.layout.auto_fill_activity);
 
+        /**
+         * ViewPager的本质是ViewGroup的子类，最常见的就是结合fragment使用。
+         * 利用PagerAdapter进行数据填充。
+         */
         ViewPager viewPager = findViewById(R.id.pager);
         PagerAdapter pagerAdapter = new ScreenSlidePagerAdapter(getSupportFragmentManager(), this);
         viewPager.setAdapter(pagerAdapter);
