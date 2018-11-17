@@ -8,6 +8,17 @@ import android.widget.Toolbar;
 import androidx.annotation.Nullable;
 import com.android.home.R;
 
+/**
+ * 使用外部库计算，目录/external/crcalc/
+ * 还有相关的测试集，Calculator真没想象中那么简单。
+ * CR.java
+ * StringCRFunction.java
+ * UnaryCRFunction.java
+ *
+ * CRTest.java
+ * SlowCRTest.java
+ */
+
 public class Calculator extends Activity implements
         DragLayout.CloseCallback, DragLayout.DragCallback {
 

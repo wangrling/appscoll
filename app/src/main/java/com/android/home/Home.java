@@ -14,11 +14,13 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import com.android.home.alarmclock.AlarmClock;
 import com.android.home.autofill.AutoFillActivity;
 import com.android.home.calculator.Calculator;
 import com.android.home.calendar.AllInOneActivity;
 import com.android.home.components.ArchComponents;
 import com.android.home.customview.CustomViewActivity;
+import com.android.home.development.DevelopmentActivity;
 import com.android.home.displaybitmaps.ui.DisplayBitmaps;
 import com.android.home.plaid.PlaidApp;
 import com.android.home.rssimage.DisplayActivity;
@@ -125,6 +127,12 @@ public class Home extends Activity {
          * https://github.com/googlesamples/android-topeka
          */
 
+        appViewList.add(new AppView(R.drawable.alarmclock, "AlarmClock",
+                "系统的闹钟程序", AlarmClock.class, ""));
+
+        appViewList.add(new AppView(R.drawable.home, "Development",
+                "development/samples目录下面自己还掌握的内容，大部分都是几百到上千行的代码实例。",
+                DevelopmentActivity.class, ""));
 
         /**
          * 需要长按Launcher把widgets调出来。

@@ -106,6 +106,14 @@ public class CalculatorFormula extends AlignedTextView implements
         super.onMeasure(widthMeasureSpec, heightMeasureSpec);
     }
 
+    private float getVariableTextSize(CharSequence text) {
+        return 0;
+    }
+
+    private void setTextSizeInternal(int complexUnitPx, float mMaximumTextSize, boolean b) {
+
+    }
+
     @Override
     protected void onAttachedToWindow() {
         super.onAttachedToWindow();

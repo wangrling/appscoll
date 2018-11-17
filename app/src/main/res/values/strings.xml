@@ -395,4 +395,8 @@
     <string name="idling_resource">Idling Resource</string>
     <string name="button_open_camera">Take photo</string>
     <string name="empty_view_text">This is the empty view</string>
+    <string name="cardview_contents">Contents</string>
+
+    <string name="cardview_radius_seekbar_text">Radius</string>
+    <string name="cardview_elevation_seekbar_text">Elevation</string>
 </resources>
