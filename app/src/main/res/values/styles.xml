@@ -1,5 +1,9 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
 
+    <style name="ButtonStyle" parent="Base.Widget.AppCompat.Button.Colored">
+        <item name="colorButtonNormal">@color/colorAccent</item>
+    </style>
+
     <style name="DisplayTextStyle" parent="@android:style/Widget.Material.Light.TextView">
         <item name="android:cursorVisible">false</item>
         <item name="android:fontFamily">sans-serif-light</item>

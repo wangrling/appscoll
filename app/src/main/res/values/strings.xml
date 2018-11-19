@@ -399,4 +399,9 @@
 
     <string name="cardview_radius_seekbar_text">Radius</string>
     <string name="cardview_elevation_seekbar_text">Elevation</string>
+
+    <string name="title_1">Cool card</string>
+    <string name="title_2">Ok card</string>
+    <string name="title_3">Bad card</string>
+    <string name="title_4">Ugly card</string>
 </resources>

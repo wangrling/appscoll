@@ -11,6 +11,8 @@ import android.widget.RemoteViews;
 import android.widget.Toast;
 import com.android.home.R;
 
+
+
 public class StackWidgetProvider extends AppWidgetProvider {
 
     private static final String TAG = "StackWidgetProvider";
