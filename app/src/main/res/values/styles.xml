@@ -1,5 +1,11 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
 
+    <style name="clock">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:layout_gravity">center_horizontal</item>
+    </style>
+
     <style name="ButtonStyle" parent="Base.Widget.AppCompat.Button.Colored">
         <item name="colorButtonNormal">@color/colorAccent</item>
     </style>
