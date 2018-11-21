@@ -17,33 +17,17 @@ public final class Alarm implements Parcelable {
     //////////////////////////////
     // Parcelable apis
     //////////////////////////////
-
-    protected Alarm(Parcel p) {
-        id = p.readInt();
-        enabled = p.readInt() == 1;
-        hour = p.readInt();
-        minutes = p.readInt();
-        daysOfWeek = new DaysOfWeek(p.readInt());
-        time = p.readLong();
-        vibrate = p.readInt() == 1;
-        label = p.readString();
-        alert = (Uri) p.readParcelable(null);
-        silent = p.readInt() == 1;
-    }
-
-    public static final Creator<Alarm> CREATOR = new Creator<Alarm>() {
-        @Override
-        public Alarm createFromParcel(Parcel in) {
-            return new Alarm(in);
+    public static final Parcelable.Creator<Alarm> CREATOR
+            = new Parcelable.Creator<Alarm>() {
+        public Alarm createFromParcel(Parcel p) {
+            return new Alarm(p);
         }
 
-        @Override
         public Alarm[] newArray(int size) {
             return new Alarm[size];
         }
     };
 
-    @Override
     public int describeContents() {
         return 0;
     }
@@ -60,7 +44,6 @@ public final class Alarm implements Parcelable {
         p.writeParcelable(alert, flags);
         p.writeInt(silent ? 1 : 0);
     }
-
     //////////////////////////////
     // end Parcelable apis
     //////////////////////////////
@@ -156,34 +139,32 @@ public final class Alarm implements Parcelable {
     //////////////////////////////
 
     // Public fields
-    public int id;
-    public boolean enabled;
-    public int hour;
-    public int minutes;
+    public int        id;
+    public boolean    enabled;
+    public int        hour;
+    public int        minutes;
     public DaysOfWeek daysOfWeek;
-    public long time;
-    public boolean vibrate;
-    public String label;
-    public Uri alert;
-    public boolean silent;
+    public long       time;
+    public boolean    vibrate;
+    public String     label;
+    public Uri        alert;
+    public boolean    silent;
 
     public Alarm(Cursor c) {
         id = c.getInt(Columns.ALARM_ID_INDEX);
         enabled = c.getInt(Columns.ALARM_ENABLED_INDEX) == 1;
         hour = c.getInt(Columns.ALARM_HOUR_INDEX);
         minutes = c.getInt(Columns.ALARM_MINUTES_INDEX);
-        daysOfWeek = new DaysOfWeek(c.getInt(c.getInt(Columns.ALARM_DAYS_OF_WEEK_INDEX)));
+        daysOfWeek = new DaysOfWeek(c.getInt(Columns.ALARM_DAYS_OF_WEEK_INDEX));
         time = c.getLong(Columns.ALARM_TIME_INDEX);
-        vibrate = c.getLong(Columns.ALARM_VIBRATE_INDEX) == 1;
+        vibrate = c.getInt(Columns.ALARM_VIBRATE_INDEX) == 1;
         label = c.getString(Columns.ALARM_MESSAGE_INDEX);
-
-        // 闹铃的声音。
         String alertString = c.getString(Columns.ALARM_ALERT_INDEX);
-
         if (Alarms.ALARM_ALERT_SILENT.equals(alertString)) {
             if (Log.LOGV) {
                 Log.v("Alarm is marked as silent");
             }
+            silent = true;
         } else {
             if (alertString != null && alertString.length() != 0) {
                 alert = Uri.parse(alertString);
@@ -193,10 +174,29 @@ public final class Alarm implements Parcelable {
             // default alert.
             if (alert == null) {
                 alert = RingtoneManager.getDefaultUri(
-                        RingtoneManager.TYPE_ALARM
-                );
+                        RingtoneManager.TYPE_ALARM);
             }
         }
+    }
+
+    public Alarm(Parcel p) {
+        id = p.readInt();
+        enabled = p.readInt() == 1;
+        hour = p.readInt();
+        minutes = p.readInt();
+        daysOfWeek = new DaysOfWeek(p.readInt());
+        time = p.readLong();
+        vibrate = p.readInt() == 1;
+        label = p.readString();
+        alert = (Uri) p.readParcelable(null);
+        silent = p.readInt() == 1;
+    }
+
+    public String getLabelOrDefault(Context context) {
+        if (label == null || label.length() == 0) {
+            return context.getString(R.string.default_label);
+        }
+        return label;
     }
 
     /*
@@ -210,8 +210,8 @@ public final class Alarm implements Parcelable {
      * 0x20: Saturday
      * 0x40: Sunday
      */
-    // 用一个位表示一天。
     static final class DaysOfWeek {
+
         private static int[] DAY_MAP = new int[] {
                 Calendar.MONDAY,
                 Calendar.TUESDAY,
@@ -219,10 +219,10 @@ public final class Alarm implements Parcelable {
                 Calendar.THURSDAY,
                 Calendar.FRIDAY,
                 Calendar.SATURDAY,
-                Calendar.SUNDAY
+                Calendar.SUNDAY,
         };
 
-        // Bitmask of all repeating days.
+        // Bitmask of all repeating days
         private int mDays;
 
         DaysOfWeek(int days) {
@@ -244,37 +244,30 @@ public final class Alarm implements Parcelable {
             }
 
             // count selected days
-            // 计算１的数量。
             int dayCount = 0, days = mDays;
             while (days > 0) {
-                if ((days & 1) == 1)
-                    dayCount++;
+                if ((days & 1) == 1) dayCount++;
                 days >>= 1;
             }
 
             // short or long form?
-            // Mon or Monday.
             DateFormatSymbols dfs = new DateFormatSymbols();
             String[] dayList = (dayCount > 1) ?
                     dfs.getShortWeekdays() :
                     dfs.getWeekdays();
-            android.util.Log.d(AlarmClock.TAG, "dayList = " + dayList.toString());
 
             // selected days
             for (int i = 0; i < 7; i++) {
                 if ((mDays & (1 << i)) != 0) {
                     ret.append(dayList[DAY_MAP[i]]);
                     dayCount -= 1;
-                    if (dayCount > 0)
-                        ret.append(
-                                context.getText(R.string.day_concat));
+                    if (dayCount > 0) ret.append(
+                            context.getText(R.string.day_concat));
                 }
             }
-
             return ret.toString();
         }
 
-        // 第一位什么也没有。
         private boolean isSet(int day) {
             return ((mDays & (1 << day)) > 0);
         }
@@ -283,7 +276,7 @@ public final class Alarm implements Parcelable {
             if (set) {
                 mDays |= (1 << day);
             } else {
-                mDays |= ~(1 << day);
+                mDays &= ~(1 << day);
             }
         }
 
@@ -301,7 +294,6 @@ public final class Alarm implements Parcelable {
             for (int i = 0; i < 7; i++) {
                 ret[i] = isSet(i);
             }
-
             return ret;
         }
 
@@ -318,7 +310,6 @@ public final class Alarm implements Parcelable {
                 return -1;
             }
 
-            //　为什么加５？ 向左移位。
             int today = (c.get(Calendar.DAY_OF_WEEK) + 5) % 7;
 
             int day = 0;
@@ -329,7 +320,6 @@ public final class Alarm implements Parcelable {
                     break;
                 }
             }
-
             return dayCount;
         }
     }

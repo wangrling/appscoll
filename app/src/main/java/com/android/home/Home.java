@@ -127,6 +127,11 @@ public class Home extends Activity {
          * https://github.com/googlesamples/android-topeka
          */
 
+        /**
+         * 以后超过1000行的程序都要先进行分析，慌慌张张地写很容易进入迷途。
+         */
+
+
         appViewList.add(new AppView(R.drawable.alarmclock, "AlarmClock",
                 "系统的闹钟程序", AlarmClock.class, ""));
 

@@ -37,9 +37,13 @@
             android:label="@string/home"
             android:theme="@style/Base.AppTheme">
 
+
+        <provider android:name=".alarmclock.AlarmProvider" android:authorities="com.android.home.alarmclock" />
+
         <activity android:name=".alarmclock.AlarmClock"
-                  android:configChanges="orientation|keyboardHidden|keyboard|navigation"
-        />
+                  android:configChanges="orientation|keyboardHidden|keyboard|navigation" />
+
+        <activity android:name=".alarmclock.ClockPicker" />
 
         <activity android:name=".development.DevelopmentActivity" />
 

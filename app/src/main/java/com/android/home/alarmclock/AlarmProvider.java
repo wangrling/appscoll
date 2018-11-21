@@ -1,6 +1,11 @@
 package com.android.home.alarmclock;
 
-import android.content.*;
+
+import android.content.ContentProvider;
+import android.content.ContentUris;
+import android.content.ContentValues;
+import android.content.Context;
+import android.content.UriMatcher;
 import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
@@ -8,11 +13,8 @@ import android.database.sqlite.SQLiteOpenHelper;
 import android.database.sqlite.SQLiteQueryBuilder;
 import android.net.Uri;
 import android.text.TextUtils;
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 
 public class AlarmProvider extends ContentProvider {
-
     private SQLiteOpenHelper mOpenHelper;
 
     private static final int ALARMS = 1;
@@ -26,12 +28,10 @@ public class AlarmProvider extends ContentProvider {
     }
 
     private static class DatabaseHelper extends SQLiteOpenHelper {
-
         private static final String DATABASE_NAME = "alarms.db";
         private static final int DATABASE_VERSION = 5;
 
-
-        public DatabaseHelper(@Nullable Context context) {
+        public DatabaseHelper(Context context) {
             super(context, DATABASE_NAME, null, DATABASE_VERSION);
         }
 
@@ -48,20 +48,20 @@ public class AlarmProvider extends ContentProvider {
                     "message TEXT, " +
                     "alert TEXT);");
 
-            // Insert default alarms.
+            // insert default alarms
             String insertMe = "INSERT INTO alarms " +
-                    "(hour, minutes, daysofweek, alarmtime, enabled, vibrate, message, " +
-                    "alert) VALUES ";
+                    "(hour, minutes, daysofweek, alarmtime, enabled, vibrate, message, alert) " +
+                    "VALUES ";
             db.execSQL(insertMe + "(7, 0, 127, 0, 0, 1, '', '');");
             db.execSQL(insertMe + "(8, 30, 31, 0, 0, 1, '', '');");
             db.execSQL(insertMe + "(9, 00, 0, 0, 0, 1, '', '');");
         }
 
         @Override
-        public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
+        public void onUpgrade(SQLiteDatabase db, int oldVersion, int currentVersion) {
             if (Log.LOGV) Log.v(
                     "Upgrading alarms database from version " +
-                            oldVersion + " to " + newVersion +
+                            oldVersion + " to " + currentVersion +
                             ", which will destroy all old data");
             db.execSQL("DROP TABLE IF EXISTS alarms");
             onCreate(db);
@@ -69,23 +69,21 @@ public class AlarmProvider extends ContentProvider {
     }
 
     public AlarmProvider() {
-
     }
 
     @Override
     public boolean onCreate() {
         mOpenHelper = new DatabaseHelper(getContext());
-
         return true;
     }
 
-    @Nullable
     @Override
-    public Cursor query(@NonNull Uri uri, @Nullable String[] projection, @Nullable String selection, @Nullable String[] selectionArgs, @Nullable String sortOrder) {
+    public Cursor query(Uri url, String[] projectionIn, String selection,
+                        String[] selectionArgs, String sort) {
         SQLiteQueryBuilder qb = new SQLiteQueryBuilder();
 
-        // Generate the body of the query.
-        int match = sURLMatcher.match(uri);
+        // Generate the body of the query
+        int match = sURLMatcher.match(url);
         switch (match) {
             case ALARMS:
                 qb.setTables("alarms");
@@ -93,32 +91,28 @@ public class AlarmProvider extends ContentProvider {
             case ALARMS_ID:
                 qb.setTables("alarms");
                 qb.appendWhere("_id=");
-                // Uri通过/分解，下面将会获取数字。
-                qb.appendWhere(uri.getPathSegments().get(1));
+                qb.appendWhere(url.getPathSegments().get(1));
                 break;
-
             default:
-                throw  new IllegalArgumentException("Unknown URI " + uri);
+                throw new IllegalArgumentException("Unknown URL " + url);
         }
 
         SQLiteDatabase db = mOpenHelper.getReadableDatabase();
-        Cursor ret = qb.query(db, projection, selection, selectionArgs,
-                null, null, sortOrder);
+        Cursor ret = qb.query(db, projectionIn, selection, selectionArgs,
+                null, null, sort);
 
         if (ret == null) {
             if (Log.LOGV) Log.v("Alarms.query: failed");
         } else {
-            // 通知ContentResolver查询完成。
-            ret.setNotificationUri(getContext().getContentResolver(), uri);
+            ret.setNotificationUri(getContext().getContentResolver(), url);
         }
 
         return ret;
     }
 
-    @Nullable
     @Override
-    public String getType(@NonNull Uri uri) {
-        int match = sURLMatcher.match(uri);
+    public String getType(Uri url) {
+        int match = sURLMatcher.match(url);
         switch (match) {
             case ALARMS:
                 return "vnd.android.cursor.dir/alarms";
@@ -129,11 +123,33 @@ public class AlarmProvider extends ContentProvider {
         }
     }
 
-    @Nullable
     @Override
-    public Uri insert(@NonNull Uri uri, @Nullable ContentValues initialValues) {
-        if (sURLMatcher.match(uri) != ALARMS) {
-            throw new IllegalArgumentException("Cannot insert into URL: " + uri);
+    public int update(Uri url, ContentValues values, String where, String[] whereArgs) {
+        int count;
+        long rowId = 0;
+        int match = sURLMatcher.match(url);
+        SQLiteDatabase db = mOpenHelper.getWritableDatabase();
+        switch (match) {
+            case ALARMS_ID: {
+                String segment = url.getPathSegments().get(1);
+                rowId = Long.parseLong(segment);
+                count = db.update("alarms", values, "_id=" + rowId, null);
+                break;
+            }
+            default: {
+                throw new UnsupportedOperationException(
+                        "Cannot update URL: " + url);
+            }
+        }
+        if (Log.LOGV) Log.v("*** notifyChange() rowId: " + rowId + " url " + url);
+        getContext().getContentResolver().notifyChange(url, null);
+        return count;
+    }
+
+    @Override
+    public Uri insert(Uri url, ContentValues initialValues) {
+        if (sURLMatcher.match(url) != ALARMS) {
+            throw new IllegalArgumentException("Cannot insert into URL: " + url);
         }
 
         ContentValues values;
@@ -168,67 +184,40 @@ public class AlarmProvider extends ContentProvider {
 
         SQLiteDatabase db = mOpenHelper.getWritableDatabase();
         long rowId = db.insert("alarms", Alarm.Columns.MESSAGE, values);
-
         if (rowId < 0) {
-            throw new SQLException("Failed to insert row into " + uri);
+            throw new SQLException("Failed to insert row into " + url);
         }
         if (Log.LOGV) Log.v("Added alarm rowId = " + rowId);
 
-        Uri newUri = ContentUris.withAppendedId(Alarm.Columns.CONTENT_URI, rowId);
-        getContext().getContentResolver().notifyChange(newUri, null);
-
-        return newUri;
+        Uri newUrl = ContentUris.withAppendedId(Alarm.Columns.CONTENT_URI, rowId);
+        getContext().getContentResolver().notifyChange(newUrl, null);
+        return newUrl;
     }
 
-    @Override
-    public int delete(@NonNull Uri uri, @Nullable String selection, @Nullable String[] selectionArgs) {
+    public int delete(Uri url, String where, String[] whereArgs) {
         SQLiteDatabase db = mOpenHelper.getWritableDatabase();
         int count;
         long rowId = 0;
-
-        switch (sURLMatcher.match(uri)) {
+        switch (sURLMatcher.match(url)) {
             case ALARMS:
-                count = db.delete("alarms", selection, selectionArgs);
+                count = db.delete("alarms", where, whereArgs);
                 break;
             case ALARMS_ID:
-                String segment = uri.getPathSegments().get(1);
+                String segment = url.getPathSegments().get(1);
                 rowId = Long.parseLong(segment);
-                if (TextUtils.isEmpty(selection)) {
-                    selection = "_id=" + segment;
+                if (TextUtils.isEmpty(where)) {
+                    where = "_id=" + segment;
                 } else {
-                    selection = "_id=" + segment + " AND (" + selection + ")";
+                    where = "_id=" + segment + " AND (" + where + ")";
                 }
-                count = db.delete("alarms", selection, selectionArgs);
+                count = db.delete("alarms", where, whereArgs);
                 break;
             default:
-                throw new IllegalArgumentException("Cannot delete from URL: " + uri);
+                throw new IllegalArgumentException("Cannot delete from URL: " + url);
         }
 
-        getContext().getContentResolver().notifyChange(uri, null);
-        return count;
-    }
-
-    @Override
-    public int update(@NonNull Uri uri, @Nullable ContentValues values, @Nullable String selection, @Nullable String[] selectionArgs) {
-        int count;
-        long rowId = 0;
-        int match = sURLMatcher.match(uri);
-        SQLiteDatabase db = mOpenHelper.getWritableDatabase();
-        switch (match) {
-            case ALARMS_ID: {
-                String segment = uri.getPathSegments().get(1);
-                Log.v("update segment = " + segment);
-                rowId = Long.parseLong(segment);
-                count = db.update("alarms", values, "_id=" + rowId, null);
-                break;
-            }
-            default: {
-                throw new UnsupportedOperationException(
-                        "Cannot update URL: " + uri);
-            }
-        }
-        if (Log.LOGV) Log.v("*** notifyChange() rowId: " + rowId + " url " + uri);
-        getContext().getContentResolver().notifyChange(uri, null);
+        getContext().getContentResolver().notifyChange(url, null);
         return count;
     }
 }
+
