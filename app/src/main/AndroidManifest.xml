@@ -42,8 +42,8 @@
 
         <activity android:name=".alarmclock.AlarmClock"
                   android:configChanges="orientation|keyboardHidden|keyboard|navigation" />
-
         <activity android:name=".alarmclock.ClockPicker" />
+        <activity android:name=".alarmclock.SetAlarm" />
 
         <activity android:name=".development.DevelopmentActivity" />
 

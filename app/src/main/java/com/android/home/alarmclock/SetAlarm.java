@@ -1,6 +1,7 @@
 package com.android.home.alarmclock;
 
 import android.app.TimePickerDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.preference.CheckBoxPreference;
 import android.preference.EditTextPreference;
@@ -36,6 +37,67 @@ public class SetAlarm extends PreferenceActivity implements
         super.onCreate(savedInstanceState);
 
         addPreferencesFromResource(R.xml.alarm_prefs);
+
+        // 编辑标签。
+        mLabel = (EditTextPreference) findPreference("label");
+        mLabel.setOnPreferenceChangeListener(
+                new Preference.OnPreferenceChangeListener() {
+                    @Override
+                    public boolean onPreferenceChange(Preference preference, Object newValue) {
+                        // Set the summary baed on the new label.
+                        preference.setSummary((String) newValue);
+
+                        return true;
+                    }
+                });
+
+        mTimePref = findPreference("time");
+
+        // 表示铃声的类型。
+        mAlarmPref = (AlarmPreference) findPreference("alarm");
+        mVibratePref = (CheckBoxPreference) findPreference("vibrate");
+        mRepeatPref = (RepeatPreference) findPreference("setRepeat");
+
+        Intent i = getIntent();
+        mId = i.getIntExtra(Alarms.ALARM_ID, -1);
+        if (Log.LOGV) {
+            Log.v("In SetAlarm, alarm id = " + mId);
+        }
+
+        /* load alarm details from database */
+        // 先查看之前的数据中的闹钟设置。
+        Alarm alarm = Alarms.getAlarms(getContentResolver(), mId);
+
+        // Bad alarm, bail to avoid a NPE.
+        if (alarm == null) {
+            finish();
+            return;
+        }
+
+        mEnabled = alarm.enabled;
+        mLabel.setText(alarm.label);
+        mLabel.setSummary(alarm.label);
+        mHour = alarm.hour;
+        mMinutes = alarm.minutes;
+
+        mRepeatPref.setDaysOfWeek(alarm.daysOfWeek);
+        mVibratePref.setChecked(alarm.vibrate);
+
+        // Give the alarm uri to the preference.
+        mAlarmPref.setAlert(alarm.alert);
+        updateTime();
+
+
+    }
+
+
+    private void updateTime() {
+        if (Log.LOGV) {
+            Log.v("updateTime " + mId);
+        }
+
+        mTimePref.setSummary(Alarms.formatTime(this, mHour, mMinutes,
+                mRepeatPref.getDaysOfWeek()));
     }
 
     /**
