@@ -5,6 +5,7 @@
 
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
     <uses-permission android:name="android.permission.VIBRATE"/>
+    <!-- 没有WRITE_SETTING -->
     <uses-permission android:name="android.permission.WRITE_SETTINGS" tools:ignore="ProtectedPermissions"/>
     <uses-permission android:name="android.permission.DISABLE_KEYGUARD" />
 
@@ -45,6 +46,15 @@
                   android:configChanges="orientation|keyboardHidden|keyboard|navigation" />
         <activity android:name=".alarmclock.ClockPicker" />
         <activity android:name=".alarmclock.SetAlarm" />
+        <activity android:name=".alarmclock.SettingsActivity" />
+        <receiver android:name=".alarmclock.AlarmReceiver">
+            <intent-filter>
+                <action android:name="com.android.home.alarmclock.ALARM_ALERT"/>
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </receiver>
+        <activity android:name=".alarmclock.AlarmAlertFullScreen" />
+        <activity android:name=".alarmclock.AlarmAlert" />
 
         <activity android:name=".development.DevelopmentActivity" />
 

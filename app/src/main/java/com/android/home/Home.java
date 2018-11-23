@@ -131,6 +131,12 @@ public class Home extends Activity {
         /**
          * 以后超过1000行的程序都要先进行分析，慌慌张张地写很容易进入迷途。
          */
+
+        /**
+         * 一行一行写完，不要跳着写，写得多不知道写到哪里。
+         */
+
+
         appViewList.add(new AppView(R.drawable.renderscript, "RenderScript",
                 "Creates several RenderScript intrinsics and shows a filtering result with various parameters.",
                 RenderIntrinsic.class, "高性能计算。"));

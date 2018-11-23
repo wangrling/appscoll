@@ -9,7 +9,7 @@ import android.util.Config;
 class Log {
     public final static String LOGTAG = "AlarmClock";
 
-    static final boolean LOGV = AlarmClock.DEBUG ? Config.LOGD : Config.LOGV;
+    static final boolean LOGV = true;
 
     static void v(String logMe) {
         android.util.Log.v(LOGTAG, /* SystemClock.uptimeMillis() + " " + */ logMe);
