@@ -23,6 +23,7 @@ import com.android.home.customview.CustomViewActivity;
 import com.android.home.development.DevelopmentActivity;
 import com.android.home.displaybitmaps.ui.DisplayBitmaps;
 import com.android.home.plaid.PlaidApp;
+import com.android.home.renderscript.RenderIntrinsic;
 import com.android.home.rssimage.DisplayActivity;
 import com.android.home.shimmer.ShimmerActivity;
 import com.android.home.camerabasic.CameraBasic;
@@ -130,7 +131,9 @@ public class Home extends Activity {
         /**
          * 以后超过1000行的程序都要先进行分析，慌慌张张地写很容易进入迷途。
          */
-
+        appViewList.add(new AppView(R.drawable.renderscript, "RenderScript",
+                "Creates several RenderScript intrinsics and shows a filtering result with various parameters.",
+                RenderIntrinsic.class, "高性能计算。"));
 
         appViewList.add(new AppView(R.drawable.alarmclock, "AlarmClock",
                 "系统的闹钟程序", AlarmClock.class, ""));

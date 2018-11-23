@@ -37,6 +37,7 @@
             android:label="@string/home"
             android:theme="@style/Base.AppTheme">
 
+        <activity android:name=".renderscript.RenderIntrinsic" />
 
         <provider android:name=".alarmclock.AlarmProvider" android:authorities="com.android.home.alarmclock" />
 

@@ -85,6 +85,14 @@ public class Alarms {
         setNextAlert(context);
     }
 
+    private static void setNextAlert(Context context) {
+
+    }
+
+    private static void disableSnoozeAlert(Context context, int alarmId) {
+
+    }
+
     /**
      * Queries all alarms
      *
@@ -188,6 +196,18 @@ public class Alarms {
         return timeInMillis;
     }
 
+    private static void clearSnoozePreference(Context context, SharedPreferences prefs) {
+
+    }
+
+    private static void setNextAlarm(Context context) {
+
+    }
+
+    private static Calendar calculateAlarm(int hour, int minutes, Alarm.DaysOfWeek daysOfWeek) {
+        return null;
+    }
+
     /**
      * A convenience method to enable or disable an alarm.
      *
@@ -242,5 +262,13 @@ public class Alarms {
     }
 
     public static void deleteAlarm(AlarmClock alarmClock, int id) {
+    }
+
+    public static Alarm getAlarms(ContentResolver contentResolver, int mId) {
+        return null;
+    }
+
+    public static int formatTime(SetAlarm setAlarm, int mHour, int mMinutes, Alarm.DaysOfWeek daysOfWeek) {
+        return 0;
     }
 }

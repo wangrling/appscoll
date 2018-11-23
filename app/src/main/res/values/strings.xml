@@ -404,4 +404,7 @@
     <string name="title_2">Ok card</string>
     <string name="title_3">Bad card</string>
     <string name="title_4">Ugly card</string>
+    <string name="blur">Blur</string>
+    <string name="emboss">Emboss</string>
+    <string name="hue">Hue</string>
 </resources>
