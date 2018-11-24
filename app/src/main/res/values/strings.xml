@@ -31,10 +31,14 @@
     <string name="item_element_text">This is element #</string>
     <string name="middle">This is the middle!</string>
 
-    <string name="type_a_phone_number">Please enter a number…</string><string name="button_dial_number">Call Number</string><string name="button_pick_contact">Pick Number</string><string name="contacts_activity_placeholder">This a placeholder Activity for a contacts screen.
-    This activity is never opened and does not contain any real contact data for
-    keeping this sample simple and focused.
-</string><string name="warning_call_phone_permission">This app requires \'call phone\' permission to run</string>
+    <string name="type_a_phone_number">Please enter a number…</string>
+    <string name="button_dial_number">Call Number</string>
+    <string name="button_pick_contact">Pick Number</string>
+    <string name="contacts_activity_placeholder">This a placeholder Activity for a contacts screen.
+        This activity is never opened and does not contain any real contact data for
+        keeping this sample simple and focused.
+    </string>
+    <string name="warning_call_phone_permission">This app requires \'call phone\' permission to run</string>
 
     <string name="waiting_msg">Waiting for message…</string>
     <string name="row_label">Clicked on row</string>
@@ -228,28 +232,83 @@
     <string name="notification_channel_description">Channel ID for UAMP</string>
 
 
-    <string name="msg_demo_pagination">This is a demo of how you can do a list pagination with Rx. We page 10 items at a time and there are 55 items altogether</string>
+    <string name="msg_demo_pagination">This is a demo of how you can do a list pagination with Rx. We page 10 items at a
+        time and there are 55 items altogether
+    </string>
     <string name="msg_demo_volley">This is a Volley request demo</string>
-    <string name="msg_demo_concurrency_schedulers">This is a demo of how long running operations can be offloaded to a background thread. After the operation is done, we resume back on the main thread. All using RxJava! \n\n To really see this shine. Hit the button multiple times and see how the button click which is a ui operation is never blocked because the long operation only runs in the background</string>
-    <string name="msg_demo_buffer">This is a demo of how events can be accumulated using the "buffer" operation. Tap the button below repetitively and you will notice in the logs that button taps are collected over a span of 2s and printed below.</string>
-    <string name="msg_demo_debounce">As you type in the input box, it will not shoot out log messages at every single input character change, but rather only pick the last one.</string>
-    <string name="msg_demo_timeout">This is a demo of terminating events, that take too long to process. Events in this demo should timeout in 3 seconds. Button 1 is an event that takes 2s to process, and Button 2 is a n event that takes 5s to process. Hit Button 2, and see in the logs that it\'s been cancelled, while this is not the case for Button 1.</string>
-    <string name="msg_demo_retrofit">Retrofit from Square is a super easy networking helper library. It works really well with RxJava and these are examples taken from Jake Wharton\'s talk at Netflix (see README). Really the only interesting bits here are in the code and logs.</string>
-    <string name="msg_demo_retrofit_async_task_death">This shows how you can replace an AsyncTask with RxJava. The interesting parts are in the code.</string>
-    <string name="msg_demo_doublebinding">Watch how the result gloriously auto-updates <ba></ba>sed on your changing inputs. Using a technique like this, you could achieve the two-way binding in Angular Js, or more efficiently use a pattern like the Presentation View Model.</string>
-    <string name="msg_demo_polling">Demo polling or making a call repeatedly with RxJava.\n\nSimple polling: Notice in the logs how a (simulated) network call is repeatedly made in the background.</string>
-    <string name="msg_demo_exponential_backoff">These two examples demonstrate retrying and executing with a delay using an exponential backoff strategy.</string>
+    <string name="msg_demo_concurrency_schedulers">This is a demo of how long running operations can be offloaded to a
+        background thread. After the operation is done, we resume back on the main thread. All using RxJava! \n\n To
+        really see this shine. Hit the button multiple times and see how the button click which is a ui operation is
+        never blocked because the long operation only runs in the background
+    </string>
+    <string name="msg_demo_buffer">This is a demo of how events can be accumulated using the "buffer" operation. Tap the
+        button below repetitively and you will notice in the logs that button taps are collected over a span of 2s and
+        printed below.
+    </string>
+    <string name="msg_demo_debounce">As you type in the input box, it will not shoot out log messages at every single
+        input character change, but rather only pick the last one.
+    </string>
+    <string name="msg_demo_timeout">This is a demo of terminating events, that take too long to process. Events in this
+        demo should timeout in 3 seconds. Button 1 is an event that takes 2s to process, and Button 2 is a n event that
+        takes 5s to process. Hit Button 2, and see in the logs that it\'s been cancelled, while this is not the case for
+        Button 1.
+    </string>
+    <string name="msg_demo_retrofit">Retrofit from Square is a super easy networking helper library. It works really
+        well with RxJava and these are examples taken from Jake Wharton\'s talk at Netflix (see README). Really the only
+        interesting bits here are in the code and logs.
+    </string>
+    <string name="msg_demo_retrofit_async_task_death">This shows how you can replace an AsyncTask with RxJava. The
+        interesting parts are in the code.
+    </string>
+    <string name="msg_demo_doublebinding">Watch how the result gloriously auto-updates <ba></ba>sed on your changing
+        inputs. Using a technique like this, you could achieve the two-way binding in Angular Js, or more efficiently
+        use a pattern like the Presentation View Model.
+    </string>
+    <string name="msg_demo_polling">Demo polling or making a call repeatedly with RxJava.\n\nSimple polling: Notice in
+        the logs how a (simulated) network call is repeatedly made in the background.
+    </string>
+    <string name="msg_demo_exponential_backoff">These two examples demonstrate retrying and executing with a delay using
+        an exponential backoff strategy.
+    </string>
     <string name="msg_demo_rxbus_1">Tap on the below button and RxBus will listen to the events</string>
-    <string name="msg_demo_form_comb_latest">Monitor the state of multiple observables with the combineLatest operator. Only after all the 3 inputs contain valid entries will the submit button light up</string>
-    <string name="msg_demo_timing">BTN 1: run single task once (after 2s complete)\nBTN 2: run task every 1s (start delay of 1s) toggle \nBTN 3: run task every 1s (start immediately) toggle \nBTN 4: run task 5 times every 3s (then complete) \nBTN 5: run task A, pause for sometime, then proceed with Task B</string>
-    <string name="msg_demo_rotation_persist">This is an example of starting an Observable and using the result across rotations. There are many ways to do this, we use ViewModels from architecture components</string>
-    <string name="msg_demo_network_detector">This is a demo of how to use Subjects to detect Network connectivity\nToggle your Wifi/Network on or off and notice the logs</string>
-    <string name="msg_demo_using">This is a demo of the somewhat unknown operator "using".\n\nYou typically use it for managing setup/teardown of resources. Classic cases are DB connections (like Realm), sockets, locks etc.\n\nTap the button and look at the logcat. Particularly notice how the Realm instance is self-contained. That is, it is auto-disposed right after use.</string>
-    <string name="msg_demo_multicast_publishRefCount">RefCount starts the upstream right away and gets disposed off, when all subscribers stop. Hit S1, Hit S2, Hit S1, Hit S2. Hit S1/S2 now and notice the stream starts all over.</string>
-    <string name="msg_demo_multicast_publishAutoConnect">AutoConnect(2) waits for a min. subscriber count, before starting the upstream. Hit S1 (notice events don\'t start), Hit S2 (notice events now start), Hit S1 (notice that unsubscribing doesn\'t affect upstream), Hit S2, wait for sometime and hit S1 again (notice source stream doesn\'t restart)</string>
-    <string name="msg_demo_multicast_replayAutoConnect">Replay caches the last item. Hit S1, Hit S2, event starts, Hit S2, wait a bit, Hit S2 again (notice it starts with the last item that S1 saw - courtesy Replay). Hit S2, Hit S1, wait a bit. Hit S1 again (notice event upstream continues and doesn\'t restart)</string>
-    <string name="msg_demo_multicast_replayRefCount">Replay caches the last item. Hit S1, wait a bit, then hit S2 (notice S2 starts immediately with last item that S1 saw), Hit S2, Hit S1. Hit S1/S2 again (notice the stream restarts all over. Interestingly cached last item also removed when both subscribers released)</string>
-    <string name="msg_demo_multicast_replayingShare">Courtesy: new #AndroidDev on the block - JakeWharton. exactly like replay(1).refCount(), but caches the last item even when upstream has been disposed off/released. Hit S1, Hit S2, Hit S1, Hit S2 (notice observable is disposed). Hit S1/S2 again (notice we start with last item emitted)</string>
+    <string name="msg_demo_form_comb_latest">Monitor the state of multiple observables with the combineLatest operator.
+        Only after all the 3 inputs contain valid entries will the submit button light up
+    </string>
+    <string name="msg_demo_timing">BTN 1: run single task once (after 2s complete)\nBTN 2: run task every 1s (start
+        delay of 1s) toggle \nBTN 3: run task every 1s (start immediately) toggle \nBTN 4: run task 5 times every 3s
+        (then complete) \nBTN 5: run task A, pause for sometime, then proceed with Task B
+    </string>
+    <string name="msg_demo_rotation_persist">This is an example of starting an Observable and using the result across
+        rotations. There are many ways to do this, we use ViewModels from architecture components
+    </string>
+    <string name="msg_demo_network_detector">This is a demo of how to use Subjects to detect Network
+        connectivity\nToggle your Wifi/Network on or off and notice the logs
+    </string>
+    <string name="msg_demo_using">This is a demo of the somewhat unknown operator "using".\n\nYou typically use it for
+        managing setup/teardown of resources. Classic cases are DB connections (like Realm), sockets, locks etc.\n\nTap
+        the button and look at the logcat. Particularly notice how the Realm instance is self-contained. That is, it is
+        auto-disposed right after use.
+    </string>
+    <string name="msg_demo_multicast_publishRefCount">RefCount starts the upstream right away and gets disposed off,
+        when all subscribers stop. Hit S1, Hit S2, Hit S1, Hit S2. Hit S1/S2 now and notice the stream starts all over.
+    </string>
+    <string name="msg_demo_multicast_publishAutoConnect">AutoConnect(2) waits for a min. subscriber count, before
+        starting the upstream. Hit S1 (notice events don\'t start), Hit S2 (notice events now start), Hit S1 (notice
+        that unsubscribing doesn\'t affect upstream), Hit S2, wait for sometime and hit S1 again (notice source stream
+        doesn\'t restart)
+    </string>
+    <string name="msg_demo_multicast_replayAutoConnect">Replay caches the last item. Hit S1, Hit S2, event starts, Hit
+        S2, wait a bit, Hit S2 again (notice it starts with the last item that S1 saw - courtesy Replay). Hit S2, Hit
+        S1, wait a bit. Hit S1 again (notice event upstream continues and doesn\'t restart)
+    </string>
+    <string name="msg_demo_multicast_replayRefCount">Replay caches the last item. Hit S1, wait a bit, then hit S2
+        (notice S2 starts immediately with last item that S1 saw), Hit S2, Hit S1. Hit S1/S2 again (notice the stream
+        restarts all over. Interestingly cached last item also removed when both subscribers released)
+    </string>
+    <string name="msg_demo_multicast_replayingShare">Courtesy: new #AndroidDev on the block - JakeWharton. exactly like
+        replay(1).refCount(), but caches the last item even when upstream has been disposed off/released. Hit S1, Hit
+        S2, Hit S1, Hit S2 (notice observable is disposed). Hit S1/S2 again (notice we start with last item emitted)
+    </string>
     <string name="enter_some_search_text">Enter some search text</string>
     <string name="more">More</string>
     <string name="hide">Hide</string>
@@ -270,7 +329,12 @@
     <string name="designer_news_logged_out">Logged out of Designer News</string>
     <string name="add">Add</string>
     <string name="edit">Edit</string>
-    <string name="no_filters_selected">No filters selected, press the filter button above (<annotation src="@drawable/ic_filter_small">&#2228;</annotation>)\n<i><annotation foregroundColor="@color/text_secondary_light">or swipe from the&#160;right</annotation></i></string>
+    <string name="no_filters_selected">No filters selected, press the filter button above (<annotation
+            src="@drawable/ic_filter_small">&#2228;</annotation>)\n
+        <i>
+            <annotation foregroundColor="@color/text_secondary_light">or swipe from the&#160;right</annotation>
+        </i>
+    </string>
 
     <!-- dribbble shot screen -->
     <!-- using strings for the number of views/likes as we run them through NumberFormat -->
@@ -308,7 +372,9 @@
 
     <string name="connection_line_mask_hidden">M26,159 L26,159 L32,159 L32,159 Z</string>
 
-    <string name="phone_button">M24,206.5 C24,206.5 27.6392462,206.449997 28,206.449997 C28.3607538,206.449997 32,206.5 32,206.5</string>
+    <string name="phone_button">M24,206.5 C24,206.5 27.6392462,206.449997 28,206.449997 C28.3607538,206.449997 32,206.5
+        32,206.5
+    </string>
 
     <string name="stop_casting">Stop Casting</string>
     <string name="label_pause">Pause</string>
@@ -321,7 +387,9 @@
     <string name="retrofit">retrofit</string>
     <string name="reponame">reponame</string>
 
-    <string name="mission_statement">Facebook’s mission is to give people the power to build community and bring the world closer together.</string>
+    <string name="mission_statement">Facebook’s mission is to give people the power to build community and bring the
+        world closer together.
+    </string>
 
     <string name="batching_queue_title">Background sensor batching</string>
     <string name="batching_queue_description">Batching allows the sensor to report sensor events at
@@ -380,18 +448,23 @@
 
     <string name="step_intro_title">Introduction</string>
 
-    <string name="step_intro_message"><p>This sample demonstrates the use of the two step sensors (step detector and counter) and
-            sensor batching.</p>
-            <p>It shows how to register a SensorEventListener with and without
-            batching and shows how these events are received.</p>
-            <p>The Step Detector sensor fires an
+    <string name="step_intro_message">
+        <p>This sample demonstrates the use of the two step sensors (step detector and counter) and
+            sensor batching.
+        </p>
+        <p>It shows how to register a SensorEventListener with and without
+            batching and shows how these events are received.
+        </p>
+        <p>The Step Detector sensor fires an
             event when a step is detected, while the step counter returns the total number of
             steps since a listener was first registered for this sensor.
             Both sensors only count steps while a listener is registered. This sample only covers the
             basic case, where a listener is only registered while the app is running. Likewise,
             batched sensors can be used in the background (when the CPU is suspended), which
             requires manually flushing the sensor event queue before it overflows, which is not
-            covered in this sample.</p></string>
+            covered in this sample.
+        </p>
+    </string>
     <string name="idling_resource">Idling Resource</string>
     <string name="button_open_camera">Take photo</string>
     <string name="empty_view_text">This is the empty view</string>
@@ -407,4 +480,70 @@
     <string name="blur">Blur</string>
     <string name="emboss">Emboss</string>
     <string name="hue">Hue</string>
+    <string name="question_article">LIKE THE ARTICLE?</string>
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
+    <string name="yes_message">ARTICLE: Like</string>
+    <string name="no_message">ARTICLE: Thanks</string>
+
+    <!-- Placeholder text for this example. -->
+    <string name="title1">Cry for a Shadow</string>
+    <string name="article1">Many a Beatle fanatic started down the outtake
+        road, like I did, with a first listen to this song. Originally titled “Beatle Bop” and recorded in a single
+        session that yielded four songs (the other three featured Tony Sheridan with the Beatles
+        as a backing band), “Cry for a Shadow” is an instrumental written by Lennon and Harrison, which makes it unique
+        to this day. John Lennon plays rhythm guitar, George Harrison plays lead guitar, Paul
+        McCartney plays bass, and Pete Best plays drums. The sessions were produced by Bert Kaempfert in Hamburg,
+        Germany, during the Beatles’ second visit from April through July of 1961 to play in the Reeperbahn-section
+        clubs.
+    </string>
+    <string name="title2">My Bonnie - Ain’t She Sweet</string>
+    <string name="article2">At the same session, the Beatles played on “My Bonnie” (the first-ever single with Beatles
+        playing), as the backing band for
+        English singer Tony Sheridan, originally a member of the Jets. The popularity of this single in Liverpool
+        brought the Beatles to the attention of
+        Brian Epstein, who worked in the NEMS record store and tried to meet demand for the disc. John Lennon then sings
+        a fine “Ain’t She Sweet” (his
+        first-ever released vocal).
+    </string>
+    <string name="question_the_song">LIKE THE SONG?</string>
+    <string name="my_rating">My Rating:</string>
+    <string name="open">Open</string>
+    <string name="close">Close</string>
+    <string name="appwidget_text">EXAMPLE</string>
+    <string name="add_widget">Add widget</string>
+
+    <!-- Heading for the app widget ID panel. -->
+    <string name="widget_id_label">Widget ID</string>
+
+    <!-- Heading for the updated panel. -->
+    <string name="widget_update_label">Last updated</string>
+
+    <!-- Button label for the update button. -->
+    <string name="widget_button_update">Update now</string>
+
+    <!-- Format string for the date & count text view -->
+    <string name="date_count_format">%1$d @%2$s</string>
+
+    <!-- Proximity and light sensor output. The %1$.2f part is a placeholder
+ that will be filled in at runtime:
+ %1 is the value to replace
+ $.2f says the value is a float, with two decimal places. -->
+    <string name="label_proximity">Proximity Sensor: %1$.2f</string>
+    <string name="label_light">Light Sensor: %1$.2f</string>
+
+    <!-- error message if sensors are not available. -->
+    <string name="error_no_sensor">No sensor</string>
+    <string name="textview">TextView</string>
+
+    <!-- Text view labels for orientation data -->
+    <string name="label_azimuth_string">Azmiuth:</string>
+    <string name="label_pitch_string">Pitch:</string>
+    <string name="label_roll_string">Roll:</string>
+
+    <!-- String for the orientation values. The %1$.2f part is a placeholder
+     that will be filled in at runtime:
+     %1 is the value to replace
+     $.2f says the value is a float, with two decimal places.  -->
+    <string name="value_format">%1$.2f</string>
 </resources>

@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="vertical"
+              android:background="@color/colorPrimary"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content">
+
+    <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+        <TextView
+                android:id="@+id/fragment_header"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/padding_normal"
+                android:text="@string/question_article"
+                android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"/>
+
+        <RadioGroup
+                android:id="@+id/radio_group"
+                android:orientation="horizontal"
+                android:layout_gravity="center"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+            <RadioButton
+                    android:id="@+id/radio_button_yes"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="@dimen/margin_large"
+                    android:text="@string/yes"/>
+
+            <RadioButton
+                    android:id="@+id/radio_button_no"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="@dimen/margin_large"
+                    android:text="@string/no"/>
+
+        </RadioGroup>
+    </LinearLayout>
+
+    <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+        <TextView
+                android:id="@+id/fragment_header2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/small_padding"
+                android:text="@string/question_the_song"
+                android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"/>
+
+        <RatingBar
+                android:id="@+id/ratingBar"
+                style="@android:style/Widget.DeviceDefault.RatingBar.Small"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:numStars="6"
+                android:isIndicator="false"
+                android:padding="@dimen/padding_standard"
+                android:rating="3.5"
+                android:stepSize="0.5"/>
+
+    </LinearLayout>
+
+</LinearLayout>

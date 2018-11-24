@@ -15,6 +15,20 @@
   -->
 
 <resources>
+
+    <dimen name="base_margin">8dp</dimen>
+    <dimen name="spot_size">84dp</dimen>
+
+    <dimen name="standard_margin">8dp</dimen>
+    <dimen name="small_padding">4dp</dimen>
+    <dimen name="heading_top_margin">24dp</dimen>
+    <dimen name="padding_wide">16dp</dimen>
+    <dimen name="body_width">220dp</dimen>
+    <dimen name="padding_standard">8dp</dimen>
+    <dimen name="image_left_margin">32dp</dimen>
+    <dimen name="body_top_margin">96dp</dimen>
+    <dimen name="margin_wide">16dp</dimen>
+
     <!-- The margin between the pad pages when displayed using a view pager. -->
     <dimen name="pad_page_margin">24dip</dimen>
 

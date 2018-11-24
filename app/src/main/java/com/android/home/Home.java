@@ -128,6 +128,9 @@ public class Home extends Activity {
          * https://github.com/googlesamples/android-topeka
          */
 
+        appViewList.add(new AppView(R.drawable.home, "MapLocation",
+                "从服务器读取位置信息，显示在手机端，并可以绘制轨迹。", null, ""));
+
         /**
          * 以后超过1000行的程序都要先进行分析，慌慌张张地写很容易进入迷途。
          */
@@ -144,8 +147,9 @@ public class Home extends Activity {
         appViewList.add(new AppView(R.drawable.alarmclock, "AlarmClock",
                 "系统的闹钟程序", AlarmClock.class, ""));
 
-        appViewList.add(new AppView(R.drawable.home, "Development",
-                "development/samples目录下面自己还掌握的内容，大部分都是几百到上千行的代码实例。",
+        appViewList.add(new AppView(R.drawable.android_advanced, "DeveloperAdvanced",
+                "Hands-on practical workbook for Advanced Android Development, a training " +
+                        "course created by the Google Developers Training team.",
                 DevelopmentActivity.class, ""));
 
         /**

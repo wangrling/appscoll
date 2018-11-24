@@ -4,11 +4,12 @@ import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
-import android.widget.CheckBox;
-import android.widget.CompoundButton;
+import android.view.ViewGroup;
+import android.widget.*;
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.ListAdapter;
 import androidx.viewpager.widget.ViewPager;
 import butterknife.OnClick;
 import com.android.home.R;
@@ -34,6 +35,17 @@ public class DevelopmentActivity extends AppCompatActivity implements
 
     private boolean mShowingFragments = false;
 
+    private String[] mContents = {
+            "Fragments    App widgets Sensors",
+            "Performance Localization Accessibility",
+            "Location   Places Mapping",
+            "Custom views   Canvas  Animations",
+            "Media  Room, LiveData, ViewModel"
+
+    };
+
+    private ListView mAdvancedContents;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -43,14 +55,30 @@ public class DevelopmentActivity extends AppCompatActivity implements
         mViewPager = (ViewPager) findViewById(R.id.viewPager);
         mButton = findViewById(R.id.cardTypeBtn);
 
+        mAdvancedContents = findViewById(R.id.advancedContents);
+
+        mAdvancedContents.setAdapter(new AdvancedAdapter());
+
         ((CheckBox)findViewById(R.id.checkBox)).setOnCheckedChangeListener(this);
         mButton.setOnClickListener(this);
 
-        mCardAdapter = new CardPagerAdapter();
-        mCardAdapter.addCardItem(new CardItem(R.string.title_1, R.string.home));
-        mCardAdapter.addCardItem(new CardItem(R.string.title_2, R.string.home));
-        mCardAdapter.addCardItem(new CardItem(R.string.title_3, R.string.home));
-        mCardAdapter.addCardItem(new CardItem(R.string.title_4, R.string.home));
+        mCardAdapter = new CardPagerAdapter(this);
+        mCardAdapter.addCardItem(new CardItem("Fragments",
+                "Create a fragment that has its own UI, and anbable your activities" +
+                        "to communicate with fragments."));
+        mCardAdapter.addCardItem(new CardItem("App widgets",
+                "Create and update app widgets."));
+        mCardAdapter.addCardItem(new CardItem("Sensors",
+                "Learn how to work with sensor data and build an app that " +
+                        "detects and responds to device orientation."));
+        mCardAdapter.addCardItem(new CardItem("Orientation",
+                "TiltSpot demonstrates the use of the accelerometer and geomagnetic field " +
+                        "sensors to  determine the device orientation."));
+        mCardAdapter.addCardItem(new CardItem("ProfileGPU",
+                "Demo that swaps between a small and large image " +
+                "for testing with Profile GPU Rendering."));
+
+
 
         mFragmentCardAdapter = new CardFragmentPagerAdapter(
                 getSupportFragmentManager(), dpToPixels(2, this));
@@ -87,5 +115,32 @@ public class DevelopmentActivity extends AppCompatActivity implements
     public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
         mCardShadowTransformer.enableScaling(isChecked);
         mFragmentCardShadowTransformer.enableScaling(isChecked);
+    }
+
+    public class AdvancedAdapter extends BaseAdapter {
+
+        @Override
+        public int getCount() {
+            return mContents.length;
+        }
+
+        @Override
+        public String getItem(int position) {
+            return mContents[position];
+        }
+
+        @Override
+        public long getItemId(int position) {
+            return position;
+        }
+
+        @Override
+        public View getView(int position, View convertView, ViewGroup parent) {
+            TextView tv = new TextView(getApplicationContext());
+            tv.setPadding(8, 6, 0, 6);
+            tv.setText(mContents[position]);
+            tv.setTextSize(18);
+            return tv;
+        }
     }
 }
