@@ -125,4 +125,7 @@ dependencies {
     implementation 'androidx.interpolator:interpolator:1.0.0'
     implementation fileTree(include: ['*.jar'], dir: 'libs')
     implementation files('libs/BaiduLBS_Android.jar')
+    implementation files('libs/ZYFSDK-1.0.3.jar')
+
+    implementation 'com.google.code.gson:gson:2.8.5'
 }

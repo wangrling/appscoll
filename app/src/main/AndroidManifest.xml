@@ -18,6 +18,8 @@
 
     <uses-permission android:name="com.android.launcher.permission.READ_SETTINGS" />
     <uses-permission android:name="android.permission.READ_PHONE_STATE"/>
+    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
+    <uses-permission android:name="android.permission.CHANGE_WIFI_MULTICAST_STATE" />
 
 
     <uses-permission android:name="android.permission.RECORD_AUDIO"/>
@@ -46,6 +48,11 @@
             android:label="@string/home"
             android:name=".MyApplication"
             android:theme="@style/Base.AppTheme">
+
+        <activity android:name=".threelibs.gson.ProguardGson" />
+        <activity android:name=".threelibs.ThreeLibsSample"/>
+
+
         <activity android:name=".renderscript.RenderIntrinsic"/>
 
         <!-- 声明service组件 -->
@@ -56,6 +63,15 @@
         </service>
 
         <activity android:name=".maplocation.LocationActivity" />
+        <activity android:name=".maplocation.NavigationActivity" />
+
+        <activity android:name=".maplocation.ZyfSDKActivity" />
+        <meta-data
+                android:name="Product_Key"
+                android:value="d18d1665b358" />
+        <meta-data
+                android:name="App_Id"
+                android:value="34087mfQ4MLq4S50jP8s4FM6W1m0s5X3" />
 
 
         <!-- AK鉴权 -->
@@ -64,6 +80,7 @@
                 android:name="com.baidu.lbsapi.API_KEY"
                 android:value="ucwigCxWzAk74dH36lfuy7aBwi8BvC44" />
         <!-- http://lbsyun.baidu.com/apiconsole/key -->
+
 
         <provider
                 android:name=".alarmclock.AlarmProvider"

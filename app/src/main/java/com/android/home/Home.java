@@ -27,6 +27,8 @@ import com.android.home.customview.CustomViewActivity;
 import com.android.home.development.DevelopmentActivity;
 import com.android.home.displaybitmaps.ui.DisplayBitmaps;
 import com.android.home.maplocation.LocationActivity;
+import com.android.home.maplocation.NavigationActivity;
+import com.android.home.maplocation.ZyfSDKActivity;
 import com.android.home.plaid.PlaidApp;
 import com.android.home.renderscript.RenderIntrinsic;
 import com.android.home.rssimage.DisplayActivity;
@@ -41,6 +43,8 @@ import com.android.home.soundrecorder.SoundRecorder;
 import com.android.home.stepsensor.BatchStepSensor;
 import com.android.home.syncadapter.BasicSyncActivity;
 import com.android.home.testing.TestingActivity;
+import com.android.home.threelibs.ThreeLibsSample;
+import com.android.home.threelibs.gson.ProguardGson;
 import com.android.home.todomvp.TodoMvpActivity;
 import com.android.home.universalmusic.ui.MusicPlayerActivity;
 
@@ -178,8 +182,16 @@ public class Home extends Activity {
          * https://github.com/googlesamples/android-topeka
          */
 
+        // 第三方库示例集合。
+        appViewList.add(new AppView(R.drawable.home, "TLibSample",
+                "第三方演示的集合，比如经常用到的picasso, gson等优秀的第三方开源库。",
+                ProguardGson.class, ""));
+
+        // 临时增加
+        // appViewList.add(new AppView(R.drawable.home, "ZyfSdk", "", ZyfSDKActivity.class, ""));
+
         appViewList.add(new AppView(R.drawable.baidumap, "MapLocation",
-                "从服务器读取位置信息，显示在手机端，并可以绘制轨迹。", LocationActivity.class, ""));
+                "从服务器读取位置信息，显示在手机端，并可以绘制轨迹。", ZyfSDKActivity.class, ""));
 
         /**
          * 以后超过1000行的程序都要先进行分析，慌慌张张地写很容易进入迷途。
