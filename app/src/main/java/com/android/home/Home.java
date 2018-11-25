@@ -2,8 +2,12 @@ package com.android.home;
 
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.ApplicationInfo;
+import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -22,6 +26,7 @@ import com.android.home.components.ArchComponents;
 import com.android.home.customview.CustomViewActivity;
 import com.android.home.development.DevelopmentActivity;
 import com.android.home.displaybitmaps.ui.DisplayBitmaps;
+import com.android.home.maplocation.LocationActivity;
 import com.android.home.plaid.PlaidApp;
 import com.android.home.renderscript.RenderIntrinsic;
 import com.android.home.rssimage.DisplayActivity;
@@ -99,6 +104,33 @@ import java.util.List;
  */
 
 /**
+ * Android 生成sha1.
+ * 点击右边的Gradle, appscoll, android, signingReport.
+ * 生成
+ * Variant: debugAndroidTest
+ * Config: debug
+ * Store: /home/wangrl/.android/debug.keystore
+ * Alias: AndroidDebugKey
+ * MD5: 29:8E:85:B0:DF:40:34:43:1B:0C:41:1C:FA:8C:22:16
+ * SHA1: DB:12:8B:48:10:06:DB:E3:5E:07:CA:AB:AF:B3:BC:92:7C:81:33:1F
+ * Valid until: Tuesday, June 2, 2048
+ *
+ * 生成正式版在Build, Generate Signed APK里面填写相关信息。
+ * 在生成的appscoll.jks目录下面执行
+ *  keytool -v -list -keystore appscoll.jks
+ *  获取相关信息
+ *  Issuer: C=86
+ * Serial number: 558f0476
+ * Valid from: Sun Nov 25 03:03:52 CST 2018 until: Thu Nov 19 03:03:52 CST 2043
+ * Certificate fingerprints:
+ * 	 SHA1: E6:15:98:CA:A8:36:AB:85:5B:4A:86:78:D0:78:08:D7:9D:D7:45:F1
+ * 	 SHA256: CE:8B:3A:2E:7B:62:08:C3:BF:CA:AE:DC:66:0C:40:34:59:C8:4C:64:5F:95:F9:DE:EE:36:32:91:05:3B:F3:22
+ * Signature algorithm name: SHA256withRSA
+ * Subject Public Key Algorithm: 2048-bit RSA key
+ *
+ */
+
+/**
  * 计算项目的行数，只包括java文件。
  * find . -type f -name "*.java" | xargs cat | wc -l
  * 目前已经写完97801行代码！写到100万行，加油！
@@ -117,6 +149,24 @@ public class Home extends Activity {
 
     List<AppView> appViewList = new ArrayList<>();
 
+    public static String getAppName(Context context) {
+        PackageManager pm = context.getPackageManager();
+
+        try {
+            PackageInfo packageInfo = pm.getPackageInfo(context.getPackageName(), 0);
+
+            ApplicationInfo applicationInfo = packageInfo.applicationInfo;
+
+            int labelRes = applicationInfo.labelRes;
+
+            return context.getResources().getString(labelRes);
+        } catch (PackageManager.NameNotFoundException e) {
+            e.printStackTrace();
+        }
+
+        return null;
+    }
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -128,8 +178,8 @@ public class Home extends Activity {
          * https://github.com/googlesamples/android-topeka
          */
 
-        appViewList.add(new AppView(R.drawable.home, "MapLocation",
-                "从服务器读取位置信息，显示在手机端，并可以绘制轨迹。", null, ""));
+        appViewList.add(new AppView(R.drawable.baidumap, "MapLocation",
+                "从服务器读取位置信息，显示在手机端，并可以绘制轨迹。", LocationActivity.class, ""));
 
         /**
          * 以后超过1000行的程序都要先进行分析，慌慌张张地写很容易进入迷途。

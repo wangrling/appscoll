@@ -12,6 +12,14 @@
     <uses-permission android:name="android.permission.DISABLE_KEYGUARD"/>
     <uses-permission android:name="android.permission.INTERNET"/>
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+
+    <uses-permission android:name="com.android.launcher.permission.READ_SETTINGS" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE"/>
+
+
     <uses-permission android:name="android.permission.RECORD_AUDIO"/>
     <uses-permission android:name="android.permission.WAKE_LOCK"/>
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
@@ -36,8 +44,26 @@
     <application
             android:icon="@mipmap/home"
             android:label="@string/home"
+            android:name=".MyApplication"
             android:theme="@style/Base.AppTheme">
         <activity android:name=".renderscript.RenderIntrinsic"/>
+
+        <!-- 声明service组件 -->
+        <service
+                android:name="com.baidu.location.f"
+                android:enabled="true"
+                android:process=":remote" >
+        </service>
+
+        <activity android:name=".maplocation.LocationActivity" />
+
+
+        <!-- AK鉴权 -->
+        <!-- meta-data需要写在application中 -->
+        <meta-data
+                android:name="com.baidu.lbsapi.API_KEY"
+                android:value="ucwigCxWzAk74dH36lfuy7aBwi8BvC44" />
+        <!-- http://lbsyun.baidu.com/apiconsole/key -->
 
         <provider
                 android:name=".alarmclock.AlarmProvider"

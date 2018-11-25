@@ -546,4 +546,6 @@
      %1 is the value to replace
      $.2f says the value is a float, with two decimal places.  -->
     <string name="value_format">%1$.2f</string>
+    <string name="startlocation">Start Location</string>
+    <string name="stoplocation">Stop Location</string>
 </resources>
