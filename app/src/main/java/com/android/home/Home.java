@@ -353,6 +353,7 @@ public class Home extends Activity {
                 "Fresco is a powerful system for displaying images in Android applications.", null));
 
 
+        // 需要添加更多的功能。
         appViewList.add(new AppView(R.drawable.universal_music, "UniversalMusicPlayer",
                 "Shows how to implement an audio media app that works across multiple form factors.",
                 MusicPlayerActivity.class,
@@ -360,13 +361,14 @@ public class Home extends Activity {
                         "已经去掉不能使用的cast功能，可以在多个界面上播放音乐。使用的是MediaController作为桥梁，沟通" +
                         "UI和MediaPlayer进行播放。"));
 
+        // 将这个程序改成路透中文的RSS客户端。
         appViewList.add(new AppView(R.drawable.sync_adapter, "SyncAdapter",
-                "Periodically downloads the feed from the Android Developer Blog and " +
-                        "caches the data in a content provider. At runtime, the cached feed data is displayed " +
-                        "inside a ListView.", BasicSyncActivity.class,
+                "显示路透中文的新闻，下载网页然后获取元数据，存储在ContentProvider上面。" +
+                        "调用RecyclerView显示分类，分类下展示相关的新闻。", BasicSyncActivity.class,
                 "中级，完成。\n" +
                         "使用Account获取sync权限，更新数据的内容，然后显示在列表上，已经掌握ContentProvider知识，" +
                         "基本上代码都是自己手敲的，没有大规模复制粘贴，是一个可喜的进步。"));
+
 
         appViewList.add(new AppView(R.drawable.auto_fill, "AutoFillActivity",
                 "Autofill Framework includes implementations of client Activities with views " +
@@ -380,6 +382,7 @@ public class Home extends Activity {
                         "fields using the Commit Content API.", null));
         */
 
+        // 计步器，不再进行修改。
         appViewList.add(new AppView(R.drawable.sensor, "BatchStepSensor",
                 "Demonstrating how to set up SensorEventListeners for step " +
                         "detectors and step counters.", BatchStepSensor.class,
@@ -387,6 +390,8 @@ public class Home extends Activity {
                         "原理并不难，就是注册监听，以固定的频率接收数据。\n" +
                         "但是里面有各种花式布局，让程序更加生动，所以需要分清主次。"));
 
+        // 以后不再只是列举简单的接口，没有什么用。
+        // 后续这里存放和View相关的东西，不再进行修改。
         // 未来先弄清楚目录结构，再决定是否继续往下写！！！！
         appViewList.add(new AppView(R.drawable.home, "CustomView",
                 "ApiDemos/src/com/example/android/apis/graphics", CustomViewActivity.class,

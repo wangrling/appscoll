@@ -55,13 +55,6 @@
 
         <activity android:name=".renderscript.RenderIntrinsic"/>
 
-        <!-- 声明service组件 -->
-        <service
-                android:name="com.baidu.location.f"
-                android:enabled="true"
-                android:process=":remote" >
-        </service>
-
         <activity android:name=".maplocation.LocationActivity" />
         <activity android:name=".maplocation.NavigationActivity" />
 
@@ -73,7 +66,12 @@
                 android:name="App_Id"
                 android:value="34087mfQ4MLq4S50jP8s4FM6W1m0s5X3" />
 
-
+        <!-- 声明service组件 -->
+        <service
+                android:name="com.baidu.location.f"
+                android:enabled="true"
+                android:process=":remote" >
+        </service>
         <!-- AK鉴权 -->
         <!-- meta-data需要写在application中 -->
         <meta-data

@@ -8,16 +8,16 @@ import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 import com.tckj.zyfsdk.ZYFSdk;
 import com.tckj.zyfsdk.entity.BaseEntity;
+import com.tckj.zyfsdk.entity.BindDevicesEntity;
 import com.tckj.zyfsdk.entity.CodeEntity;
 import com.tckj.zyfsdk.entity.LoginEntity;
-import com.tckj.zyfsdk.http.zhttp.listener.ZYFGetAuthCodeListener;
-import com.tckj.zyfsdk.http.zhttp.listener.ZYFLoginListener;
-import com.tckj.zyfsdk.http.zhttp.listener.ZYFRegisterListener;
+import com.tckj.zyfsdk.http.zhttp.listener.*;
 import org.json.JSONObject;
 
 import java.lang.reflect.Type;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 
 /**
  * 登录返回信息。
@@ -37,8 +37,16 @@ public class ZyfSDKActivity extends Activity {
     public static String password = "123456789";
     public static final String TAG = "ZyfSDK";
 
+    public static String snNumber = "001161300393";
+
+    // 第一页是起始页
+    public static final int pageNum = 0;
+    public static final int pageSize = 50;
+
     private boolean isRegisterSuccess = false;
-    private boolean isLoginSuccess = true;
+    private boolean isLoginSuccess = false;
+
+    private boolean isBindSuccess = false;
 
     private static String smsNumber;
 
@@ -54,6 +62,10 @@ public class ZyfSDKActivity extends Activity {
     // 转换成为可读的日期。
     private String registerDate;
 
+    // 获取的设备列表。
+    List<BindDevicesEntity.BindDevices> bindDevices;
+
+
     private String token;
 
     @Override
@@ -66,7 +78,7 @@ public class ZyfSDKActivity extends Activity {
                 Log.d(TAG, "login onComplete");
                 if (result.isRtState()) {
                     Log.d(TAG, "login state success, result: " + result.getRtData());
-
+                    isLoginSuccess = true;
                     mDataBean = result.getRtData();
                     parseLoginResult(mDataBean);
                 } else {
@@ -160,6 +172,9 @@ public class ZyfSDKActivity extends Activity {
         Log.d(TAG, "registerTime = " +registerTime);
         Log.d(TAG, "registerDate = " + getDateTimeByMilliSecond(registerTime));
         Log.d(TAG, "token = " + token);
+
+        bindDevice();
+        getBindDevices();
     }
 
     public String getDateTimeByMilliSecond(String milliSecond) {
@@ -169,5 +184,49 @@ public class ZyfSDKActivity extends Activity {
         return time;
     }
 
+    private void bindDevice() {
+        ZYFSdk.getInstance().bindDevice(this, snNumber, String.valueOf(sid), new ZYFBindDeviceListener() {
+            @Override
+            public void onComplete(BaseEntity result) {
+                Log.d(TAG, "bindDevice onComplete");
+
+                if (result.isRtState()) {
+                    isBindSuccess = true;
+                    Log.d(TAG, "bindDevice result " + result.getRtMsg());
+
+                } else {
+                    Log.e(TAG, "bindDevice result error " + result.getRtMsg());
+                }
+            }
+
+            @Override
+            public void onError(Exception e) {
+                Log.d(TAG, "bindDevice onError");
+            }
+        });
+    }
+
+    private void getBindDevices() {
+        if (isBindSuccess) {
+            ZYFSdk.getInstance().getBindDevices(String.valueOf(sid), pageNum, pageSize,
+                    new ZYFGetBindDevicesListener() {
+                        @Override
+                        public void onComplete(BindDevicesEntity result) {
+                            Log.d(TAG, "getBindDevices onComplete");
+                            if (result.isRtState()) {
+                                bindDevices = result.getBindDevices();
+                                for (BindDevicesEntity.BindDevices device : bindDevices) {
+                                    Log.d(TAG, "device = " + device.toString());
+                                }
+                            }
+                        }
+
+                        @Override
+                        public void onError(Exception e) {
+                            Log.d(TAG, "getBindDevices onError");
+                        }
+                    });
+        }
+    }
 
 }
