@@ -36,7 +36,7 @@ public class SyncAdapter extends AbstractThreadedSyncAdapter {
     // 网址访问困难！
     // private static final String FEED_URL = "http://android-developers.blogspot.com/atom.xml";
 
-    private static final String FEED_URL = "http://www.aidoufu.cn/feed/atom_feed.html";
+    private static final String FEED_URL = "http://www.aidoufu.cn/people_rss.xml";
 
     /**
      * Network connection timeout, in milliseconds.
