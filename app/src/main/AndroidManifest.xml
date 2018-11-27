@@ -141,7 +141,8 @@
                 android:permission="android.permission.BIND_REMOTEVIEWS"/>
 
         <activity android:name=".autofill.AutoFillActivity"/>
-        <activity android:name=".syncadapter.BasicSyncActivity"/>
+        <activity android:name=".syncadapter.PeopleRssActivity"/>
+
         <!--
         This service implements our SyncAdapter. It needs to be exported, so that the system
         sync framework can access it.

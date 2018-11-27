@@ -149,11 +149,6 @@ public class ZyfSDKActivity extends Activity {
                 }
             });
         }
-
-        // 开始解析gson数据。
-        /*
-
-        */
     }
 
     private void parseLoginResult(LoginEntity.DataBean dataBean) {

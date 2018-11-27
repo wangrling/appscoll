@@ -173,7 +173,7 @@ public class FeedProvider extends ContentProvider {
     }
 
     /**
-     * Update an etry in the database by URI.
+     * Update an entry in the database by URI.
      */
     @Override
     public int update(@NonNull Uri uri, @Nullable ContentValues values, @Nullable String selection, @Nullable String[] selectionArgs) {

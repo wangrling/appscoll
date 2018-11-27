@@ -26,8 +26,6 @@ import com.android.home.components.ArchComponents;
 import com.android.home.customview.CustomViewActivity;
 import com.android.home.development.DevelopmentActivity;
 import com.android.home.displaybitmaps.ui.DisplayBitmaps;
-import com.android.home.maplocation.LocationActivity;
-import com.android.home.maplocation.NavigationActivity;
 import com.android.home.maplocation.ZyfSDKActivity;
 import com.android.home.plaid.PlaidApp;
 import com.android.home.renderscript.RenderIntrinsic;
@@ -41,9 +39,8 @@ import com.android.home.randommusic.RandomMusicPlayer;
 import com.android.home.rxjavasamples.RxJavaSamples;
 import com.android.home.soundrecorder.SoundRecorder;
 import com.android.home.stepsensor.BatchStepSensor;
-import com.android.home.syncadapter.BasicSyncActivity;
+import com.android.home.syncadapter.PeopleRssActivity;
 import com.android.home.testing.TestingActivity;
-import com.android.home.threelibs.ThreeLibsSample;
 import com.android.home.threelibs.gson.ProguardGson;
 import com.android.home.todomvp.TodoMvpActivity;
 import com.android.home.universalmusic.ui.MusicPlayerActivity;
@@ -362,12 +359,19 @@ public class Home extends Activity {
                         "UI和MediaPlayer进行播放。"));
 
         // 将这个程序改成路透中文的RSS客户端。
+        // 路透中国没有办法访问，只好改成人民日报的经济类新闻。
+        /*
         appViewList.add(new AppView(R.drawable.sync_adapter, "SyncAdapter",
                 "显示路透中文的新闻，下载网页然后获取元数据，存储在ContentProvider上面。" +
-                        "调用RecyclerView显示分类，分类下展示相关的新闻。", BasicSyncActivity.class,
+                        "调用RecyclerView显示分类，分类下展示相关的新闻。", PeopleRssActivity.class,
                 "中级，完成。\n" +
                         "使用Account获取sync权限，更新数据的内容，然后显示在列表上，已经掌握ContentProvider知识，" +
                         "基本上代码都是自己手敲的，没有大规模复制粘贴，是一个可喜的进步。"));
+         */
+        appViewList.add(new AppView(R.drawable.sync_adapter, "PeopleRss",
+                "使用XmlParser将人民网财经频道标题解析出来，保存在Database中，" +
+                        "通过Adapter显示在ListFragment上，并且通过AccountManager定期检查服务器是否有更新。",
+                PeopleRssActivity.class, ""));
 
 
         appViewList.add(new AppView(R.drawable.auto_fill, "AutoFillActivity",

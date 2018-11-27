@@ -75,7 +75,8 @@ public class FeedParser {
         // <feed xmlns="http://www.w3.org/2005/Atom">
         // ...
         // </feed>
-        parser.require(XmlPullParser.START_TAG, ns, "feed");
+        // parser.require(XmlPullParser.START_TAG, ns, "feed");
+        parser.require(XmlPullParser.START_TAG, ns, "rss");
 
         while (parser.next() != XmlPullParser.END_TAG) {
             if (parser.getEventType() != XmlPullParser.START_TAG) {
@@ -100,7 +101,9 @@ public class FeedParser {
             //     <email>deckard@example.com</email>
             //   </author>
             // </entry>
-            if (name.equals("entry")) {
+
+            // if (name.equals("entry")) {
+            if (name.equals("item")) {
                 entries.add(readEntry(parser));
             } else {
                 skip(parser);
@@ -116,8 +119,8 @@ public class FeedParser {
      */
     private Entry readEntry(XmlPullParser parser) throws IOException, XmlPullParserException {
         // 会指定END_TAG是相应的START_TAG值。
-        parser.require(XmlPullParser.START_TAG, ns, "entry");
-
+        // parser.require(XmlPullParser.START_TAG, ns, "entry");
+        parser.require(XmlPullParser.START_TAG, ns, "item");
         String id = null;
         String title = null;
         String link = null;
@@ -130,6 +133,8 @@ public class FeedParser {
                 continue;
             }
 
+            // title和link保持不变，published时间格式不一致。
+            // 所以只用到title和link.
             String name = parser.getName();
             if (name.equals("id")) {
                 // Example: <id>urn:uuid:218AC159-7F68-4CC6-873F-22AE6017390D</id>
