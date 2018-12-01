@@ -65,8 +65,8 @@ public class DigitalClock extends LinearLayout {
             mPm = (TextView)mAmPmLayout.findViewById(R.id.pm);
 
             Resources r = parent.getResources();
-            mColorOn = r.getColor(R.color.ampm_on);
-            mColorOff = r.getColor(R.color.ampm_off);
+            mColorOn = r.getColor(R.color.colorPrimary);
+            mColorOff = r.getColor(R.color.white);
         }
 
         void setShowAmPm(boolean show) {

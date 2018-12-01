@@ -53,7 +53,7 @@
         <activity android:name=".threelibs.ThreeLibsSample"/>
 
 
-        <activity android:name=".renderscript.RenderIntrinsic"/>
+        <activity android:name=".threelibs.renderscript.RenderIntrinsic"/>
 
         <activity android:name=".maplocation.LocationActivity" />
         <activity android:name=".maplocation.NavigationActivity" />
@@ -86,7 +86,10 @@
 
         <activity
                 android:name=".alarmclock.AlarmClock"
+                android:label="Alarm"
+                android:parentActivityName=".Home"
                 android:configChanges="orientation|keyboardHidden|keyboard|navigation"/>
+
         <activity android:name=".alarmclock.ClockPicker"/>
         <activity android:name=".alarmclock.SetAlarm"/>
         <activity android:name=".alarmclock.SettingsActivity"/>
@@ -99,9 +102,21 @@
             </intent-filter>
         </receiver>
 
+        <service android:name=".alarmclock.AlarmKlaxon">
+            <intent-filter>
+                <action android:name="com.android.home.alarmclock.ALARM_ALERT" />
+            </intent-filter>
+        </service>
+
+        <receiver android:name=".alarmclock.AlarmInitReceiver">
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+            </intent-filter>
+        </receiver>
+
         <activity android:name=".alarmclock.AlarmAlertFullScreen"/>
         <activity android:name=".alarmclock.AlarmAlert"/>
-        <activity android:name=".development.DevelopmentActivity"/>
+        <activity android:name=".threelibs.development.DevelopmentActivity"/>
         <activity
                 android:name=".calculator.Calculator"
                 android:launchMode="singleTask">
@@ -113,7 +128,7 @@
                 <category android:name="android.intent.category.APP_CALCULATOR"/>
             </intent-filter>
         </activity>
-        <activity android:name=".development.fragments.FragmentExample"/>
+        <activity android:name=".threelibs.development.fragments.FragmentExample"/>
         <activity
                 android:name=".calendar.AllInOneActivity"
                 android:launchMode="singleTask"
@@ -125,7 +140,7 @@
                 android:exported="true"
                 android:targetActivity=".calendar.AllInOneActivity"/>
 
-        <receiver android:name=".widgets.StackWidgetProvider">
+        <receiver android:name=".threelibs.widgets.StackWidgetProvider">
             <intent-filter>
                 <action android:name="android.appwidget.action.APPWIDGET_UPDATE"/>
             </intent-filter>
@@ -136,12 +151,14 @@
         </receiver>
 
         <service
-                android:name=".widgets.StackWidgetService"
+                android:name=".threelibs.widgets.StackWidgetService"
                 android:exported="false"
                 android:permission="android.permission.BIND_REMOTEVIEWS"/>
 
-        <activity android:name=".autofill.AutoFillActivity"/>
-        <activity android:name=".syncadapter.PeopleRssActivity"/>
+        <activity android:name=".threelibs.autofill.AutoFillActivity"/>
+        <activity
+                android:label="PeopleRss"
+                android:name=".syncadapter.PeopleRssActivity"/>
 
         <!--
         This service implements our SyncAdapter. It needs to be exported, so that the system
@@ -209,24 +226,24 @@
             </intent-filter>
         </activity>
         <activity android:name=".components.ArchComponents"/>
-        <activity android:name=".testing.TestingActivity"/>
-        <activity android:name=".testing.espresso.EspressoBasic">
+        <activity android:name=".threelibs.testing.TestingActivity"/>
+        <activity android:name=".threelibs.testing.espresso.EspressoBasic">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
 
                 <category android:name="android.intent.category.HOME"/>
             </intent-filter>
         </activity>
-        <activity android:name=".testing.espresso.ShowTextActivity"/>
-        <activity android:name=".testing.espresso.CustomMatcher"/>
-        <activity android:name=".testing.espresso.LongListActivity"/>
-        <activity android:name=".testing.espresso.IdlingResourceActivity"/>
-        <activity android:name=".testing.espresso.IntentsBasicActivity"/>
-        <activity android:name=".testing.espresso.ContactsActivity"/>
-        <activity android:name=".testing.espresso.IntentsAdvancedActivity"/>
-        <activity android:name=".testing.espresso.RecyclerViewActivity"/>
-        <activity android:name=".testing.espresso.WebViewActivity"/>
-        <activity android:name=".testing.junitrunner.CalculatorActivity"/>
+        <activity android:name=".threelibs.testing.espresso.ShowTextActivity"/>
+        <activity android:name=".threelibs.testing.espresso.CustomMatcher"/>
+        <activity android:name=".threelibs.testing.espresso.LongListActivity"/>
+        <activity android:name=".threelibs.testing.espresso.IdlingResourceActivity"/>
+        <activity android:name=".threelibs.testing.espresso.IntentsBasicActivity"/>
+        <activity android:name=".threelibs.testing.espresso.ContactsActivity"/>
+        <activity android:name=".threelibs.testing.espresso.IntentsAdvancedActivity"/>
+        <activity android:name=".threelibs.testing.espresso.RecyclerViewActivity"/>
+        <activity android:name=".threelibs.testing.espresso.WebViewActivity"/>
+        <activity android:name=".threelibs.testing.junitrunner.CalculatorActivity"/>
         <activity
                 android:name=".todomvp.TodoMvpActivity"
                 android:label="@string/todomvp"/>
@@ -236,17 +253,17 @@
         <activity android:name=".todomvp.addedittask.AddEditTaskActivity"/>
         <activity android:name=".todomvp.taskdetail.TaskDetailActivity"/>
         <activity
-                android:name=".picasso.PicassoActivity"
+                android:name=".threelibs.picasso.PicassoActivity"
                 android:label="@string/picasso"/>
-        <activity android:name=".picasso.PicassoGridViewActivity"/>
-        <activity android:name=".picasso.PicassoGalleryActivity"/>
-        <activity android:name=".picasso.PicassoContactsActivity"/>
-        <activity android:name=".picasso.PicassoListDetailActivity"/>
+        <activity android:name=".threelibs.picasso.PicassoGridViewActivity"/>
+        <activity android:name=".threelibs.picasso.PicassoGalleryActivity"/>
+        <activity android:name=".threelibs.picasso.PicassoContactsActivity"/>
+        <activity android:name=".threelibs.picasso.PicassoListDetailActivity"/>
         <activity android:name=".camerabasic.CameraBasic"/>
         <activity android:name=".plaid.PlaidApp"/>
-        <activity android:name=".randommusic.RandomMusicPlayer"/>
+        <activity android:name=".threelibs.randommusic.RandomMusicPlayer"/>
 
-        <service android:name=".randommusic.MusicService">
+        <service android:name=".threelibs.randommusic.MusicService">
             <intent-filter>
                 <action android:name="com.android.home.randommusic.action.TOGGLE_PLAYBACK"/>
                 <action android:name="com.android.home.randommusic.action.PLAY"/>
@@ -265,10 +282,10 @@
         </service>
 
         <activity android:name=".soundrecorder.SoundRecorder"/>
-        <activity android:name=".circleimage.CircleImageActivity"/>
-        <activity android:name=".shimmer.ShimmerActivity"/>
-        <activity android:name=".rxjavasamples.RxJavaSamples"/>
-        <activity android:name=".mpchart.MpChart"/>
+        <activity android:name=".threelibs.circleimage.CircleImageActivity"/>
+        <activity android:name="com.android.home.threelibs.shimmer.ShimmerActivity"/>
+        <activity android:name=".threelibs.rxjavasamples.RxJavaSamples"/>
+        <activity android:name=".threelibs.mpchart.MpChart"/>
         <activity
                 android:name=".universalmusic.ui.MusicPlayerActivity"
                 android:label="Universal Music Player"/>
@@ -282,7 +299,7 @@
 
         <activity android:name=".universalmusic.ui.NowPlayingActivity"/>
         <activity android:name=".universalmusic.ui.FullScreenPlayerActivity"/>
-        <activity android:name=".customview.CustomViewActivity"/>
+        <activity android:name=".threelibs.customview.CustomViewActivity"/>
         <activity android:name=".rssimage.DisplayActivity"/>
 
         <provider
@@ -296,7 +313,7 @@
         <activity android:name=".displaybitmaps.ui.DisplayBitmaps"/>
         <activity android:name=".displaybitmaps.ui.ImageDetailActivity"/>
 
-        <receiver android:name=".development.widget.NewAppWidget">
+        <receiver android:name=".threelibs.development.widget.NewAppWidget">
             <intent-filter>
                 <action android:name="android.appwidget.action.APPWIDGET_UPDATE"/>
             </intent-filter>
@@ -306,13 +323,13 @@
                     android:resource="@xml/new_app_widget_info"/>
         </receiver>
 
-        <activity android:name=".development.sensors.SensorSurvey">
+        <activity android:name=".threelibs.development.sensors.SensorSurvey">
         </activity>
-        <activity android:name=".development.sensors.TiltSpot">
+        <activity android:name=".threelibs.development.sensors.TiltSpot">
         </activity>
-        <activity android:name=".development.profilegpu.ProfileGPU">
+        <activity android:name=".threelibs.development.profilegpu.ProfileGPU">
         </activity>
-        <activity android:name=".development.profilegpu.GPUOverdraw">
+        <activity android:name=".threelibs.development.profilegpu.GPUOverdraw">
         </activity>
     </application>
 

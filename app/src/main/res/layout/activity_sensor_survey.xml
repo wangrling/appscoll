@@ -6,7 +6,7 @@
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".development.sensors.SensorSurvey">
+        tools:context=".threelibs.development.sensors.SensorSurvey">
     <TextView
             android:text="@string/label_light"
             android:layout_width="wrap_content"

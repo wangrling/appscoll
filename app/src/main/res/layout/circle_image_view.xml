@@ -11,7 +11,7 @@
             android:background="@color/colorPrimary"
             android:layout_height="0dp">
 
-        <com.android.home.circleimage.CircleImageView
+        <com.android.home.threelibs.circleimage.CircleImageView
                 android:layout_width="160dp"
                 android:layout_height="160dp"
                 android:src="@drawable/hugh"
@@ -25,7 +25,7 @@
             android:background="@color/colorPrimaryDark"
             android:layout_height="0dp">
 
-        <com.android.home.circleimage.CircleImageView
+        <com.android.home.threelibs.circleimage.CircleImageView
                 android:layout_width="160dp"
                 android:layout_height="160dp"
                 android:src="@drawable/hugh"

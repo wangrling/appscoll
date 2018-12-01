@@ -2,9 +2,10 @@ package com.android.home.syncadapter;
 
 import android.os.Bundle;
 import android.view.Menu;
+import android.widget.Toolbar;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
+
 import androidx.fragment.app.FragmentActivity;
 import com.android.home.R;
 
@@ -16,9 +17,9 @@ import com.android.home.R;
 
 //
 
-public class PeopleRssActivity extends AppCompatActivity {
+public class PeopleRssActivity extends FragmentActivity {
 
-    public static final String RSS_URL = "http://www.people.com.cn/rss/finance.xml";
+    //public static final String RSS_URL = "http://www.people.com.cn/rss/finance.xml";
 
     Toolbar toolbar;
 
@@ -30,7 +31,7 @@ public class PeopleRssActivity extends AppCompatActivity {
 
         toolbar = findViewById(R.id.toolbar);
 
-        setSupportActionBar(toolbar);
+        setActionBar(toolbar);
     }
 
 

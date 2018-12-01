@@ -22,20 +22,20 @@
             android:layout_marginBottom="8dp"
             android:orientation="horizontal">
 
-        <com.android.home.renderscript.ThumbnailRadioButton
+        <com.android.home.threelibs.renderscript.ThumbnailRadioButton
                 android:id="@+id/radio0"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:checked="true"
                 android:text="@string/blur"/>
 
-        <com.android.home.renderscript.ThumbnailRadioButton
+        <com.android.home.threelibs.renderscript.ThumbnailRadioButton
                 android:id="@+id/radio1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/emboss"/>
 
-        <com.android.home.renderscript.ThumbnailRadioButton
+        <com.android.home.threelibs.renderscript.ThumbnailRadioButton
                 android:id="@+id/radio2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

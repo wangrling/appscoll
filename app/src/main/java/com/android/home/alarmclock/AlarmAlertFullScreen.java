@@ -1,14 +1,20 @@
 package com.android.home.alarmclock;
 
 import android.app.Activity;
+import android.app.Notification;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
 import android.content.*;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.view.*;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 import androidx.annotation.Nullable;
 import com.android.home.R;
+
+import java.util.Calendar;
 
 /**
  * Alarm Clock alarm alert: pops visible indicator and plays alarm
@@ -127,12 +133,151 @@ public class AlarmAlertFullScreen extends Activity {
         setTitle();
     }
 
-    // Attempt t snooze this alert.
+    // Attempt to snooze this alert.
+    // 推迟闹钟响铃
     private void snooze() {
+        final String snooze =
+                PreferenceManager.getDefaultSharedPreferences(this)
+                .getString(SettingsActivity.KEY_ALARM_SNOOZE, DEFAULT_SNOOZE);
 
+        int snoozeMinutes = Integer.parseInt(snooze);
+
+        final long snoozeTime = System.currentTimeMillis()
+                + (1000 * 60 * snoozeMinutes);
+
+        Alarms.saveSnoozeAlert(AlarmAlertFullScreen.this, mAlarm.id,
+                snoozeTime);
+
+        // Get the display time for the snooze and update the notification.
+        final Calendar c = Calendar.getInstance();
+        c.setTimeInMillis(snoozeTime);
+
+        // Append (snoozed) to the label.
+        String label = mAlarm.getLabelOrDefault(this);
+
+        label = getString(R.string.alarm_notify_snooze_label, label);
+
+        // Notify the user that the alarm has been snoozed.
+        Intent cancelSnooze = new Intent(this, AlarmReceiver.class);
+        cancelSnooze.setAction(Alarms.CANCEL_SNOOZE);
+        cancelSnooze.putExtra(Alarms.ALARM_ID, mAlarm.id);
+
+        PendingIntent broadcast =
+                PendingIntent.getBroadcast(this, mAlarm.id, cancelSnooze, 0);
+        NotificationManager nm = getNotificationManager();
+        Notification n = new Notification(R.drawable.stat_notify_alarm,
+                label, 0);
+
+        // n.setLatestEventInfo(this, label,
+        //         getString(R.string.alarm_notify_snooze_text,
+        //                 Alarms.formatTime(this, c)), broadcast);
+
+        n.flags |= Notification.FLAG_AUTO_CANCEL
+                | Notification.FLAG_ONGOING_EVENT;
+        nm.notify(mAlarm.id, n);
+
+        String displayTime = getString(R.string.alarm_alert_snooze_set,
+                snoozeMinutes);
+        // Intentionally log the snooze time for debugging.
+        Log.v(displayTime);
+
+        // Display the snooze minutes in a toast.
+        Toast.makeText(AlarmAlertFullScreen.this, displayTime,
+                Toast.LENGTH_LONG).show();
+        // stopService(new Intent(Alarms.ALARM_ALERT_ACTION));
+        stopService(new Intent(this, AlarmKlaxon.class));
+        finish();
+    }
+
+    private NotificationManager getNotificationManager() {
+        return (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
     }
 
     private void dismiss(boolean killed) {
+        // The service told us that the alarm has been killed, do not modify
+        // the notification or stop the service.
+        if (!killed) {
+            // Cancel the notification and stop playing the alarm
+            NotificationManager nm = getNotificationManager();
+            nm.cancel(mAlarm.id);
 
+            // stopService(new Intent(Alarms.ALARM_ALERT_ACTION));
+            stopService(new Intent(this, AlarmKlaxon.class));
+        }
+        finish();
+    }
+
+    /**
+     * this is called when a second alarm is triggered while a
+     * previous alert window is still active.
+     */
+    @Override
+    protected void onNewIntent(Intent intent) {
+        super.onNewIntent(intent);
+
+        if (Log.LOGV) Log.v("AlarmAlert.OnNewIntent()");
+
+        mAlarm = intent.getParcelableExtra(Alarms.ALARM_INTENT_EXTRA);
+
+        setTitle();
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+
+        if (!isFinishing()) {
+            // Don't hang round.
+            finish();
+        }
+    }
+
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+
+        if (Log.LOGV) Log.v("AlarmAlert.onDestroy()");
+        // No longer care about the alarm being killed.
+        unregisterReceiver(mReceiver);
+    }
+
+    @Override
+    public boolean dispatchKeyEvent(KeyEvent event) {
+
+        // Do this on key down to handle a few of the system keys.
+        boolean up = event.getAction() == KeyEvent.ACTION_UP;
+
+        switch (event.getKeyCode()) {
+            // Volume keys and camera keys dismiss the alarm
+            case KeyEvent.KEYCODE_VOLUME_UP:
+            case KeyEvent.KEYCODE_VOLUME_DOWN:
+            case KeyEvent.KEYCODE_CAMERA:
+            case KeyEvent.KEYCODE_FOCUS:
+                if (up) {
+                    switch (mVolumeBehavior) {
+                        case 1:
+                            snooze();
+                            break;
+
+                        case 2:
+                            dismiss(false);
+                            break;
+
+                        default:
+                            break;
+                    }
+                }
+                return true;
+        }
+
+        return super.dispatchKeyEvent(event);
+    }
+
+    @Override
+    public void onBackPressed() {
+        // Don't allow back to dismiss. This method is overriden by AlarmAlert
+        // so that the dialog is dismissed.
+        return;
     }
 }

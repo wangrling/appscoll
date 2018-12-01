@@ -1,6 +1,7 @@
 package com.android.home.alarmclock;
 
 import android.app.KeyguardManager;
+import android.app.PendingIntent;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
@@ -110,13 +111,25 @@ public class AlarmReceiver extends BroadcastReceiver {
         }
 
         // Play the alarm alert and vibrate the device.
-        Intent playAlarm = new Intent(Alarms.ALARM_ALERT_ACTION);
+        // AlarmKlaxon服务接受com.android.home.alarmclock.ALARM_ALERT的提示。
+
+        // Service Intent must be explicit
+        // Intent playAlarm = new Intent(Alarms.ALARM_ALERT_ACTION);
+        Intent playAlarm = new Intent(context, AlarmKlaxon.class);
+
+        // The Parcelable data value.
         playAlarm.putExtra(Alarms.ALARM_INTENT_EXTRA, alarm);
 
         // 开启服务播放铃声。
         context.startService(playAlarm);
 
-        //
+        // Trigger a notification that, when clicked, will show the alarm alert
+        // dialog. No need to check for fullscreen since this will always be
+        // launched from a user action.
+        Intent notify = new Intent(context, AlarmAlert.class);
+        notify.putExtra(Alarms.ALARM_INTENT_EXTRA, alarm);
+        PendingIntent pendingNotify = PendingIntent.getActivity(context,
+                alarm.id, notify, 0);
 
     }
 

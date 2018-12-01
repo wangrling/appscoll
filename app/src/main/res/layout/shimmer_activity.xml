@@ -8,7 +8,7 @@
         android:orientation="vertical"
         android:padding="20dp">
 
-    <com.android.home.shimmer.ShimmerFrameLayout
+    <com.android.home.threelibs.shimmer.ShimmerFrameLayout
             android:id="@+id/shimmer_view_container"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -35,7 +35,7 @@
                     android:text="@string/mission_statement"
                     style="@style/thin.white.large"/>
         </LinearLayout>
-    </com.android.home.shimmer.ShimmerFrameLayout>
+    </com.android.home.threelibs.shimmer.ShimmerFrameLayout>
 
     <LinearLayout
             android:id="@+id/settings_container"

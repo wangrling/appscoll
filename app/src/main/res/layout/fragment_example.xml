@@ -10,7 +10,7 @@
     <fragment
             android:id="@+id/fragment"
             android:layout_width="0dp"
-            android:name="com.android.home.development.fragments.SimpleFragment"
+            android:name="com.android.home.threelibs.development.fragments.SimpleFragment"
               android:layout_height="wrap_content"
               app:layout_constraintLeft_toLeftOf="parent"
               app:layout_constraintRight_toRightOf="parent"

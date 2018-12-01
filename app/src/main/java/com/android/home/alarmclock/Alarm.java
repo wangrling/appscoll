@@ -12,6 +12,9 @@ import com.android.home.R;
 import java.text.DateFormatSymbols;
 import java.util.Calendar;
 
+
+// 复杂的对象使用Parcel传输。
+
 public final class Alarm implements Parcelable {
 
     //////////////////////////////

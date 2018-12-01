@@ -36,7 +36,7 @@ import android.view.WindowManager;
 import com.android.home.R;
 
 /**
- * This activity displays Picasa's current featured images. It uses a service running
+ * This activity displays Picassa's current featured images. It uses a service running
  * a background thread to download Picasa's "featured image" RSS feed.
  * <p>
  * An IntentHandler is used to communicate between the active Fragment and this

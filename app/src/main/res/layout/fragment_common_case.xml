@@ -10,7 +10,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
-            <com.android.home.autofill.view.NavigationItem
+            <com.android.home.threelibs.autofill.view.NavigationItem
                     android:id="@+id/standardViewSignInButton"
                     app:imageColor="@android:color/holo_red_dark"
                     app:infoText="@string/edittext_login_info"
