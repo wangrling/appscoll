@@ -10,7 +10,6 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.RemoteException;
 import android.util.Log;
-import com.android.home.Home;
 import com.android.home.syncadapter.provider.FeedContract;
 import org.xmlpull.v1.XmlPullParserException;
 
@@ -22,6 +21,13 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+
+import static com.android.home.syncadapter.PeopleRssActivity.RSS_URL;
+
+/**
+ * Lutou Rss
+ * https://cn.reuters.com/rss
+ */
 
 public class SyncAdapter extends AbstractThreadedSyncAdapter {
 
@@ -106,7 +112,8 @@ public class SyncAdapter extends AbstractThreadedSyncAdapter {
     public void onPerformSync(Account account, Bundle extras, String authority, ContentProviderClient provider, SyncResult syncResult) {
         Log.i(TAG, "Beginning network synchronization");
         try {
-            final URL location = new URL(FEED_URL);
+            // final URL location = new URL(FEED_URL);
+            final URL location = new URL(RSS_URL);
             InputStream stream = null;
 
             try {

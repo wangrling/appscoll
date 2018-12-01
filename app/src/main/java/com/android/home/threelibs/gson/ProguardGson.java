@@ -42,6 +42,6 @@ public class ProguardGson extends Activity {
         List<LineItem> lineItems = new ArrayList<LineItem>();
         lineItems.add(new LineItem("hammer", 1, 12000000, "USD"));
         lineItems.add(new LineItem("portdo", 2, 13000000, "CHN"));
-        return new Cart(lineItems, "Happy Buyer", "4111-1111-1111-1111");
+        return new Cart(lineItems, "Happy Buyer", "4111-1111");
     }
 }
